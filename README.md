@@ -62,3 +62,26 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+
+
+
+## Git Command
+
+- clone untuk pertama kali
+git clone https://github.com/waldika13/brh-app.git
+
+- Membuat branch
+git branch nama_branch
+
+- berpindah dari branch ke branch lain (kalau ada perubahan lokal pada branch sebaiknya di push dulu baru berpindah ke branch lain)
+git checkout nama_branch
+
+- Melakukan push atau upload 
+1. git add .
+2. git commit -m "deskripsi"
+3. git push origin nama_branch
+
+- memperbarui file lokal agar sama dengan yang di github
+git pull origin nama_branch
