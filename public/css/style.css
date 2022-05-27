@@ -1,0 +1,15 @@
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.container h1, p {
+    color: #484848;
+}
+
+.star_gold {
+    color: gold !important;
+}
+
+.card .card-body .card-subtitle {
+    color: #C4C4C4 !important;
+}
