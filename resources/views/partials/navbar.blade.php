@@ -8,7 +8,7 @@
           <div class="navbar-nav">
             <a class="nav-link {{ ($title === 'Home Page') ? 'active' : '' }}" href="/">Home</a>
             <a class="nav-link {{ ($title === 'About Page') ? 'active' : '' }}" href="/about">About</a>
-            <a class="nav-link {{ ($title === 'hotels') ? 'active' : '' }}" href="/detail_page">Hotels</a>
+            <a class="nav-link {{ ($title === 'hotels') ? 'active' : '' }}" href="/detail_page">Hotels</a> <!-- Sementara link nya ke detail page dulu -->
             <a class="nav-link {{ ($title === 'Sign in') ? 'active' : '' }}" href="#">Sign in</a>
             <button type="button" class="btn btn-outline-dark ms-2" href="/">Sing Up</button>
           </div>

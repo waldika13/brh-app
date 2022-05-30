@@ -1,8 +1,16 @@
 @extends('layout.main')
 
 @section('container')
-<div class="container">
-    <h1>Bali Breezz Hotel</h1>
+    <div class="container">
+        <div class="card bg-dark text-white rounded-4">
+            <img src="/images/Bali Breezz Hotel.jpg" class="card-img rounded-4"  style="height: 700px;" alt="...">
+            <div class="card-img-overlay d-flex flex-column-reverse ms-2">
+                <p class="text-dark card-text d-inline-flex justify-content-start align-items-start border border-waring bg-warning p-2 mb-2 rounded-pill" style="width: 170px">Rp. 350.000 /hari</p>
+                <p class="text-white card-text d-flex justify-content-start align-items-start ms-3 mb-1">Mulai dari</p>
+            </div>
+        </div>
+    </div>
+    <h1 class="mt-4">Bali Breezz Hotel</h1>
     <p>Jl. Gatot Subroto, Jimbaran, Bali Selatan</p>
     <div class="d-inline-block pe-5 pb-4">
         <p class="fw-bold mt-4">Wisata Terdekat</p>
