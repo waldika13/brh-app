@@ -28,7 +28,7 @@
                     </div>
                 </div>
                 <div>
-                    <a href="tambah-hotel.html"><button class="btn btn-warning">+</button></a>
+                    <a href="/admin/hotel/add"><button class="btn btn-warning">+</button></a>
                 </div>
             </div>
             <div class="box-card d-flex">
@@ -40,7 +40,7 @@
                     </div>
                 </div>
                 <div>
-                    <a href=""><button class="btn btn-warning">+</button></a>
+                    <a href="/admin/artikel/add"><button class="btn btn-warning">+</button></a>
                 </div>
             </div>
         </div>
