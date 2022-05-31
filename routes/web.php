@@ -30,3 +30,30 @@ Route::get('/detail_page', function () {
         "title" => "Detail Page",
     ]);
 });
+
+
+Route::get('/admin', function () {
+    return view('admin.dashboard', [
+        "title" => "Admin - Dashboard",
+    ]);
+});
+Route::get('/admin/hotel', function () {
+    return view('admin.hotel', [
+        "title" => "Admin - Hotel",
+    ]);
+});
+Route::get('/admin/artikel', function () {
+    return view('admin.artikel', [
+        "title" => "Admin - Artikel",
+    ]);
+});
+Route::get('/admin/hotel/add', function () {
+    return view('admin.add-hotel', [
+        "title" => "Admin - Add Hotel",
+    ]);
+});
+Route::get('/admin/hotel/edit', function () {
+    return view('admin.edit-hotel', [
+        "title" => "Admin - Edit Hotel",
+    ]);
+});
