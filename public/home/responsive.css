@@ -1,0 +1,21 @@
+@media screen and (max-width: 650px) {
+    .card {
+        margin-bottom: 10px;
+    }
+
+    .button-secondary {
+        text-align: center;
+    }
+
+    .form {
+        text-align: center;
+    }
+
+    .form-check-inline {
+        text-align: center;
+    }
+
+    .form-control {
+        width: 300px;
+    }
+}
