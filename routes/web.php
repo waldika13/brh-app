@@ -32,6 +32,12 @@ Route::get('/detail_page', function () {
 });
 
 
+Route::get('/article', function () {
+    return view('article_page', [
+        "title" => "Article Page",
+    ]);
+});
+
 Route::get('/admin', function () {
     return view('admin.dashboard', [
         "title" => "Admin - Dashboard",

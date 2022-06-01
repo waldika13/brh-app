@@ -64,8 +64,35 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
 
-
-
+### Installation steps:
+1. Clone project from https://github.com/waldika13/brh-app.git
+```shell
+git clone https://github.com/waldika13/brh-app.git
+```
+2. Change directory
+```shell
+cd brh-app
+```
+3. Install Composer Dependencies
+```shell
+composer install
+```
+4. Install NPM Dependencies
+```shell
+npm install && npm run dev
+```
+5. Create a copy of your .env file
+```shell
+cp .env.example .env
+```
+6. Generate an app encryption key
+```shell
+php artisan key:generate
+```
+7. Run Laravel project
+```shell
+php artisan serve
+```
 
 ## Git Command
 
