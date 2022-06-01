@@ -8,7 +8,7 @@
         <h2>List Artikel</h2>
     </div>
     <div class="d-flex">
-        <a href="" class="me-4"><button class="btn btn-success rounded-5">
+        <a href="/admin/artikel/add" class="me-4"><button class="btn btn-success rounded-5">
                 + Buat Artikel Baru
             </button></a>
         <div class="search-input">
@@ -32,7 +32,7 @@
             <button class="btn btn-warning btn-dropdown">⋮</button>
         </div>
         <div class="list-dropdown">
-            <a href="#"><button class="btn">Edit</button></a>
+            <a href="/admin/artikel/edit"><button class="btn">Edit</button></a>
             <button class="btn">Hapus</button>
         </div>
     </div>

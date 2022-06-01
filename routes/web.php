@@ -32,9 +32,20 @@ Route::get('/detail_page', function () {
 });
 
 
+Route::get('/article', function () {
+    return view('article_page', [
+        "title" => "Article Page",
+    ]);
+});
+
 Route::get('/admin', function () {
     return view('admin.dashboard', [
         "title" => "Admin - Dashboard",
+    ]);
+});
+Route::get('/admin/profile', function () {
+    return view('admin.profile', [
+        "title" => "Admin - Profile",
     ]);
 });
 Route::get('/admin/hotel', function () {
@@ -45,6 +56,16 @@ Route::get('/admin/hotel', function () {
 Route::get('/admin/artikel', function () {
     return view('admin.artikel', [
         "title" => "Admin - Artikel",
+    ]);
+});
+Route::get('/admin/artikel/add', function () {
+    return view('admin.add-artikel', [
+        "title" => "Admin - Add Artikel",
+    ]);
+});
+Route::get('/admin/artikel/edit', function () {
+    return view('admin.edit-artikel', [
+        "title" => "Admin - Edit Artikel",
     ]);
 });
 Route::get('/admin/hotel/add', function () {

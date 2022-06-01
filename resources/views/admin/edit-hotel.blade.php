@@ -95,10 +95,4 @@
         </form>
     </div>
 </div>
-
-<script>
-    document
-        .querySelector('.btn-batal')
-        .addEventListener('click', () => history.back());
-</script>
 @endsection
