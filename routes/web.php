@@ -30,3 +30,9 @@ Route::get('/detail_page', function () {
         "title" => "Detail Page",
     ]);
 });
+
+Route::get('/article', function () {
+    return view('article_page', [
+        "title" => "Article Page",
+    ]);
+});
