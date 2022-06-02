@@ -3,28 +3,15 @@ body {
     background-color: white;
 }
 
-
-.button-secondary {
-    background-color: black;
-    color: white;
-    border-radius: 10px;
-    font-size: 28px;
-    padding: 10px;
-}
-
 #hero {
     height: 100vh;
     width: 100%;
 }
 
 .img-hero {
-    width: 612px;
-    height: 565px;
+    min-width: 612px;
+    min-height: 565px;
 
-}
-
-.label_hotel {
-    text-decoration: underline;
 }
 
 .label_price {
@@ -43,40 +30,15 @@ body {
     margin-bottom: 30px;
 }
 
-
-.icon_search {
-    color: black;
-    border: none;
-    font-size: 30px;
-    padding-bottom: 30px;
-}
-
-.form-control {
-    width: 200px;
-    text-align: center;
-    border-radius: 20px;
-}
-
-.card {
-    margin-top: 20px;
-}
-
-.card-body {
-    color: black;
-}
-
 .card-img-populer {
     border-radius: 25px;
     width: 100%;
 }
 
-.card-populer {
-    color: white;
-}
-
 .label-populer {
     background-color: #0096C7;
-    border-radius: 10px;
+    padding: 2px;
+    border-radius: 5px;
 }
 
 .rating-populer {
@@ -87,11 +49,9 @@ body {
 
 .name-populer {
     text-align: left;
-    font-weight: 100;
 }
 
 .price-hotel {
     color: red;
     font-weight: 500;
-    text-decoration: underline;
 }

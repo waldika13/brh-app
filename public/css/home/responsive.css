@@ -5,6 +5,7 @@
 
     .button-secondary {
         text-align: center;
+        min-width: 20px;
     }
 
     .form {
