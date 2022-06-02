@@ -59,12 +59,13 @@
             <div
                 class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                 <div class="col p-4 d-flex flex-column position-static">
-                    <strong class="d-inline-block mb-2 text-primary">World</strong>
-                    <h3 class="mb-2">Featured post</h3>
-                    <p class="card-text mb-auto text-justify">Lorem ipsum dolor sit amet consectetur adipisicing
-                        elit. Eveniet modi, quod architecto fuga dolorem placeat hic. Nulla consectetur iusto
-                        atque, ratione amet maxime architecto aliquid velit? Dicta mollitia maiores rerum..</p>
-                    <div class="mt-2 text-muted text-right font-italic">Ahmad Faidhoni</div>
+                    <strong class="d-inline-block mb-2 text-primary">Grand Inna Kuta</strong>
+                    <h3 class="mb-2">Ceritaku Sangat Senang</h3>
+                    <p class="card-text mb-auto text-justify">Tempat yang memberikan suasana tenang dan nyaman saat Anda sedang berlibur Apalagi
+                        kalau kita ingin bermain dan bercanda tawa. Tempat yang memberikan suasana tenang dan nyaman saat Anda sedang berlibur Apalagi
+                        kalau kita ingin ...
+                    </p>
+                    <div class="mt-2 text-muted text-right font-italic">Annisa Fatun</div>
                 </div>
             </div>
         </div>
@@ -72,12 +73,10 @@
             <div
                 class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                 <div class="col p-4 d-flex flex-column position-static">
-                    <strong class="d-inline-block mb-2 text-primary">World</strong>
-                    <h3 class="mb-2">Featured post</h3>
-                    <p class="card-text mb-auto text-justify">Lorem ipsum dolor sit amet consectetur adipisicing
-                        elit. Eveniet modi, quod architecto fuga dolorem placeat hic. Nulla consectetur iusto
-                        atque, ratione amet maxime architecto aliquid velit? Dicta mollitia maiores rerum..</p>
-                    <div class="mt-2 text-muted text-right font-italic">Ahmad Faidhoni</div>
+                    <strong class="d-inline-block mb-2 text-primary">Adiwana Monkey Forest</strong>
+                    <h3 class="mb-2">Timun Mas Cerita Rakyat</h3>
+                    <p class="card-text mb-auto text-justify">Timun Mas atau Timun Emas adalah cerita rakyat Jawa Tengah yang berkisah tentang seorang gadis cantik terlahir dari buah timun berwarna emas. Buah timun tersebut ditanam oleh Mbok Srini, janda tua yang mendapatkan petunjuk dari raksasa di dalam mimpinya untuk ...</p>
+                    <div class="mt-2 text-muted text-right font-italic">Alkindo Batubara</div>
                 </div>
             </div>
         </div>
@@ -85,12 +84,10 @@
             <div
                 class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                 <div class="col p-4 d-flex flex-column position-static">
-                    <strong class="d-inline-block mb-2 text-primary">World</strong>
-                    <h3 class="mb-2">Featured post</h3>
-                    <p class="card-text mb-auto text-justify">Lorem ipsum dolor sit amet consectetur adipisicing
-                        elit. Eveniet modi, quod architecto fuga dolorem placeat hic. Nulla consectetur iusto
-                        atque, ratione amet maxime architecto aliquid velit? Dicta mollitia maiores rerum..</p>
-                    <div class="mt-2 text-muted text-right font-italic">Ahmad Faidhoni</div>
+                    <strong class="d-inline-block mb-2 text-primary">Dee Mansion</strong>
+                    <h3 class="mb-2">Bawang Merah Bawang Putih</h3>
+                    <p class="card-text mb-auto text-justify">Bawang Merah Bawang Putih adalah cerita rakyat asal Riau yang bercerita tentang kisah kakak beradik tidak sedarah dengan sifat yang sangat bertolak belakang. Bawang Merah memiliki sifat yang negatif, seperti malas, sombong, dan dengki. Sedangkan ...</p>
+                    <div class="mt-2 text-muted text-right font-italic">Layla Kodariah</div>
                 </div>
             </div>
         </div>

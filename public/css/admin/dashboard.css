@@ -19,6 +19,7 @@
     justify-content: space-between;
     transition: 0.3s;
 }
+
 .box-card button{
     height: 100%;
     border-radius: 30px !important;

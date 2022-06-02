@@ -28,17 +28,22 @@
             <div class="d-inline-block border border-waring bg-warning p-2 mb-2 rounded-pill"><i class="fa-solid fa-wifi ps-1 pe-1"></i>WiFi</div>
         </div>
     </div>
-    <div class="d-inline-block pb-4">
+    <div class="d-inline-block pe-5 pb-4">
         <p class="fw-bold">Contact</p>
         <div class="d-inline-block">
             <p>+62 882 9281 8722</p>
         </div>
     </div>
 
-    <p class="fs-3 border-bottom border-dark">Reviews</p>
-    <div class="d-inline">
-        <p class="fw-bold pt-2 fs-5"><i class="fa-solid fa-star pe-1" style="color:gold"></i>4.6</p>
+    <div class="d-inline-block pb-4">
+        <p class="fw-bold">Rating</p>
+        <div class="d-inline-block">
+            <p class="fw-bold"><i class="fa-solid fa-star pe-1" style="color:gold"></i>4.6</p>
+        </div>
     </div>
+
+    <p class="fs-3 border-bottom border-dark mb-3">Reviews</p>
+
     <div class="d-inline-block pt-3">
         <div class="d-inline-block card mb-3 me-3 border-0 shadow p-3 mb-5 bg-body rounded" style="width: 20rem;">
             <div class="card-body">
