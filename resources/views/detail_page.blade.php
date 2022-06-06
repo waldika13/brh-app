@@ -1,6 +1,7 @@
 @extends('layout.main')
 
 @section('container')
+    <a href="/" class="btn btn-primary mb-3">Back to home</a>
     <div class="container">
         <div class="card bg-dark text-white rounded-4">
             <img src="/images/Bali Breezz Hotel.jpg" class="card-img rounded-4"  style="height: 700px;" alt="...">
@@ -10,8 +11,11 @@
             </div>
         </div>
     </div>
-    <h1 class="mt-4">Bali Breezz Hotel</h1>
+    <h1 class="mt-4">{{ $hotel["title"] }}</h1>
     <p>Jl. Gatot Subroto, Jimbaran, Bali Selatan</p>
+    <div class="container">
+        <p>{{ $hotel["body"] }}</p>
+    </div>
     <div class="d-inline-block pe-5 pb-4">
         <p class="fw-bold mt-4">Wisata Terdekat</p>
         <div class="d-inline-block gap-1">

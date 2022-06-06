@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\HotelController;
+use App\Models\Hotel;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,17 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home', [
-        "title" => "Home Page",
-    ]);
-});
+Route::get('/', [HotelController::class, 'index']);
 
-Route::get('/detail_page', function () {
-    return view('detail_page', [
-        "title" => "Detail Page",
-    ]);
-});
+// Halaman Single Hotel
+
+Route::get('detail_page/{slug}', [HotelController::class, 'show']);
 
 Route::get('/article', function () {
     return view('article_page', [

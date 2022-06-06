@@ -29,18 +29,16 @@
 <!--Populer Hotel-->
 <div class="populer py-5 bg-light">
     <div class="container">
-        <div class="row ">
+        <div class="row">
             <div class="col-12">
                 <h2 class="text-decoration-none mb-4">Populer Hotel</h2>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4 col-sm-6 position-relative">
+            <div class="col-md-4 col-sm-6">
                 <a href="/detail_page" class="mb-4 text-white">
-                    <div class="card border-0">
-
+                    <div class="card mt-3 mb-4 border-0">
                         <img class="card-img-populer" src="/images/home/image 12.png" alt="Card image cap">
-
                         <h5 class="price-populer position-absolute start-0 mt-3 ms-3"><span
                                 class="label-populer"   >Rp.</span> 1.000.000
                         </h5>
@@ -55,10 +53,8 @@
             </div>
             <div class="col-md-4 col-sm-6 position-relative">
                 <a href="/detail_page" class="mb-4 text-white">
-                    <div class="card border-0">
-
+                    <div class="card mt-3 mb-4 border-0">
                         <img class="card-img-populer" src="/images/home/image 12.png" alt="Card image cap">
-
                         <h5 class="price-populer position-absolute start-0 mt-3 ms-3"><span
                                 class="label-populer">Rp.</span> 1.000.000
                         </h5>
@@ -73,10 +69,8 @@
             </div>
             <div class="col-md-4 col-sm-6 position-relative">
                 <a href="/detail_page" class="mb-4 text-white">
-                    <div class="card border-0">
-
+                    <div class="card mt-3 mb-4 border-0">
                         <img class="card-img-populer" src="/images/home/image 12.png" alt="Card image cap">
-
                         <h5 class="price-populer position-absolute start-0 mt-3 ms-3"><span
                                 class="label-populer">Rp.</span> 1.000.000
                         </h5>
@@ -113,147 +107,30 @@
         </div>
 
         <div class="row">
-            <div class="col-md-4 col-sm-6">
-                <div class="card mt-3 mb-4 box-shadow">
-                    <img class="card-img-top" src="https://picsum.photos/300/200" alt="Card image cap">
-                    <div class="card-body">
-                        <h3 class="post-item__title"><a href="#" class="text-decoration-none">Dee Mansion</a>
-                        </h3>
-                        <p class="post-item__description card-text text-justify">Sebuah Guest House di
-                            Denpasar
-                            Bali, penginapan yang nyaman dan berfasilitas lengkap
-                            terbaik</p>
+            @foreach ($hotels as $hotel)
+                <div class="col-md-4 col-sm-6">
+                    <div class="card mt-3 mb-4 box-shadow">
+                        <img class="card-img-top" src="https://picsum.photos/300/200" alt="Card image cap">
+                        <div class="card-body">
+                            <h3 class="post-item__title"><a href="/detail_page/{{ $hotel["slug"] }}" class="text-decoration-none">{{ $hotel["title"] }}</a>
+                            </h3>
+                            <p class="post-item__description card-text text-justify">{{ $hotel["body"] }}</p>
 
-                        <div class="post-item__price">
-                            <p>Mulai dari <span class="price-hotel">Rp. 100.000</span></p>
-                        </div>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <a class="btn btn-sm btn-outline-secondary" href="#" class="text-decoration-none"
-                                    role="button">Selengkapnya</a>
-                                <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
+                            <div class="post-item__price">
+                                <p>Mulai dari <span class="price-hotel">Rp. 100.000</span></p>
                             </div>
-
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a class="btn btn-sm btn-outline-secondary" href="#" class="text-decoration-none"
+                                        role="button">Selengkapnya</a>
+                                    <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
+                                </div>
+                                <a href="#" class="text-decoration-none text-dark"><small>By: {{ $hotel["author"] }}</small></a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <div class="card mt-3 mb-4 box-shadow">
-                    <img class="card-img-top" src="https://picsum.photos/300/200" alt="Card image cap">
-                    <div class="card-body">
-                        <h3 class="post-item__title"><a href="#" class="text-decoration-none">Adiwana Monkey Forest</a>
-                        </h3>
-                        <p class="post-item__description card-text text-justify">Penginapan yang nyaman dan
-                            tenang
-                            di Ubud Adiwana Monkey Forest, Bali </p>
-                        <div class="post-item__price">
-                            <p>Mulai dari <span class="price-hotel">Rp. 100.000</span></p>
-                        </div>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <a class="btn btn-sm btn-outline-secondary" href="#"
-                                    role="button">Selengkapnya</a>
-                                <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <div class="card mt-3 mb-4 box-shadow">
-                    <img class="card-img-top" src="https://picsum.photos/300/200" alt="Card image cap">
-                    <div class="card-body">
-                        <h3 class="post-item__title"><a href="#" class="text-decoration-none">Grand Inna Kuta</a>
-                        </h3>
-                        <p class="post-item__description card-text text-justify">Tempat yang memberikan
-                            suasana
-                            tenang dan nyaman saat Anda sedang berlibur</p>
-                        <div class="post-item__header__price">
-                            <p>Mulai dari <span class="price-hotel">Rp. 100.000</span></p>
-                        </div>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <a class="btn btn-sm btn-outline-secondary" href="./detailHotel.html"
-                                    role="button">Selengkapnya</a>
-                                <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <div class="card mt-3 mb-4 box-shadow">
-                    <img class="card-img-top" src="https://picsum.photos/300/200" alt="Card image cap">
-                    <div class="card-body">
-                        <h3 class="post-item__title"><a href="#" class="text-decoration-none">Grand Inna Kuta</a>
-                        </h3>
-                        <p class="post-item__description card-text text-justify">Tempat yang memberikan
-                            suasana
-                            tenang dan nyaman saat Anda sedang berlibur</p>
-                        <div class="post-item__header__price">
-                            <p>Mulai dari <span class="price-hotel">Rp. 100.000</span></p>
-                        </div>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <a class="btn btn-sm btn-outline-secondary" href="./detailHotel.html"
-                                    role="button">Selengkapnya</a>
-                                <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <div class="card mt-3 mb-4 box-shadow">
-                    <img class="card-img-top" src="https://picsum.photos/300/200" alt="Card image cap">
-                    <div class="card-body">
-                        <h3 class="post-item__title"><a href="#" class="text-decoration-none">Grand Inna Kuta</a>
-                        </h3>
-                        <p class="post-item__description card-text text-justify">Tempat yang memberikan
-                            suasana
-                            tenang dan nyaman saat Anda sedang berlibur</p>
-                        <div class="post-item__header__price">
-                            <p>Mulai dari <span class="price-hotel">Rp. 100.000</span></p>
-                        </div>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <a class="btn btn-sm btn-outline-secondary" href="./detailHotel.html"
-                                    role="button">Selengkapnya</a>
-                                <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <div class="card mt-3 mb-4 box-shadow">
-                    <img class="card-img-top" src="https://picsum.photos/300/200" alt="Card image cap">
-                    <div class="card-body">
-                        <h3 class="post-item__title"><a href="#" class="text-decoration-none">Grand Inna Kuta</a>
-                        </h3>
-                        <p class="post-item__description card-text text-justify">Tempat yang memberikan
-                            suasana
-                            tenang dan nyaman saat Anda sedang berlibur</p>
-                        <div class="post-item__header__price">
-                            <p>Mulai dari <span class="price-hotel">Rp. 100.000</span></p>
-                        </div>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <a class="btn btn-sm btn-outline-secondary" href="./detailHotel.html"
-                                    role="button">Selengkapnya</a>
-                                <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+            @endforeach
         </div>
     </div>
 @endsection

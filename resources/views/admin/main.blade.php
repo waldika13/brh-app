@@ -38,7 +38,7 @@
                     <div>
                         <img src="{{ asset('img/icons/profile-icon.png')}}" alt="" />
                     </div>
-                    <a href="">
+                    <a href="/">
                         <p class="p-3 m-0">Logout</p>
                     </a>
                     <a href="/admin/profile">
