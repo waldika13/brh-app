@@ -3,10 +3,11 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('/css/home/style.css') }}">
 
 @section('container')
-<div class="container-bg col-xxl-8 px-4 py-5">
+
+<div class="container-bg col-xxl-8 px-4">
     <div class="row hero-tagline flex-lg-row-reverse align-items-center g-5 py-5">
         <div class="col-10 col-sm-8 col-lg-6">
-            <img src="images/home/image hero.png" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes"
+            <img src="images/home/image-hero.png" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes"
                 width="621" height="565" loading="lazy">
         </div>
         <div class="col-lg-6">
@@ -18,7 +19,7 @@
                 Duis porta luctus imperdiet. Donec lacinia,
                 massa eget feugiat malesuada,</p>
             <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                <a class="btn btn-dark btn-lg px-4 me-md-2 text-decoration-none" href="#main_content">See More</a>
+                <a class="btn btn-warning btn-lg px-4 me-md-2 text-decoration-none" href="#main_content">See More <i class="bi bi-arrow-right"></i></a>
             </div>
         </div>
     </div>
@@ -26,7 +27,9 @@
 </div>
 
 <main id="main_content">
+
 <!--Populer Hotel-->
+
 <div class="populer py-5 bg-light">
     <div class="container">
         <div class="row">
@@ -89,48 +92,106 @@
 </div>
 
 <!--List Hotel-->
+
 <div class="album py-5 bg-light">
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-sm-6 position-relative">
-                <h2 class="text-decoration-none">Hotel</h2>
+            <div class="mb-2 col-md-6">
+                <h2 class="text-decoration-none">{{ $title }}</h2>
             </div>
-            <div class="form col-md-4 col-sm-6 position-relative">
-                <form class="form-check-inline ">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Cari Hotel"
-                        aria-label="Search">
-                </form>
-                <form class="form-check-inline ">
-                    <button class="btn  my-2 my-sm-0 ms-3" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+            <div class="col-md-6">
+                <form action="/">
+                    @if (request('category'))
+                        <input type="hidden" name="category" value="{{ request('category') }}">
+                    @endif
+                    @if (request('author'))
+                        <input type="hidden" name="author" value="{{ request('author') }}">
+                    @endif
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search Hotel.." name="search" value="{{ request('search') }}">
+                        <button class="btn btn-warning" type="submit" ><i class="bi bi-search"></i> Search</button>
+                      </div>
                 </form>
             </div>
         </div>
 
+        @if($hotels->count())
+          <div class="card my-3 shadow">
+
+            @if($hotels[0]->image)
+                <div style="max-height: 400px; overflow:hidden;">
+                    <img src="{{ asset('storage/' . $hotels[0]->image) }}" class="card-img-top">
+                </div>
+            @else
+                <img class="card-img-top" src="https://picsum.photos/1200/400" alt="Card image cap">
+            @endif
+
+            <div class="card-body text-center">
+              <a href="/detail_page/{{ $hotels[0]->slug }}" class="text-decoration-none text-dark"><h3 class="card-title">{{ $hotels[0]->title }}</h3></a>
+              <p class="card-text">{{ $hotels[0]->excerpt }}</p>
+              <div class="my-3">
+                <p>Mulai dari <span class="price-hotel">Rp. {{ $hotels[0]->price }}</span></p>
+              </div>
+                <p>
+                    {{-- By: <a href="/?authors={{ $hotels[0]->author->username }}" class="text-decoration-none">{{ $hotels[0]->author->name }}</a> --}}
+                    in <a href="/?category={{ $hotels[0]->category->slug }}" class="text-decoration-none">{{ $hotels[0]->category->name }}</a>
+                </p>
+                <div class="btn-group">
+                    <a class="btn btn-sm btn-outline-secondary" href="/detail_page/{{ $hotels[0]->slug }}" class="text-decoration-none"
+                        role="button">Selengkapnya</a>
+                    <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
+                  </div>
+            </div>
+          </div>
+
         <div class="row">
-            @foreach ($hotels as $hotel)
+            @foreach ($hotels->skip(1) as $hotel)
                 <div class="col-md-4 col-sm-6">
-                    <div class="card mt-3 mb-4 box-shadow">
-                        <img class="card-img-top" src="https://picsum.photos/300/200" alt="Card image cap">
+                    <div class="card mt-3 mb-4">
+                        <div class="position-absolute px-2 py-2 mt-3 text-white rounded-right-2" style="background-color: rgba(0,0,0, 0.7)">
+                            ⭐ {{ $hotel->rating }}
+                        </div>
+
+                        @if($hotel->image)
+                        <div style="max-height: 300px; overflow:hidden;">
+                            <img src="{{ asset('storage/' . $hotel->image) }}" class="card-img-top">
+                        </div>
+                        @else
+                            <img class="card-img-top" src="https://picsum.photos/300/200" alt="Card image cap">
+                        @endif
+
                         <div class="card-body">
-                            <h3 class="post-item__title"><a href="/detail_page/{{ $hotel["slug"] }}" class="text-decoration-none">{{ $hotel["title"] }}</a>
+                            <h3 class="post-item__title"><a href="/detail_page/{{ $hotel->slug }}" class="text-decoration-none">{{ $hotel->title }}</a>
                             </h3>
-                            <p class="post-item__description card-text text-justify">{{ $hotel["body"] }}</p>
+                            <p class="post-item__description card-text text-justify">{{ $hotel->excerpt }}</p>
 
                             <div class="post-item__price">
-                                <p>Mulai dari <span class="price-hotel">Rp. 100.000</span></p>
+                                <p>Mulai dari <span class="price-hotel">Rp. {{ $hotel->price }}</span></p>
                             </div>
                             <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <a class="btn btn-sm btn-outline-secondary" href="#" class="text-decoration-none"
-                                        role="button">Selengkapnya</a>
-                                    <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
-                                </div>
-                                <a href="#" class="text-decoration-none text-dark"><small>By: {{ $hotel["author"] }}</small></a>
+                                <p>
+                                    {{-- By: <a href="#" class="text-decoration-none">{{ $hotel->author->name }}</a> --}} 
+                                    in <a href="/?category={{ $hotel->category->slug }}" class="text-decoration-none">{{ $hotel->category->name }}</a>
+                                </p>
                             </div>
+                            <div class="btn-group">
+                                <a class="btn btn-sm btn-outline-secondary" href="/detail_page/{{ $hotel->slug }}" class="text-decoration-none"
+                                    role="button">Selengkapnya</a>
+                                <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
+                            </div>
+                            
                         </div>
                     </div>
                 </div>
             @endforeach
         </div>
     </div>
+    @else
+        <p class="text-center fs-4 mt-5">Hotel Not Found</p>
+    @endif
+
+    <div class="d-flex justify-content-center mt-4">
+        {{ $hotels->links() }}
+    </div>
+
 @endsection

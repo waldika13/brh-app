@@ -10,6 +10,13 @@
     border-radius: 10px;
 }
 
+.category{
+    position: absolute;
+    padding: 5px;
+    background-color: #FED261;
+    border-radius: 10px;
+}
+
 .card-list {
     background-color: white;
     width: 100%;

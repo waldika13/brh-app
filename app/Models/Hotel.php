@@ -2,32 +2,61 @@
 
 namespace App\Models;
 
-class Hotel
-{
-    private static $hotel_posts = [
-        [
-            "title" => "Judul Hotel Pertama",
-            "slug" => "judul-hotel-pertama",
-            "author" => "Ahmad Faidhoni",
-            "body" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Id fuga quod excepturi harum aliquid praesentium animi dolore perspiciatis repudiandae? Blanditiis ratione earum quos laudantium, expedita at similique mollitia nesciunt animi.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Id fuga quod excepturi harum aliquid praesentium animi dolore perspiciatis repudiandae? Blanditiis ratione earum quos laudantium, expedita at similique mollitia nesciunt animi."
-        ],
-        [
-            "title" => "Judul Hotel Kedua",
-            "slug" => "judul-hotel-kedua",
-            "author" => "Laku Hemm",
-            "body" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Id fuga quod excepturi harum aliquid praesentium animi dolore perspiciatis repudiandae? Blanditiis ratione earum quos laudantium, expedita at similique mollitia nesciunt animi.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Id fuga quod excepturi harum aliquid praesentium animi dolore perspiciatis repudiandae? Blanditiis ratione earum quos laudantium, expedita at similique mollitia nesciunt animi.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Id fuga quod excepturi harum aliquid praesentium animi dolore perspiciatis repudiandae? Blanditiis ratione earum quos laudantium, expedita at similique mollitia nesciunt animi."
-        ]
-    ];
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
 
-    public static function all(){
-        return collect(self::$hotel_posts);
+class Hotel extends Model
+{
+    use HasFactory, Sluggable;
+
+    protected $guarded = ['id'];
+    protected $with = ['author', 'category'];
+
+    public function scopeFilter($query, array $filters){
+
+        $query->when($filters['search'] ?? false, function($query, $search) {
+            return $query->where(function($query) use ($search) {
+                 $query->where('title', 'like', '%' . $search . '%')
+                             ->orWhere('body', 'like', '%' . $search . '%');
+            });
+        });
+
+        $query->when($filters['category'] ?? false, function($query, $category){
+            return $query->whereHas('category', function($query) use ($category){
+                $query->where('slug', $category);
+            });
+        });
+
+        $query->when($filters['author'] ?? false, fn($query, $author)=>
+            $query->whereHas('author', fn($query)=>
+                $query->where('username', $author)
+            )
+        );
     }
 
-    public static function find($slug){
-        $hotels = static::all();
-        return $hotels->firstWhere('slug', $slug);
+    public function category(){
+        return $this->belongsTo(Category::class);
+    }
+
+    public function author(){
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function review(){
+        return $this->hasMany(Review::class);
+    }
+
+    public function getRouteKeyName(){
+        return 'slug';
+    }
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
     }
 }
