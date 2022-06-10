@@ -1,0 +1,43 @@
+.section-add-hotel {
+    padding: 5vh 7vw;
+    border-radius: 30px;
+}
+
+.section-add-hotel input {
+    width: 90%;
+}
+
+.input-type{
+    height: 50px;
+    border-radius: 10px;
+    border: 1px solid #C4C4C4;
+    outline-color: #C4C4C4;
+    width: 90%;
+    margin-top: 5px;
+}
+
+.input-group{
+    width: 90%;
+}
+
+.input-group-text{
+    margin-top: 5px;
+    height: 50px;
+}
+
+.section-add-hotel select{
+    height: 60px;
+    border-radius: 10px;
+    border: 1px solid #C4C4C4;
+    outline-color: #C4C4C4;
+    padding: 20px 15px;
+    width: 90%;
+    margin-bottom: 20px;
+    margin-top: 5px;
+}
+
+trix-editor {
+    height: 350px !important;
+    max-height: 350px !important;
+      overflow-y: auto !important;
+}
