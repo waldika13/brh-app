@@ -42,7 +42,7 @@
                     </div>
                     <div class="list">
                         <a href="/dashboard" class="{{ Request::is('dashboard') ? 'active' : '' }}">Dashboard</a>
-                        <a href="#" class="{{ Request::is('') ? 'active' : '' }}">Artikel</a>
+                        <a href="/dashboard/articles" class="{{ Request::is('') ? 'active' : '' }}">Artikel</a>
                     </div>
                 </div>
                 @can('admin')

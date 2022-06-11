@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminArticleController;
 use App\Models\Category;
 use App\Models\Hotel;
 use Illuminate\Support\Facades\Route;
@@ -62,6 +63,13 @@ Route::resource('/dashboard/hotels', AdminHotelController::class)->middleware('a
 Route::get('/dashboard/categories/checkSlug', [AdminCategoryController::class, 'checkSlug'])->middleware('auth');
 
 Route::resource('/dashboard/categories', AdminCategoryController::class)->except('show')->middleware('admin');
+
+
+Route::resource('/dashboard/articles', AdminArticleController::class)->except(['edit', 'update', 'destroy'])->middleware('auth');
+Route::get('/dashboard/articles/{article:slug}/edit', [AdminArticleController::class, 'edit'])->middleware('auth');
+Route::put('/dashboard/articles/{article:slug}', [AdminArticleController::class, 'update'])->middleware('auth');
+Route::delete('/dashboard/articles/{article:slug}', [AdminArticleController::class, 'destroy'])->middleware('auth');
+
 
 // Route::get('/admin/profile', function () {
 //     return view('admin.profile', [
