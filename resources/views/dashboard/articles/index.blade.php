@@ -28,7 +28,7 @@
     @foreach($articles as $article)
     <div class="card-list row justify-content-between mx-0 p-3">
         <div class="col-sm-11">
-            <h4>{{ $article->title }}</h4>
+            <a href="/article/{{ $article->slug }}" class="text-black text-decoration-none"><h4>{{ $article->title }}</h4></a>
             <p>
                 {{ $article ->excerpt }}
             </p>

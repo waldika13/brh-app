@@ -9,6 +9,8 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\AdminHotelController;
+use App\Http\Controllers\ArticleController;
+use App\Models\Article;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,12 +28,9 @@ Route::get('/', [HotelController::class, 'index']);
 // Halaman Single Hotel
 Route::get('detail_page/{hotel:slug}', [HotelController::class, 'show']);
 
-Route::get('/article', function () {
-    return view('article_page', [
-        "title" => "Article Page",
-        "active" => "article",
-    ]);
-});
+Route::get('/article', [ArticleController::class, 'index']);
+Route::get('/article/{article:slug}', [ArticleController::class, 'show']);
+
 
 Route::get('/categories', function () {
     return view('categories', [
@@ -50,9 +49,13 @@ Route::get('/signup', [RegisterController::class, 'index'])->middleware('guest')
 Route::post('/signup', [RegisterController::class, 'store']);
 
 Route::get('/dashboard', function(){
+    
+    auth()->user()->is_admin ? $articles = Article::all() : $articles = Article::where('user_id', auth()->user()->id)->get();
+
     return view('dashboard.index', [
         'title' => 'Dashboard',
-        'hotels' => Hotel::where('user_id', auth()->user()->id)->get()
+        'hotels' => Hotel::where('user_id', auth()->user()->id)->get(),
+        'articles' => $articles
     ]);
 })->middleware('auth');
 
@@ -65,10 +68,9 @@ Route::get('/dashboard/categories/checkSlug', [AdminCategoryController::class, '
 Route::resource('/dashboard/categories', AdminCategoryController::class)->except('show')->middleware('admin');
 
 
-Route::resource('/dashboard/articles', AdminArticleController::class)->except(['edit', 'update', 'destroy'])->middleware('auth');
-Route::get('/dashboard/articles/{article:slug}/edit', [AdminArticleController::class, 'edit'])->middleware('auth');
-Route::put('/dashboard/articles/{article:slug}', [AdminArticleController::class, 'update'])->middleware('auth');
-Route::delete('/dashboard/articles/{article:slug}', [AdminArticleController::class, 'destroy'])->middleware('auth');
+Route::get('/dashboard/articles/checkSlug', [AdminArticleController::class, 'checkSlug'])->middleware('auth');
+
+Route::resource('/dashboard/articles', AdminArticleController::class)->middleware('auth');
 
 
 // Route::get('/admin/profile', function () {

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use Cviebrock\EloquentSluggable\Services\SlugService;
+use GuzzleHttp\Middleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
@@ -16,8 +18,13 @@ class AdminArticleController extends Controller
      */
     public function index()
     {
+        if (auth()->user()->is_admin) {
+            return view('dashboard.articles.index', [
+                'articles' => Article::all(),
+            ]);
+        }
         return view('dashboard.articles.index', [
-            'articles' => Article::all(),
+            'articles' => Article::where('user_id', auth()->user()->id)->get(),
         ]);
     }
 
@@ -48,7 +55,7 @@ class AdminArticleController extends Controller
         ]);
 
         if ($request->file('image')) {
-            $validateData['image'] = $request->file('image')->store('category-images');
+            $validateData['image'] = $request->file('image')->store('article-images');
         }
 
         $validateData['user_id'] = auth()->user()->id;
@@ -94,24 +101,24 @@ class AdminArticleController extends Controller
     public function update(Request $request, Article $article)
     {
         $rules = [
-            'title' => 'required|max:255|unique:articles',
+            'title' => 'required|max:255',
             'image' => 'image|file|max:1024',
             'excerpt' => '',
             'body' => 'required'
         ];
 
-        if($request->slug != $article->slug){
+        if ($request->slug != $article->slug) {
             $rules['slug'] = 'required|unique:articles';
         }
 
         $validateData = $request->validate($rules);
-        
-        if($request->file('image')){
-            if ( $article->image ) {
+
+        if ($request->file('image')) {
+            if ($article->image) {
                 Storage::delete($article->image);
             }
 
-            $validateData['image'] = $request->file('image')->store('hotel-images');
+            $validateData['image'] = $request->file('image')->store('article-images');
         }
 
         $validateData['user_id'] = auth()->user()->id;
@@ -119,7 +126,7 @@ class AdminArticleController extends Controller
 
         Article::where('id', $article->id)->update($validateData);
 
-        return redirect('/dashboard/articles')->with('success', 'Hotel has been updated!');
+        return redirect('/dashboard/articles')->with('success', 'Article has been updated!');
     }
 
     /**
@@ -130,12 +137,17 @@ class AdminArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        if ( $article->image ) {
+        if ($article->image) {
             Storage::delete($article->image);
         }
-        
+
         Article::destroy($article->id);
 
         return redirect('/dashboard/articles')->with('success', 'Hotel has been deleted!');
+    }
+
+    public function checkSlug(Request $request){
+        $slug = SlugService::createSlug(Article::class, 'slug', $request->title);
+        return response()->json(['slug' => $slug]);
     }
 }

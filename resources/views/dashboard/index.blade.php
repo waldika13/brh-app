@@ -41,7 +41,7 @@
                     <img src="{{ asset('img/icons/icons8-article-64.png')}}" alt="" />
                     <div>
                         <h4>Artikel</h4>
-                        <h1 class="fs-1 fw-semibold">30</h1>
+                        <h1 class="fs-1 fw-semibold">{{ $articles->count() }}</h1>
                     </div>
                 </div>
                 <div>
