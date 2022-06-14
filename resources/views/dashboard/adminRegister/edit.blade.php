@@ -12,14 +12,35 @@
     </div>
 </div>
 <div class="container-fluid content pb-5 mb-3" id="content">
-    <form action="/dashboard/adminRegister/{{ $user->name }}" method="POST" enctype="multipart/form-data">
+    <form action="/dashboard/adminRegister/{{ $users->name }}" method="POST" enctype="multipart/form-data">
         @method('put')
         @csrf
         <div class="mb-4">
             <div>
                 <label for="name">Name</label>
-                <input type="text" placeholder="Name" id="name" name="name" value="{{ old('name', $user->name) }}">
+                <input type="text" placeholder="Name" id="name" name="name" value="{{ old('name', $users->name) }}">
                 @error('name')
+                <p class="text-danger mt-1">{{ $message }}</p>
+                @enderror
+            </div>
+            <div>
+                <label for="username">Username</label>
+                <input type="text" placeholder="Username" id="username" name="username" value="{{ old('username', $users->username) }}">
+                @error('username')
+                <p class="text-danger mt-1">{{ $message }}</p>
+                @enderror
+            </div>
+            <div>
+                <label for="email">Email</label>
+                <input type="email" placeholder="Email" id="email" name="email" value="{{ old('email', $users->email) }}">
+                @error('email')
+                <p class="text-danger mt-1">{{ $message }}</p>
+                @enderror
+            </div>
+            <div>
+                <label for="password">Password</label>
+                <input type="password" placeholder="Password" id="password" name="password">
+                @error('password')
                 <p class="text-danger mt-1">{{ $message }}</p>
                 @enderror
             </div>

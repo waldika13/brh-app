@@ -35,10 +35,10 @@
         </div>
         <div class="list-dropdown">
             <a href="/dashboard/adminRegister/{{ $user->name }}/edit"><button class="btn">Edit</button></a>
-            <form action="/dashboard/adminRegister/{{ $user->name }}" method="POST">
+            <form action="/dashboard/adminRegister/{{ $user->id }}" method="POST">
                 @method('delete')
-                    <button class="btn" onclick="return confirm('Are you sure?')">Delete</button>
                 @csrf
+                    <button class="btn" onclick="return confirm('Are you sure?')">Delete</button>
             </form>
         </div>
     </div>

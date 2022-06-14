@@ -73,7 +73,7 @@ Route::get('/dashboard/articles/checkSlug', [AdminArticleController::class, 'che
 
 Route::resource('/dashboard/articles', AdminArticleController::class)->middleware('auth');
 
-Route::resource('/dashboard/adminRegister', AdminRegisterController::class,)->middleware('auth');
+Route::resource('/dashboard/adminRegister', AdminRegisterController::class)->middleware('auth');
 
 
 
