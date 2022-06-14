@@ -39,7 +39,7 @@ class AdminRegisterController extends Controller
 
     public function destroy(User $user)
     {
-        User::destroy($user->name);
+        User::destroy($user->id);
 
         return redirect('/dashboard/adminRegister')->with('success', 'Admin has been deleted!');
     }
@@ -47,7 +47,7 @@ class AdminRegisterController extends Controller
     public function edit(User $user)
     {
         return view('dashboard.adminRegister.edit', [
-            'user' => $user,
+            'users' => $user,
         ]);
     }
 
@@ -57,13 +57,12 @@ class AdminRegisterController extends Controller
             'name' => 'required|max:255',
             'username' => ['required', 'min:3', 'max:255', 'unique:users'],
             'email' => 'required|email|unique:users',
-            'password' => 'required|min:8|max:255',
-            'is_admin' => 'min:8|max:255'
+            'password' => 'required|min:8|max:255'
         ];
 
         $validateData['id'] = auth()->user()->id;
-        $validatedData['password'] = Hash::make($validatedData['password']);
-        $validatedData['is_admin'] = '1';
+        $validateData['password'] = Hash::make($validatedData['password']);
+        $validateData['is_admin'] = '1';
 
         $validateData = $request->validate($rules);
 

@@ -73,8 +73,11 @@ Route::get('/dashboard/articles/checkSlug', [AdminArticleController::class, 'che
 
 Route::resource('/dashboard/articles', AdminArticleController::class)->middleware('auth');
 
-Route::resource('/dashboard/adminRegister', AdminRegisterController::class)->middleware('auth');
+Route::resource('/dashboard/adminRegister', AdminRegisterController::class)->except('edit', 'update', 'destroy')->middleware('auth');
 
+Route::get('/dashboard/adminRegister/{user:name}/edit', [AdminRegisterController::class, 'edit'])->middleware('auth');
+Route::put('/dashboard/adminRegister/{user:name}', [AdminRegisterController::class, 'update'])->middleware('auth');
+Route::delete('/dashboard/adminRegister/{user:id}', [AdminRegisterController::class, 'destroy'])->middleware('auth');
 
 
 // Route::get('/admin/profile', function () {
