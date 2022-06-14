@@ -11,10 +11,13 @@
         <a href="/dashboard/hotels/create" class="me-4"><button class="btn btn-success rounded-5">
                 + Tambah Hotel
             </button></a>
+            
+        <form action="/dashboard/hotels">
         <div class="search-input">
-            <input type="text" placeholder="Cari Hotel" class="w-100" />
-            <button title="Cari"></button>
+            <input type="text" placeholder="Cari Hotel" name="search" class="w-100" value="{{ request('search') }}">
+            <button title="Cari" type="submit" ></button>
         </div>
+    </form>
     </div>
 </div>
 

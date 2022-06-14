@@ -11,10 +11,12 @@
         <a href="/dashboard/categories/create" class="me-4"><button class="btn btn-success rounded-5">
                 + Tambah Category
             </button></a>
-        <div class="search-input">
-            <input type="text" placeholder="Cari Category" class="w-100" />
-            <button title="Cari"></button>
-        </div>
+            <form action="/dashboard/categories">
+                <div class="search-input">
+                    <input type="text" placeholder="Cari Categori" name="search" class="w-100" value="{{ request('search') }}">
+                    <button title="Cari" type="submit" ></button>
+                </div>
+            </form>
     </div>
 </div>
 

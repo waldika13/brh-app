@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'aku@gmail.com',
             'password' => bcrypt('12345')
         ]);
-        
+
         // User::factory(5)->create();
 
         Category::create([

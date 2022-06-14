@@ -16,11 +16,12 @@ class AdminHotelController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index( Request $request)
     {
+
         return view('dashboard.hotels.index', [
             // 'hotels' => Hotel::where('user_id', auth()->user()->id)->get() -> untuk Article & Review
-            'hotels' => Hotel::all()
+            'hotels' => Hotel::where('title', 'LIKE', '%'.$request->search.'%')->get()
         ]);
     }
 
