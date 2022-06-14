@@ -10,6 +10,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\AdminHotelController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\AdminRegisterController;
 use App\Models\Article;
 
 /*
@@ -71,6 +72,12 @@ Route::resource('/dashboard/categories', AdminCategoryController::class)->except
 Route::get('/dashboard/articles/checkSlug', [AdminArticleController::class, 'checkSlug'])->middleware('auth');
 
 Route::resource('/dashboard/articles', AdminArticleController::class)->middleware('auth');
+
+Route::resource('/dashboard/adminRegister', AdminRegisterController::class)->except('edit', 'update', 'destroy')->middleware('auth');
+
+Route::get('/dashboard/adminRegister/{user:name}/edit', [AdminRegisterController::class, 'edit'])->middleware('auth');
+Route::put('/dashboard/adminRegister/{user:name}', [AdminRegisterController::class, 'update'])->middleware('auth');
+Route::delete('/dashboard/adminRegister/{user:id}', [AdminRegisterController::class, 'destroy'])->middleware('auth');
 
 
 // Route::get('/admin/profile', function () {

@@ -52,7 +52,7 @@
                 <div class="list">
                     <a href="/dashboard/hotels" class="{{ Request::is('dashboard/hotels*') ? 'active' : '' }}">Hotel</a>
                     <a href="/dashboard/categories" class="{{ Request::is('dashboard/categories*') ? 'active' : '' }}">Category</a>
-                    <a href="#">Admin Register</a>
+                    <a href="/dashboard/adminRegister" class="{{ Request::is('dashboard/adminRegister*') ? 'active' : '' }}">Admin Register</a>
                     <a class="btn btn-outline-warning text-dark">
                         <form action="/signout" method="POST">
                             @csrf
