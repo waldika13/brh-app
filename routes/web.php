@@ -1,17 +1,18 @@
 <?php
 
-use App\Http\Controllers\AdminArticleController;
-use App\Models\Category;
 use App\Models\Hotel;
+use App\Models\Article;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HotelController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\AdminCategoryController;
-use App\Http\Controllers\AdminHotelController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\AdminHotelController;
+use App\Http\Controllers\AdminArticleController;
+use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\AdminRegisterController;
-use App\Models\Article;
 
 /*
 |--------------------------------------------------------------------------
@@ -78,6 +79,11 @@ Route::resource('/dashboard/adminRegister', AdminRegisterController::class)->exc
 Route::get('/dashboard/adminRegister/{user:name}/edit', [AdminRegisterController::class, 'edit'])->middleware('auth');
 Route::put('/dashboard/adminRegister/{user:name}', [AdminRegisterController::class, 'update'])->middleware('auth');
 Route::delete('/dashboard/adminRegister/{user:id}', [AdminRegisterController::class, 'destroy'])->middleware('auth');
+
+Route::get('/dashboard/reviews', [ReviewController::class, 'index'])->middleware('auth');
+
+Route::post('/detail_page/{hotel:slug}/review', [ReviewController::class, 'store'])->middleware('auth');
+Route::delete('/dashboard/reviews/{review:id}', [ReviewController::class, 'destroy'])->middleware('auth');
 
 
 // Route::get('/admin/profile', function () {

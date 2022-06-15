@@ -15,8 +15,8 @@ class CreateReviewsTable extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('hotel_id');
-            $table->foreignId('user_id');
+            $table->foreignId('hotel_id')->nullable()->index('hotel_id_fk3_idx');
+            $table->foreignId('user_id')->nullable()->index('user_id_fk2_idx');
             $table->string('body');
             $table->timestamps();
         });

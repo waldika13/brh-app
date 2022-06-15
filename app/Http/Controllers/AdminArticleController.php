@@ -61,7 +61,6 @@ class AdminArticleController extends Controller
         $validateData['user_id'] = auth()->user()->id;
         $validateData['excerpt'] = Str::limit(strip_tags($request->body), 100, '..');
 
-        // dd($validateData);
         Article::create($validateData);
 
         return redirect('/dashboard/articles')->with('success', 'New Article has been added!');
@@ -86,9 +85,13 @@ class AdminArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        return view('dashboard.articles.edit', [
-            'article' => $article,
-        ]);
+        if (auth()->user()->is_admin || $article->user_id == auth()->user()->id) {
+            return view('dashboard.articles.edit', [
+                'article' => $article,
+            ]);
+        }
+
+        return abort(404);
     }
 
     /**

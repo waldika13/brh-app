@@ -59,7 +59,7 @@
             @foreach ($reviews as $review)
                 <div class="card me-3 border-0 shadow p-3 mb-4 rounded" style="width: 20rem;">
                     <div class="card-body">
-                        <p class="card-title fs-4">{{ $hotel->author->name }}</p>
+                        <p class="card-title fs-4">{{ $review->user->name }}</p>
                         <p class="card-text">{{ $review->body }}</p>
                         <p class="card-subtitle">{{ $review->created_at->diffForHumans() }}</p>
                     </div>
@@ -71,15 +71,26 @@
     @endif
 
     @auth
-        <div class="d-inline-block card mb-3 me-3 border-0 shadow p-3 mb-5 bg-body rounded mt-5" style="width: 100%">
+        @if(session()->has('success'))
+            <div class="alert alert-success col-md-3" role="alert">
+                {{ session('success') }}
+            </div>
+        @endif
+        <div class="d-inline-block card mb-3 me-3 border-0 shadow p-3 mb-5 bg-body rounded mt-3" style="width: 100%">
             <div class="card-body">
                 <p class="card-title fs-4 border-bottom border-dark">Add Review</p>
-                <form class="pt-3">
+                <form class="pt-3" method="post" action="/detail_page/{{$hotel->slug}}/review">
+                    @csrf
                     <div class="mb-3">
-                        <input type="text" class="form-control" placeholder="Your Name" aria-label="Yourname">
+                        <input type="text" class="form-control" placeholder="Your Name" name="text" id="text" value="{{ auth()->user()->name }}" disabled>
                     </div>
                     <div class="mb-3">
-                        <textarea class="form-control" placeholder="Input your review here..." aria-label="With textarea"></textarea>
+                        <textarea class="form-control @error('body') is-invalid @enderror" placeholder="Input your review here..." name="body" id="body" aria-label="With textarea"></textarea>
+                        @error('rating')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
                     <button type="submit" class="btn btn-dark">Submit</button>
                 </form>

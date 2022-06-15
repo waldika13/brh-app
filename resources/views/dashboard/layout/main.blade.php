@@ -19,7 +19,7 @@
     <script type="text/javascript" src="/js/trix.js"></script>
 
     <style>
-        trix-toolbar [data-trix-button-group="file-tools"]{
+        trix-toolbar [data-trix-button-group="file-tools"] {
             display: none;
         }
     </style>
@@ -37,22 +37,25 @@
                 <div>
                     <div class="mb-4">
                         <h3 class="text-center">
-                            <a href="/" class="fw-bold fs-2 text-dark text-decoration-none">BRH</a> 
+                            <a href="/" class="fw-bold fs-2 text-dark text-decoration-none">BRH</a>
                         </h3>
                     </div>
                     <div class="list">
                         <a href="/dashboard" class="{{ Request::is('dashboard') ? 'active' : '' }}">Dashboard</a>
                         <a href="/dashboard/articles" class="{{ Request::is('dashboard/articles*') ? 'active' : '' }}">Article</a>
+                        <a href="/dashboard/reviews" class="{{ Request::is('dashboard/reviews*') ? 'active' : '' }}">Hotel Review</a>
                     </div>
                 </div>
-                @can('admin')
-                <div class="mt-5">
-                    <h6 class="text-center text-muted ">Administrator</h6>
-                </div>
                 <div class="list">
+                    @can('admin')
+
+                    <div class="mt-5">
+                        <h6 class="text-center text-muted ">Administrator</h6>
+                    </div>
                     <a href="/dashboard/hotels" class="{{ Request::is('dashboard/hotels*') ? 'active' : '' }}">Hotel</a>
                     <a href="/dashboard/categories" class="{{ Request::is('dashboard/categories*') ? 'active' : '' }}">Category</a>
                     <a href="/dashboard/adminRegister" class="{{ Request::is('dashboard/adminRegister*') ? 'active' : '' }}">Admin Register</a>
+                    @endcan
                     <a class="btn btn-outline-warning text-dark">
                         <form action="/signout" method="POST">
                             @csrf
@@ -60,7 +63,6 @@
                         </form>
                     </a>
                 </div>
-                @endcan
                 <button class="btn btn-danger btn-close-bar">x</button>
             </div>
         </div>

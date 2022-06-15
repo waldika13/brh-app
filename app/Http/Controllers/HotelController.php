@@ -26,7 +26,7 @@ class HotelController extends Controller
         return view('home', [
             "title" => "Hotel" . $title,
             "active" => "hotel",
-            "hotels" => Hotel::latest()->filter(request(['search', 'category', 'author']))->paginate(4)->withQueryString()
+            "hotels" => Hotel::latest()->filter(request(['search', 'category', 'author']))->paginate(4)->withQueryString(),
         ]);
     }
 

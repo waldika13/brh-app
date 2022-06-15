@@ -10,9 +10,14 @@
         <div class="row justify-content-center g-5">
             <div class="col-lg-12">
                 <h1 class="display-5 fw-bold lh-1 ">{{$article->title}}</h1>
-                <img src="{{ asset('storage/'. $article->image) }}" style="max-height:400px" class="img-fluid my-3 mb-5">
+                <div class="img-fluid my-3 mb-5" style="max-height: 400px; overflow:hidden;">
+                    <img src="{{ asset('storage/'. $article->image) }}">
+                </div>
+                
+                <div class="mb-3">
+                    {!! $article->body !!}
+                </div>
 
-                {!! $article->body !!}
             </div>
         </div>
     </div>

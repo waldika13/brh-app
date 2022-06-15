@@ -71,7 +71,7 @@
                         {{ $article->excerpt }}
                     </p>
                     <div class="mt-2 text-muted text-right font-italic">
-                        <span class="me-3">{{ $article->user->name }}</span>
+                        <span class="me-3">By: {{ $article->user->name }}</span>
                         <span class="d-inline-block mb-2 text-primary">{{ substr($article->created_at,0,10) }}</span>
                     </div>
                 </div>
