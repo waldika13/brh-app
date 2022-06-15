@@ -43,7 +43,6 @@
             <button class="btn btn-warning btn-dropdown">⋮</button>
         </div>
         <div class="list-dropdown">
-            {{-- <a href="/dashboard/categories/{{ $hotel->slug }}"><button class="btn">Show</button></a> --}}
             <a href="/dashboard/categories/{{ $category->slug }}/edit"><button class="btn">Edit</button></a>
             <form action="/dashboard/categories/{{ $category->slug }}" method="POST">
                 @method('delete')

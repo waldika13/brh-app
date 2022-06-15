@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use \App\Models\User;
@@ -37,11 +38,21 @@ class AdminRegisterController extends Controller
         return redirect('/dashboard/adminRegister')->with('success', 'Registration Successfull!');
     }
 
-    public function destroy(User $user)
-    {
-        User::destroy($user->id);
-
-        return redirect('/dashboard/adminRegister')->with('success', 'Admin has been deleted!');
+    public function destroy(User $user, Review $review)
+    {   
+        $userId = $user->id;
+        if($user->is_admin){
+            // Review::destroy($review->user_id);
+            $review = Review::where('user_id', '=', $userId);
+            $review->delete();
+            User::destroy($user->id);
+            return redirect('/dashboard/adminRegister')->with('success', 'Admin has been deleted!');
+        } else {
+            $review = Review::where('user_id', '=', $userId);
+            $review->delete();
+            User::destroy($user->id);
+            return redirect('/dashboard/adminRegister')->with('success', 'User has been deleted!');
+        }
     }
 
     public function edit(User $user)
@@ -55,16 +66,23 @@ class AdminRegisterController extends Controller
     {
         $rules = [
             'name' => 'required|max:255',
-            'username' => ['required', 'min:3', 'max:255', 'unique:users'],
-            'email' => 'required|email|unique:users',
             'password' => 'required|min:8|max:255'
         ];
 
-        $validateData['id'] = auth()->user()->id;
-        $validateData['password'] = Hash::make($validatedData['password']);
-        $validateData['is_admin'] = '1';
+        if($request->username != $user->username){
+            $rules['username'] = 'required|min:3|max:12|unique:users';
+        }
+
+        if($request->email != $user->email){
+            $rules['email'] = 'required|email|unique:users';
+        }
 
         $validateData = $request->validate($rules);
+
+        $validateData['password'] = Hash::make($validateData['password']);
+        
+        $validateData['id'] = auth()->user()->id;
+        $validateData['is_admin'] = '1';
 
         User::where('id', $user->id)->update($validateData);
 

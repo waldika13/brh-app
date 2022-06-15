@@ -72,3 +72,13 @@
 .card-list .list-dropdown .btn:hover {
     background-color: #f0be40;
 }
+
+.nav-tabs .nav-link.active {
+    background-color: #f0be40;
+    border: 2px solid #f0be40;
+}
+
+.nav-tabs .nav-link {
+    color: black;
+    border: 0;
+}

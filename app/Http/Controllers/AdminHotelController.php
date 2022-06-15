@@ -19,7 +19,7 @@ class AdminHotelController extends Controller
     public function index()
     {
         return view('dashboard.hotels.index', [
-            // 'hotels' => Hotel::where('user_id', auth()->user()->id)->get() -> untuk Article & Review
+            // 'hotels' => Hotel::where('user_id', auth()->user()->id)->get()
             'hotels' => Hotel::all()
         ]);
     }
@@ -116,7 +116,7 @@ class AdminHotelController extends Controller
             'location' => 'required|max:255',
             'facility' => 'required',
             'rating' => 'required|numeric',
-            'contact' => 'required|max:20' 
+            'contact' => 'required|numeric|max:20' 
         ];
 
         if($request->slug != $hotel->slug){
