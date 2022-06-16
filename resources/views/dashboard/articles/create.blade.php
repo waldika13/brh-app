@@ -6,34 +6,36 @@
 
 <div class="header">
     <div>
-        <h2>Buat Artikel Baru</h2>
+        <h2>Create New Article</h2>
     </div>
     <div class="d-flex">
-        <button class="btn btn-secondary rounded-5 btn-batal">Batal</button>
+        <button class="btn btn-danger rounded-5 btn-batal">Cancel</button>
     </div>
 </div>
 <div class="container-fluid content pb-5 mb-5" id="content">
     <form action="/dashboard/articles" method="POST" enctype="multipart/form-data">
         @csrf
-        <div class="mb-4">
-            <div>
-                <label for="title">Title</label>
-                <input type="text" placeholder="Title" id="title" name="title">
+        <div class="mb-3">
+            <div class="mb-3">
+                <label for="title">Article Title</label>
+                <input type="text" placeholder="Title" id="title" name="title" value="{{ old('title') }}">
                 @error('title')
-                <p class="text-danger mt-1">{{ $message }}</p>
+                    <p class="text-danger">{{ $message }}</p>
                 @enderror
             </div>
-            <div>
+            <div class="mb-3">
                 <label for="slug">Slug</label>
-                <input type="text" id="slug" name="slug">
+                <input type="text" id="slug" name="slug" value="{{ old('title') }}">
                 @error('slug')
-                <p class="text-danger mt-1">{{ $message }}</p>
+                    <p class="text-danger">{{ $message }}</p>
                 @enderror
             </div>
-            <div>
+            <div class="mb-3">
                 <label for="image">Cover Image</label>
                 <img class="img-preview img-fluid my-3 col-sm-5" style="max-height:200px; width:auto">
                 <input type="file" id="image" name="image" class="form-control @error('image') is-invalid @enderror" style="font-weight: normal;" onchange="previewImage()" />
+                <small class="text-muted">Minimum dimensions is 1200x400 & Max 1 Mb</small>
+                
                 @error('image')
                 <div class="invalid-feedback">
                     {{ $message }}
@@ -49,7 +51,7 @@
             </div>
         </div>
         <button class="btn btn-success rounded-5 float-end py-3 px-5" type="submit">
-            Tambahkan
+            Create New Article
         </button>
     </form>
 </div>

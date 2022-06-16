@@ -6,10 +6,11 @@
 
 <div class="header">
     <div>
-        <h2>Tambah Hotel Baru</h2>
+        <h2>Create New Hotel</h2>
     </div>
-    
-    <a href="/dashboard/hotels" class="btn btn-danger rounded-5 justify-content-center">Batal</a>
+    <div class="d-flex">
+        <button class="btn btn-danger rounded-5 btn-batal">Cancel</button>
+    </div>
 </div>
 <div class="container-fluid content pb-5" id="content">
     <div class="bg-white section-add-hotel">
@@ -51,6 +52,9 @@
                         <label for="image">Hotel Picture</label>
                         <img class="img-preview img-fluid my-3 col-sm-5">
                         <input type="file" id="image" name="image" class="form-control @error('image') is-invalid @enderror" onchange="previewImage()"/>
+                        <div class="mt-1">
+                            <small class="text-muted">Minimum dimensions is 1200x400 & Max 1 Mb</small>
+                        </div> 
                         @error('image')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -102,7 +106,7 @@
                             </div>
                         @enderror
                     </div>
-                    <div class="mb-5">
+                    <div class="mb-3">
                         <label for="contact">Contact</label><br />
                         <input type="text" class="input-type form-control @error('contact') is-invalid @enderror" id="contact" name="contact" value="{{ old('contact') }}" required/>
                         @error('contact')
@@ -112,10 +116,10 @@
                         @enderror
                     </div>
                 </div>
-                    <button class="btn btn-success rounded-5 float-end py-3 px-5" type="submit">
-                        Add New Hotel
-                    </button>
-                </div>
+            </div>
+            <button class="btn btn-success rounded-5 float-end py-3 px-5 mb-5" type="submit">
+                Create New Hotel
+            </button>
             </div>
         </form>
     </div>

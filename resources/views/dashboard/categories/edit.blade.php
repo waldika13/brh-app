@@ -8,8 +8,9 @@
     <div>
         <h2>Edit Category</h2>
     </div>
-    
-    <a href="/dashboard/categories" class="btn btn-danger rounded-5 justify-content-center">Batal</a>
+    <div class="d-flex">
+        <button class="btn btn-danger rounded-5 btn-batal">Cancel</button>
+    </div>
 </div>
 <div class="container-fluid content pb-5" id="content">
     <div class="bg-white section-add-hotel">
@@ -39,12 +40,13 @@
                     <div class="mb-3">
                         <label for="image">Category Picture</label>
                         @if($category->image)
-                        <img src="{{ asset('storage/' . $category->image) }}" class="img-preview img-fluid my-3 col-sm-5 d-block">
-                        @else
-                        <img class="img-preview img-fluid my-3 col-sm-5">
+                            <img src="{{ asset('storage/' . $category->image) }}" class="img-preview img-fluid my-3 col-sm-5 d-block" alt="Photo of {{ $category->name }}">            
                         @endif
                         
                         <input type="file" id="image" name="image" class="form-control @error('image') is-invalid @enderror" onchange="previewImage()"/>
+                        <div class="mt-1">
+                            <small class="text-muted">Minimum dimensions is 500x500 & Max 1 Mb</small>
+                        </div> 
                         @error('image')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -52,7 +54,7 @@
                         @enderror
                     </div>
             
-                    <button class="btn btn-success rounded-5 py-3 px-5 w-50 mt-3" type="submit">
+                    <button class="btn btn-success rounded-5 float-end py-3 px-5 mb-5" type="submit">
                         Update Category
                     </button>
                 </div>

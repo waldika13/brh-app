@@ -6,13 +6,13 @@
         <div class="card text-white rounded-5 border-5">
             @if($hotel->image)
                 <div style="max-height: 700px; overflow:hidden;">
-                    <img src="{{ asset('storage/' . $hotel->image) }}" class="card-img-top rounded-4">
+                    <img src="{{ asset('storage/' . $hotel->image) }}" class="card-img-top rounded-4" alt="Photo of {{ $hotel->title }}">
                 </div>
             @else
-                <img src="https://picsum.photos/1200/400" class="card-img-top img-fluid">
+                <img src="https://picsum.photos/1200/400" class="card-img-top img-fluid" alt="Random Picsum Images">
             @endif
             <div class="card-img-overlay d-flex flex-column-reverse ms-2 fw-bold">
-                <p class="text-dark text-center bg-warning py-2 mb-2 rounded-pill" style="width: 200px">Rp. {{ $hotel->price }}/hari</p>
+                <p class="text-dark text-center bg-warning py-2 mb-2 rounded-pill" style="width: 200px">Rp. {{ $hotel->price }}/day</p>
             </div>
         </div>
     </div>
@@ -72,8 +72,8 @@
 
     @auth
         @if(session()->has('success'))
-            <div class="alert alert-success col-md-3" role="alert">
-                {{ session('success') }}
+            <div class="alert alert-success col-md-3 text-center" role="alert">
+                <i class="bi bi-check-square"></i> {{ session('success') }}
             </div>
         @endif
         <div class="d-inline-block card mb-3 me-3 border-0 shadow p-3 mb-5 bg-body rounded mt-3" style="width: 100%">
@@ -84,13 +84,15 @@
                     <div class="mb-3">
                         <input type="text" class="form-control" placeholder="Your Name" name="text" id="text" value="{{ auth()->user()->name }}" disabled>
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-2">
                         <textarea class="form-control @error('body') is-invalid @enderror" placeholder="Input your review here..." name="body" id="body" aria-label="With textarea"></textarea>
-                        @error('rating')
+                        @error('body')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
                         @enderror
+                        <p class="mt-2" id="result" style="color: #b2b2b2"></p>
+                        
                     </div>
                     <button type="submit" class="btn btn-dark">Submit</button>
                 </form>
@@ -102,6 +104,26 @@
             <a href="/signin" class="btn btn-warning"><i class="bi bi-box-arrow-in-right"></i> Login</a>
         </div>
     @endauth
-    
 </div>
+
+<script>
+    var body = document.getElementById("body");
+    var result = document.getElementById("result");
+    var limit = 30;
+
+    result.textContent = 0 + "/" + limit;
+
+    body.addEventListener("input", function(){
+        var textLength = body.value.length;
+        result.textContent = textLength + "/" + limit;
+
+        if(textLength > limit){
+            body.style.borderColor = "#ff2851";
+            result.style.color = "#ff2851";
+        } else {
+            body.style.borderColor = "#b2b2b2";
+            result.style.color = "#b2b2b2";
+        }
+    })
+</script>
 @endsection

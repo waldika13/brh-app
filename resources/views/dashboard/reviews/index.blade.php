@@ -7,25 +7,20 @@
     <div>
         <h2>Reviews</h2>
     </div>
-    <div class="d-flex">
-        <div class="search-input">
-            <input type="text" placeholder="Cari Artikel" class="w-100" />
-            <button title="Cari"></button>
-        </div>
-    </div>
 </div>
 
 @if(session()->has('success'))
-<div class="alert alert-success" role="alert">
-    {{ session('success') }}
+<div class="alert alert-success col-md-6" role="alert">
+    <i class="bi bi-check-square"></i> {{ session('success') }}
 </div>
 @endif
 
+@if($reviews->count())
 <div class="container-fluid content pb-5" id="content">
     @foreach($reviews as $review)
     <div class="card-list row justify-content-between mx-0 p-3">
         <div class="col-sm-11">
-            <span>Review :</span>
+            <span>Review Body :</span>
             <h4 class="mb-3">
                 {{ $review ->body }}
             </h4>
@@ -39,12 +34,15 @@
         <div class="list-dropdown">
             <form action="/dashboard/reviews/{{ $review->id }}" method="POST">
                 @method('delete')
-                <button class="btn" onclick="return confirm('Are you sure?')">Delete</button>
+                <button class="btn" onclick="return confirm('Are you sure?')"><i class="bi bi-dash-circle"></i> Delete</button>
                 @csrf
             </form>
         </div>
     </div>
     @endforeach
 </div>
+@else
+    <p class="text-center fs-4 mt-5">Review Not Found</p>
+@endif
 
 @endsection

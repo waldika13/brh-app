@@ -41,22 +41,22 @@
                         </h3>
                     </div>
                     <div class="list">
-                        <a href="/dashboard" class="{{ Request::is('dashboard') ? 'active' : '' }}">Dashboard</a>
-                        <a href="/dashboard/articles" class="{{ Request::is('dashboard/articles*') ? 'active' : '' }}">Article</a>
-                        <a href="/dashboard/reviews" class="{{ Request::is('dashboard/reviews*') ? 'active' : '' }}">Hotel Review</a>
+                        <a href="/dashboard" class="{{ Request::is('dashboard') ? 'active' : '' }} "><i class="bi bi-house-door"></i> Dashboard</a>
+                        <a href="/dashboard/articles" class="{{ Request::is('dashboard/articles*') ? 'active' : '' }}"><i class="bi bi-journal-text"></i> Article</a>
+                        <a href="/dashboard/reviews" class="{{ Request::is('dashboard/reviews*') ? 'active' : '' }}"><i class="bi bi-chat-left-text"></i> Review</a>
                     </div>
                 </div>
                 <div class="list">
                     @can('admin')
 
-                    <div class="mt-5">
-                        <h6 class="text-center text-muted ">Administrator</h6>
+                    <div class="my-5">
+                        <h6 class="text-center text-muted "><i class="bi bi-person-circle"></i> Administrator</h6>
                     </div>
-                    <a href="/dashboard/hotels" class="{{ Request::is('dashboard/hotels*') ? 'active' : '' }}">Hotel</a>
-                    <a href="/dashboard/categories" class="{{ Request::is('dashboard/categories*') ? 'active' : '' }}">Category</a>
-                    <a href="/dashboard/adminRegister" class="{{ Request::is('dashboard/adminRegister*') ? 'active' : '' }}">Admin Register</a>
+                    <a href="/dashboard/hotels" class="{{ Request::is('dashboard/hotels*') ? 'active' : '' }}"><i class="bi bi-building"></i> Hotel</a>
+                    <a href="/dashboard/categories" class="{{ Request::is('dashboard/categories*') ? 'active' : '' }}"><i class="bi bi-list-ul"></i> Category</a>
+                    <a href="/dashboard/adminRegister" class="{{ Request::is('dashboard/adminRegister*') ? 'active' : '' }}"><i class="bi bi-people"></i> View User</a>
                     @endcan
-                    <a class="btn btn-outline-warning text-dark">
+                    <a class="btn btn-outline-warning text-dark mt-4">
                         <form action="/signout" method="POST">
                             @csrf
                             <button type="submit" class="dropdown-item"><i class="bi bi-box-arrow-right"></i> Log Out</button>

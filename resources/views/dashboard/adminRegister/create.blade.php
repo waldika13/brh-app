@@ -6,10 +6,10 @@
 
 <div class="header">
     <div>
-        <h2>Registrasi Admin Baru</h2>
+        <h2>Create New Admin</h2>
     </div>
     <div class="d-flex">
-        <button class="btn btn-secondary rounded-5 btn-batal">Batal</button>
+        <button class="btn btn-danger rounded-5 btn-batal">Cancel</button>
     </div>
 </div>
 <div class="container-fluid content pb-5 mb-5" id="content">
@@ -46,7 +46,7 @@
             </div>
         </div>
         <button class="btn btn-success rounded-5 float-end py-3 px-5" type="submit">
-            Tambahkan
+            Create New Admin
         </button>
     </form>
 </div>

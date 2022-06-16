@@ -16,13 +16,14 @@ class AdminArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         if (auth()->user()->is_admin) {
             return view('dashboard.articles.index', [
-                'articles' => Article::all(),
+                'articles' => Article::where('title', 'LIKE', '%'.$request->search.'%')->get(),
             ]);
         }
+
         return view('dashboard.articles.index', [
             'articles' => Article::where('user_id', auth()->user()->id)->get(),
         ]);
@@ -47,9 +48,9 @@ class AdminArticleController extends Controller
     public function store(Request $request)
     {
         $validateData = $request->validate([
-            'title' => 'required|max:255|unique:articles',
+            'title' => 'required|max:255',
             'slug' => 'required|unique:articles',
-            'image' => 'image|file|max:1024',
+            'image' => 'image|file|max:1024|dimensions:min_width=1200,min_height=400',
             'excerpt' => '',
             'body' => 'required'
         ]);
@@ -105,7 +106,7 @@ class AdminArticleController extends Controller
     {
         $rules = [
             'title' => 'required|max:255',
-            'image' => 'image|file|max:1024',
+            'image' => 'image|file|max:1024|dimensions:min_width=1200,min_height=400',
             'excerpt' => '',
             'body' => 'required'
         ];
@@ -146,7 +147,7 @@ class AdminArticleController extends Controller
 
         Article::destroy($article->id);
 
-        return redirect('/dashboard/articles')->with('success', 'Hotel has been deleted!');
+        return redirect('/dashboard/articles')->with('success', 'Article has been deleted!');
     }
 
     public function checkSlug(Request $request){

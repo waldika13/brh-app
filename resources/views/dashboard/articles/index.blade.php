@@ -5,25 +5,31 @@
 
 <div class="header">
     <div>
-        <h2>List Artikel</h2>
+        <h2>Article List</h2>
     </div>
     <div class="d-flex">
         <a href="/dashboard/articles/create" class="me-4"><button class="btn btn-success rounded-5">
-                + Buat Artikel Baru
+            <i class="bi bi-journal-plus"></i>
+             Create New Article
             </button></a>
-        <div class="search-input">
-            <input type="text" placeholder="Cari Artikel" class="w-100" />
-            <button title="Cari"></button>
-        </div>
+            @if(auth()->user()->is_admin)
+                <form action="/dashboard/articles">
+                    <div class="search-input">
+                        <input type="text" placeholder="Search Article.." name="search" class="w-100" value="{{ request('search') }}">
+                        <button title="Cari" type="submit" ></button>
+                    </div>
+                </form>
+            @endif
     </div>
 </div>
 
 @if(session()->has('success'))
-    <div class="alert alert-success" role="alert">
-        {{ session('success') }}
+    <div class="alert alert-success col-md-6 text-center" role="alert">
+        <i class="bi bi-check-square"></i> {{ session('success') }}
     </div>
 @endif
 
+@if($articles->count())
 <div class="container-fluid content pb-5" id="content">
     @foreach($articles as $article)
     <div class="card-list row justify-content-between mx-0 p-3">
@@ -32,22 +38,25 @@
             <p>
                 {{ $article ->excerpt }}
             </p>
-            <span class="pe-3">{{ $article->user->name }}</span>
-            <span class="pe-3">{{ substr($article->created_at,0,10) }}</span>
+            <span class="pe-3">Author: {{ $article->user->name }}</span>
+            <span class="pe-3 text-primary">{{ substr($article->created_at,0,10) }}</span>
         </div>
         <div class="col-sm-1">
             <button class="btn btn-warning btn-dropdown">⋮</button>
         </div>
         <div class="list-dropdown">
-            <a href="/dashboard/articles/{{ $article->slug }}/edit"><button class="btn">Edit</button></a>
+            <a href="/dashboard/articles/{{ $article->slug }}/edit"><button class="btn"><i class="bi bi-pencil-square"></i> Edit</button></a>
             <form action="/dashboard/articles/{{ $article->slug }}" method="POST">
                 @method('delete')
-                    <button class="btn" onclick="return confirm('Are you sure?')">Delete</button>
+                    <button class="btn" onclick="return confirm('Are you sure?')"><i class="bi bi-dash-circle"></i> Delete</button>
                 @csrf
             </form>
         </div>
     </div>
     @endforeach
 </div>
-
+@else
+    <p class="text-center fs-4 mt-5">Article Not Found</p>
+@endif
+    
 @endsection

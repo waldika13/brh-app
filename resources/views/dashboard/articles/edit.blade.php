@@ -5,10 +5,10 @@
 
 <div class="header">
     <div>
-        <h2>Edit Artikel</h2>
+        <h2>Edit Article</h2>
     </div>
     <div class="d-flex">
-        <button class="btn btn-secondary rounded-5 btn-batal">Batal</button>
+        <button class="btn btn-danger rounded-5 btn-batal">Cancel</button>
     </div>
 </div>
 <div class="container-fluid content pb-5 mb-3" id="content">
@@ -17,7 +17,7 @@
         @csrf
         <div class="mb-4">
             <div>
-                <label for="Judul">Judul Artikel</label>
+                <label for="Judul">Article Title</label>
                 <input type="text" placeholder="Judul" id="Judul" name="title" value="{{ $article->title}}">
                 @error('title')
                 <p class="text-danger mt-1">{{ $message }}</p>
@@ -33,7 +33,7 @@
             <div>
                 <label for="image">Cover Image</label>
                 <br>
-                <img class="img-preview img-fluid my-3 col-sm-5" style="max-height:200px; width:auto" src="{{asset('storage/'. $article->image)}}">
+                <img class="img-preview img-fluid my-3 col-sm-5" style="max-height:200px; width:auto" src="{{asset('storage/'. $article->image)}}" alt="Photo of {{ $article->title }}">
                 <input type="file" id="image" name="image" class="form-control @error('image') is-invalid @enderror" style="font-weight: normal;" onchange="previewImage()" />
                 @error('image')
                 <div class="invalid-feedback">
@@ -42,7 +42,7 @@
                 @enderror
             </div>
             <div>
-                <label for="full-featured-non-premium">Isi Artikel</label>
+                <label for="full-featured-non-premium">Article Body</label>
                 <textarea id="full-featured-non-premium" name="body">{{ $article->body }}</textarea>
                 @error('body')
                 <p class="text-danger mt-1">{{ $message }}</p>
@@ -51,7 +51,7 @@
 
         </div>
         <button class="btn btn-success rounded-5 float-end py-3 px-5" type="submit">
-            Simpan
+            Update Article
         </button>
     </form>
 </div>

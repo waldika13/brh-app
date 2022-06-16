@@ -16,11 +16,10 @@ class AdminHotelController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         return view('dashboard.hotels.index', [
-            // 'hotels' => Hotel::where('user_id', auth()->user()->id)->get()
-            'hotels' => Hotel::all()
+            'hotels' => Hotel::where('title', 'LIKE', '%'.$request->search.'%')->get()
         ]);
     }
 
@@ -49,7 +48,7 @@ class AdminHotelController extends Controller
             'title' => 'required|max:255',
             'slug' => 'required|unique:hotels',
             'category_id' => 'required',
-            'image' => 'image|file|max:1024',
+            'image' => 'image|file|max:1024|dimensions:min_width=1200,min_height=400',
             'body' => 'required',
             'price' => 'required|numeric',
             'location' => 'required|max:255',
@@ -110,13 +109,13 @@ class AdminHotelController extends Controller
         $rules = [
             'title' => 'required|max:255',
             'category_id' => 'required',
-            'image' => 'image|file|max:1024',
+            'image' => 'image|file|max:1024|dimensions:min_width=1200,min_height=400',
             'body' => 'required',
             'price' => 'required|numeric',
             'location' => 'required|max:255',
             'facility' => 'required',
             'rating' => 'required|numeric',
-            'contact' => 'required|numeric|max:20' 
+            'contact' => 'required|max:20' 
         ];
 
         if($request->slug != $hotel->slug){
