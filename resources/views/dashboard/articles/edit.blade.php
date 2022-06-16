@@ -49,19 +49,21 @@
                         </div>
                         <div class="mb-3">
                             <label for="body" class="mb-3">Hotel Body</label><br />
-                            <input id="body" type="hidden" name="body" value="{{ old('body', $article->body) }}"
-                            class="input-type">
+                            <input id="body" type="hidden" name="body" value="{{ old('body', $article->body) }}" class="input-type">
                             <trix-editor input="body"></trix-editor>
                             @error('body')
                             <p class="text-danger mt-1">{{ $message }}</p>
                             @enderror
                         </div>
+                    </div>
+                </div>
+                <div>
+                    <button class="btn btn-success rounded-5 float-end py-3 px-5" type="submit">
+                        Update Article
+                    </button>
                 </div>
             </div>
-            </div>
-            <button class="btn btn-success rounded-5 float-end py-3 px-5" type="submit">
-                Update Article
-            </button>
+
         </form>
     </div>
 </div>
@@ -70,27 +72,27 @@
 <script>
     try {
         tinymce.init({
-        selector: 'textarea#full-featured-non-premium',
-        plugins: 'autolink table  wordcount',
-        menubar: 'file edit view insert format tools table help',
-        toolbar: 'undo redo | bold italic underline strikethrough | fontfamily fontsize blocks | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl',
-        height: 520,
-    });
+            selector: 'textarea#full-featured-non-premium',
+            plugins: 'autolink table  wordcount',
+            menubar: 'file edit view insert format tools table help',
+            toolbar: 'undo redo | bold italic underline strikethrough | fontfamily fontsize blocks | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl',
+            height: 520,
+        });
     } catch (error) {
-        
+
     }
 
     const title = document.querySelector('#title');
     const slug = document.querySelector('#slug');
 
-    title.addEventListener('change', function(){
+    title.addEventListener('change', function() {
         fetch('/dashboard/articles/checkSlug?title=' + title.value)
-        .then(response => response.json())
-        .then(data => slug.value = data.slug)
+            .then(response => response.json())
+            .then(data => slug.value = data.slug)
     });
 
 
-    function previewImage(){
+    function previewImage() {
         const image = document.querySelector('#image');
         const imgPreview = document.querySelector('.img-preview')
 
@@ -99,7 +101,7 @@
         const oFReader = new FileReader();
         oFReader.readAsDataURL(image.files[0]);
 
-        oFReader.onload = function(oFREvent){
+        oFReader.onload = function(oFREvent) {
             imgPreview.src = oFREvent.target.result;
         }
     }

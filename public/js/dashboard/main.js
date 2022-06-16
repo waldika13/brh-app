@@ -21,9 +21,19 @@ try {
     btnDropdown.forEach((button, index) => {
         button.addEventListener("click", function () {
             const dropdown = document.querySelectorAll(".list-dropdown");
+            
+            
             if (dropdown[index].style.display == "block") {
+                for(const adropdown of dropdown){
+                    adropdown.style.display = "none";
+                }
+
                 dropdown[index].style.display = "none";
             } else {
+                for(const adropdown of dropdown){
+                    adropdown.style.display = "none";
+                }
+                
                 dropdown[index].style.display = "block";
             }
         });

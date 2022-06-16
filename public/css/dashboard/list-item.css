@@ -12,7 +12,7 @@
 
 .category{
     position: absolute;
-    padding: 5px;
+    padding: 0px 25px;
     background-color: #FED261;
     border-radius: 10px;
 }

@@ -49,6 +49,10 @@
         </div>
     </div>
     @endforeach
+
+    <div class="d-flex justify-content-center mt-4">
+        {{ $articles->links() }}
+    </div>
 </div>
 @else
     <p class="text-center fs-4 mt-5">Article Not Found</p>

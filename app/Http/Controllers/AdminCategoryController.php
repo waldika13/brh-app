@@ -45,7 +45,7 @@ class AdminCategoryController extends Controller
         $validateData = $request->validate([
             'name' => 'required|max:255|unique:categories',
             'slug' => 'required|unique:categories',
-            'image' => 'image|file|max:1024|dimensions:width=500,height=500'
+            'image' => 'image|file|max:1024|dimensions:max_width=500,max_height=500'
         ]);
 
         if($request->file('image')){

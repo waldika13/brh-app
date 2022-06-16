@@ -21,12 +21,12 @@ class AdminArticleController extends Controller
     {
         if (auth()->user()->is_admin) {
             return view('dashboard.articles.index', [
-                'articles' => Article::where('title', 'LIKE', '%'.$request->search.'%')->get(),
+                'articles' => Article::where('title', 'LIKE', '%'.$request->search.'%')->latest('created_at')->paginate(5),
             ]);
         }
 
         return view('dashboard.articles.index', [
-            'articles' => Article::where('user_id', auth()->user()->id)->get(),
+            'articles' => Article::where('user_id', auth()->user()->id)->latest('created_at')->paginate(5),
         ]);
     }
 
