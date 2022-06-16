@@ -1,9 +1,9 @@
-.section-add-hotel {
+.section-add {
     padding: 5vh 7vw;
     border-radius: 30px;
 }
 
-.section-add-hotel input {
+.section-add input {
     width: 100%;
 }
 
@@ -25,7 +25,7 @@
     height: 50px;
 }
 
-.section-add-hotel select{
+.section-add select{
     height: 60px;
     border-radius: 10px;
     border: 1px solid #C4C4C4;

@@ -2,7 +2,7 @@
 
 @section('container')
 
-<link href="{{ asset('css/dashboard/edit-hotel.css') }}" rel="stylesheet">
+<link href="{{ asset('css/dashboard/edit.css') }}" rel="stylesheet">
 
 <div class="header">
     <div>
@@ -13,7 +13,7 @@
     </div>
 </div>
 <div class="container-fluid content pb-5" id="content">
-    <div class="bg-white section-add-hotel">
+    <div class="bg-white section-add">
         <form action="/dashboard/hotels/{{ $hotel->slug }}" method="POST" enctype="multipart/form-data">
             @method('PUT')
             @csrf
@@ -72,7 +72,7 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="body" class="mb-3">Body</label><br />
+                        <label for="body" class="mb-3">Hotel Body</label><br />
                         <input id="body" type="hidden" name="body" value="{{ old('body', $hotel->body) }}"
                             class="input-type">
                         <trix-editor input="body"></trix-editor>

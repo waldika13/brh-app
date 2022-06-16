@@ -150,7 +150,6 @@ class AdminArticleController extends Controller
 
         Article::destroy($article->id);
 
-        Alert::success('Congrats', 'Article has been deleted!');
         return redirect('/dashboard/articles');
     }
 

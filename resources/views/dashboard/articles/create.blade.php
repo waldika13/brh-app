@@ -2,7 +2,7 @@
 
 
 @section('container')
-<link href="{{ asset('css/dashboard/artikel.css') }}" rel="stylesheet">
+<link href="{{ asset('css/dashboard/add.css') }}" rel="stylesheet">
 
 <div class="header">
     <div>
@@ -12,66 +12,55 @@
         <button class="btn btn-danger rounded-5 btn-batal">Cancel</button>
     </div>
 </div>
-<div class="container-fluid content pb-5 mb-5" id="content">
-    <form action="/dashboard/articles" method="POST" enctype="multipart/form-data">
-        @csrf
-        <div class="mb-3">
-            <div class="mb-3">
-                <label for="title">Article Title</label>
-                <input type="text" placeholder="Title" id="title" name="title" value="{{ old('title') }}">
-                @error('title')
-                    <p class="text-danger">{{ $message }}</p>
-                @enderror
-            </div>
-            <div class="mb-3">
-                <label for="slug">Slug</label>
-                <input type="text" id="slug" name="slug" value="{{ old('title') }}">
-                @error('slug')
-                    <p class="text-danger">{{ $message }}</p>
-                @enderror
-            </div>
-            <div class="mb-3">
-                <label for="image">Cover Image</label>
-                <img class="img-preview img-fluid my-3 col-sm-5" style="max-height:200px; width:auto">
-                <input type="file" id="image" name="image" class="form-control @error('image') is-invalid @enderror" style="font-weight: normal;" onchange="previewImage()" />
-                <small class="text-muted">Minimum dimensions is 1200x400 & Max 1 Mb</small>
-                
-                @error('image')
-                <div class="invalid-feedback">
-                    {{ $message }}
+<div class="container-fluid content pb-5" id="content">
+    <div class="bg-white section-add">
+        <form action="/dashboard/articles" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="mb-3">
+                        <label for="title">Article Title</label>
+                        <input type="text" class="input-type form-control @error('title') is-invalid @enderror" id="title" name="title" value="{{ old('title') }}" required autofocus>
+                        @error('title')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label for="slug">Slug</label>
+                        <input type="text" class="input-type form-control @error('slug') is-invalid @enderror" id="slug" name="slug" value="{{ old('slug') }}" required>
+                        @error('slug')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label for="image">Article Image</label>
+                        <img class="img-preview img-fluid my-3 col-sm-5">
+                        <input type="file" id="image" name="image" class="form-control @error('image') is-invalid @enderror" onchange="previewImage()" />
+                        <small class="text-muted">Minimum dimensions is 1200x400 & Max 1 Mb</small>
+                        @error('image')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label for="body" class="mb-3">Body</label><br />
+                        <input id="body" type="hidden" name="body" value="{{ old('body') }}" class="input-type">
+                        <trix-editor input="body"></trix-editor>
+                        @error('body')
+                            <p class="text-danger mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
                 </div>
-                @enderror
             </div>
-            <div>
-                <label for="full-featured-non-premium">Article Body</label>
-                <textarea id="full-featured-non-premium" name="body"></textarea>
-                @error('body')
-                <p class="text-danger mt-1">{{ $message }}</p>
-                @enderror
-            </div>
-        </div>
-        <button class="btn btn-success rounded-5 float-end py-3 px-5" type="submit">
-            Create New Article
-        </button>
-    </form>
+            <button class="btn btn-success rounded-5 float-end py-3 px-5" type="submit">
+                Create New Article
+            </button>
+        </form>
+    </div>
 </div>
 
-<script src="https://cdn.tiny.cloud/1/d3y4aorb7p5l7ms5vyx9ru8c8qwc9wlb1rij1j6a11vbzdhm/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-<script>
-    try {
-        tinymce.init({
-        selector: 'textarea#full-featured-non-premium',
-        plugins: 'autolink table  wordcount',
-        menubar: 'file edit view insert format tools table help',
-        toolbar: 'undo redo | bold italic underline strikethrough | fontfamily fontsize blocks | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl',
-        height: 520,
-    });
-    } catch (error) {
-        
-    }
-    
-
-
+<script>    
     const title = document.querySelector('#title');
     const slug = document.querySelector('#slug');
 
@@ -97,6 +86,3 @@
     }
 </script>
 @endsection
-
-
-

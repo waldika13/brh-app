@@ -104,8 +104,8 @@ class ReviewController extends Controller
      */
     public function destroy(Review $review)
     {
-        // Review::destroy($review->id);
+        Review::destroy($review->id);
 
-        // return redirect('/dashboard/reviews');
+        return redirect('/dashboard/reviews');
     }
 }

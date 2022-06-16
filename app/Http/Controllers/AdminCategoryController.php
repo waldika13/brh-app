@@ -135,8 +135,7 @@ class AdminCategoryController extends Controller
         }
 
         Category::destroy($category->id);
-
-        Alert::success('Congrats', 'Category has been deleted!');
+        
         return redirect('/dashboard/categories');
     }
 

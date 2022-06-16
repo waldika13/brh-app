@@ -39,34 +39,38 @@
 @endif
 
 <script type="text/javascript">
-
-  document.querySelector('#deleteForm').addEventListener('submit', function(e) {
-  var form = this;
-
-  e.preventDefault(); // <--- prevent form from submitting
-
-  swal({
-      title: "Are you sure?",
-      text: "You will not be able to recover this review!",
-      icon: "warning",
-      buttons: [
-        'No, cancel it!',
-        'Yes, I am sure!'
-      ],
-      dangerMode: true,
-    }).then(function(isConfirm) {
-      if (isConfirm) {
-        swal({
-          title: 'Success!',
-          text: 'Review are successfully deleted!',
-          icon: 'success'
-        }).then(function() {
-          form.submit();
+try {
+    const btnDelete = document.querySelectorAll('#deleteForm');
+    btnDelete.forEach((button, index) => {
+        button.addEventListener('submit', function (e) {
+            var form = this;
+            e.preventDefault(); // <--- prevent form from submitting
+            swal({
+                title: "Are you sure?",
+                text: "You will not be able to recover this review!",
+                icon: "warning",
+                buttons: [
+                    'No, cancel it!',
+                    'Yes, I am sure!'
+                ],
+                dangerMode: true,
+            }).then(function (isConfirm) {
+                if (isConfirm) {
+                    swal({
+                        title: 'Success!',
+                        text: 'Review are successfully deleted!',
+                        icon: 'success'
+                    }).then(function () {
+                        form.submit();
+                    });
+                } else {
+                    swal("Cancelled", "Review is safe :)", "error");
+                }
+            })
         });
-      } else {
-        swal("Cancelled", "Review is safe :)", "error");
-      }
-    })
-});
+    });
+} catch (error) {
+    
+}
 </script>
 @endsection

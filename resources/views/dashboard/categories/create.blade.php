@@ -2,7 +2,7 @@
 
 @section('container')
 
-<link href="{{ asset('css/dashboard/add-category.css') }}" rel="stylesheet">
+<link href="{{ asset('css/dashboard/add.css') }}" rel="stylesheet">
 
 <div class="header">
     <div>
@@ -13,7 +13,7 @@
     </div>
 </div>
 <div class="container-fluid content pb-5" id="content">
-    <div class="bg-white section-add-category">
+    <div class="bg-white section-add">
         <form action="/dashboard/categories" method="POST" enctype="multipart/form-data">
         @csrf
             <div class="row">

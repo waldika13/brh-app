@@ -2,7 +2,7 @@
 
 @section('container')
 
-<link href="{{ asset('css/dashboard/add-hotel.css') }}" rel="stylesheet">
+<link href="{{ asset('css/dashboard/edit.css') }}" rel="stylesheet">
 
 <div class="header">
     <div>
@@ -13,7 +13,7 @@
     </div>
 </div>
 <div class="container-fluid content pb-5" id="content">
-    <div class="bg-white section-add-hotel">
+    <div class="bg-white section-add">
         <form action="/dashboard/categories/{{ $category->slug }}" method="POST" enctype="multipart/form-data">
         @method('PUT')
         @csrf

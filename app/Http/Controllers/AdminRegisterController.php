@@ -55,7 +55,6 @@ class AdminRegisterController extends Controller
             $review->delete();
             User::destroy($user->id);
 
-            Alert::success('Congrats', 'User has been deleted!');
             return redirect('/dashboard/adminRegister');
         }
     }
@@ -91,7 +90,7 @@ class AdminRegisterController extends Controller
 
         User::where('id', $user->id)->update($validateData);
 
-        Alert::success('Congrats', 'Admin has been deleted!');
+        Alert::success('Congrats', 'Admin has been Updated!');
         return redirect('/dashboard/adminRegister');
     }
 }

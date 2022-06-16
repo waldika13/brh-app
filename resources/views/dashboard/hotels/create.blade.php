@@ -2,7 +2,7 @@
 
 @section('container')
 
-<link href="{{ asset('css/dashboard/add-hotel.css') }}" rel="stylesheet">
+<link href="{{ asset('css/dashboard/add.css') }}" rel="stylesheet">
 
 <div class="header">
     <div>
@@ -13,14 +13,14 @@
     </div>
 </div>
 <div class="container-fluid content pb-5" id="content">
-    <div class="bg-white section-add-hotel">
+    <div class="bg-white section-add">
         <form action="/dashboard/hotels" method="POST" enctype="multipart/form-data">
         @csrf
             <div class="row">
                 <div class="col-md-12">
                     <div class="mb-3">
                         <label for="title">Hotel Name</label><br />
-                        <input type="text" class="input-type form-control @error('title') is-invalid @enderror " id="title" name="title" value="{{ old('title') }}" required autofocus/>
+                        <input type="text" class="input-type form-control @error('title') is-invalid @enderror" id="title" name="title" value="{{ old('title') }}" required autofocus/>
                         @error('title')
                             <div class="invalid-feedback">
                                 {{ $message }}

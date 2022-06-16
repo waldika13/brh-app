@@ -158,8 +158,7 @@ class AdminHotelController extends Controller
         
         Hotel::destroy($hotel->id);
 
-        Alert::success('Congrats', 'Hotel has been deleted!');
-        return redirect('/dashboard/hotels')->with('success', 'Hotel has been deleted!');
+        return redirect('/dashboard/hotels');
     }
 
     public function checkSlug(Request $request){
