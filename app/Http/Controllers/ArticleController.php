@@ -12,7 +12,7 @@ class ArticleController extends Controller
         return view('article_page', [
             "title" => "Article Page",
             "active" => "article",
-            "articles" => Article::all()
+            "articles" => Article::latest('created_at')->paginate(10)
         ]);
     }
 
