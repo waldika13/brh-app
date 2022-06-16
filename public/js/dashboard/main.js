@@ -38,15 +38,6 @@ try {
             }
         });
     });
-
-    const body = document.querySelector('body')
-    body.onclick = ()=>{
-        // const dropdown = document.querySelector(".list-dropdown");
-        // if (dropdown.style.display == "block") {
-        //     dropdown.style.display = "none";
-        // }
-        // console.log('cl;ick')
-    }
 } catch (error) {}
 
 
