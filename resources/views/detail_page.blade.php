@@ -31,11 +31,6 @@
     </div>
     <div class="d-inline-block pe-5 pb-4">
         <p class="fw-bold border-bottom border-dark">Room Facility</p>
-        {{-- <div class="d-inline-block">
-            <div class="d-inline-block border border-waring bg-warning p-2 mb-2 rounded-pill"><i class="fa-solid fa-bed ps-1 pe-1"></i>Bed</div>
-            <div class="d-inline-block border border-waring bg-warning p-2 mb-2 rounded-pill"><i class="fa-solid fa-mug-saucer ps-1 pe-1"></i>Coffe</div>
-            <div class="d-inline-block border border-waring bg-warning p-2 mb-2 rounded-pill"><i class="fa-solid fa-wifi ps-1 pe-1"></i>WiFi</div>
-        </div> --}}
         <p>{{ $hotel->facility }}</p>
     </div>
     <div class="d-inline-block pe-5 pb-4">

@@ -80,6 +80,5 @@ Route::put('/dashboard/adminRegister/{user:name}', [AdminRegisterController::cla
 Route::delete('/dashboard/adminRegister/{user:id}', [AdminRegisterController::class, 'destroy'])->middleware('admin');
 
 Route::get('/dashboard/reviews', [ReviewController::class, 'index'])->middleware('auth');
-
 Route::post('/detail_page/{hotel:slug}/review', [ReviewController::class, 'store'])->middleware('auth');
 Route::delete('/dashboard/reviews/{review:id}', [ReviewController::class, 'destroy'])->middleware('auth');

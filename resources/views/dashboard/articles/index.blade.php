@@ -23,12 +23,6 @@
     </div>
 </div>
 
-@if(session()->has('success'))
-    <div class="alert alert-success col-md-6 text-center" role="alert">
-        <i class="bi bi-check-square"></i> {{ session('success') }}
-    </div>
-@endif
-
 @if($articles->count())
 <div class="container-fluid content pb-5" id="content">
     @foreach($articles as $article)
@@ -46,11 +40,12 @@
         </div>
         <div class="list-dropdown">
             <a href="/dashboard/articles/{{ $article->slug }}/edit"><button class="btn"><i class="bi bi-pencil-square"></i> Edit</button></a>
-            <form action="/dashboard/articles/{{ $article->slug }}" method="POST">
-                @method('delete')
-                    <button class="btn" onclick="return confirm('Are you sure?')"><i class="bi bi-dash-circle"></i> Delete</button>
+
+            <form action="/dashboard/articles/{{ $article->slug }}" method="POST" id="deleteForm">
                 @csrf
-            </form>
+                @method('delete')
+                    <button class="btn" type="submit"><i class="bi bi-dash-circle"></i> Delete</button>
+            </form>   
         </div>
     </div>
     @endforeach
@@ -58,5 +53,40 @@
 @else
     <p class="text-center fs-4 mt-5">Article Not Found</p>
 @endif
-    
+
+<script type="text/javascript">
+    try {
+        const btnDelete = document.querySelectorAll('#deleteForm');
+        btnDelete.forEach((button, index) => {
+            button.addEventListener('submit', function (e) {
+                var form = this;
+                e.preventDefault(); // <--- prevent form from submitting
+                swal({
+                    title: "Are you sure?",
+                    text: "You will not be able to recover this article!",
+                    icon: "warning",
+                    buttons: [
+                        'No, cancel it!',
+                        'Yes, I am sure!'
+                    ],
+                    dangerMode: true,
+                }).then(function (isConfirm) {
+                    if (isConfirm) {
+                        swal({
+                            title: 'Success!',
+                            text: 'Article are successfully deleted!',
+                            icon: 'success'
+                        }).then(function () {
+                            form.submit();
+                        });
+                    } else {
+                        swal("Cancelled", "Article is safe :)", "error");
+                    }
+                })
+            });
+        });
+    } catch (error) {
+        
+    }
+</script>
 @endsection

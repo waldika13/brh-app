@@ -129,7 +129,7 @@ button {
 }
 
 .search-input button {
-    background: url("../../img/icons/search.png") no-repeat center;
+    background: url("../../images/icons/search.png") no-repeat center;
     height: 30px;
     width: 30px;
     border: none;

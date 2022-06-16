@@ -6,6 +6,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AdminCategoryController extends Controller
 {
@@ -55,7 +56,8 @@ class AdminCategoryController extends Controller
 
         Category::create($validateData);
 
-        return redirect('/dashboard/categories')->with('success', 'New Category has been added!');
+        Alert::success('Congrats', 'New Category has been added!');
+        return redirect('/dashboard/categories');
     }
 
     /**
@@ -116,7 +118,8 @@ class AdminCategoryController extends Controller
         Category::where('id', $category->id)
             ->update($validateData);
 
-        return redirect('/dashboard/categories')->with('success','Category has been updated!');
+        Alert::success('Congrats', 'Category has been updated!');
+        return redirect('/dashboard/categories');
     }
 
     /**
@@ -132,8 +135,8 @@ class AdminCategoryController extends Controller
         }
 
         Category::destroy($category->id);
-
-        return redirect('/dashboard/categories')->with('success','Category has been deleted!');
+        
+        return redirect('/dashboard/categories');
     }
 
     public function checkSlug(Request $request){

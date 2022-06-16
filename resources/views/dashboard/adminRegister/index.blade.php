@@ -52,12 +52,11 @@
                                     @if(auth()->user()->name == $user->name)
                                         <a href="/dashboard/adminRegister/{{ $user->name }}/edit"><button class="btn"><i class="bi bi-pencil-square"></i> Edit</button></a>
                                     @endif
-                                    <form action="/dashboard/adminRegister/{{ $user->id }}" method="POST">
-                                        @method('delete')
+                                    <form action="/dashboard/adminRegister/{{ $user->id }}" method="POST" id="deleteFormAdmin">
                                         @csrf
-                                            <button class="btn" onclick="return confirm('Are you sure?')"><i class="bi bi-dash-circle"></i> Delete</button>
-                                    </form>
-                                    <input type="hidden">
+                                        @method('delete')
+                                            <button class="btn" type="submit"><i class="bi bi-dash-circle"></i> Delete</button>
+                                    </form>  
                                 </div>
                             </div>
                         @endif
@@ -85,11 +84,11 @@
                                     @if(auth()->user()->name == $user->name)
                                         <a href="/dashboard/adminRegister/{{ $user->name }}/edit"><button class="btn">Edit</button></a>
                                     @endif
-                                    <form action="/dashboard/adminRegister/{{ $user->id }}" method="POST">
-                                        @method('delete')
+                                    <form action="/dashboard/adminRegister/{{ $user->id }}" method="POST" id="deleteFormUser">
                                         @csrf
-                                            <button class="btn" onclick="return confirm('Are you sure?')">Delete</button>
-                                    </form>
+                                        @method('delete')
+                                            <button class="btn" type="submit"><i class="bi bi-dash-circle"></i> Delete</button>
+                                    </form>  
                                 </div>
                             </div>
                         @endif
@@ -100,4 +99,73 @@
     </div>
   </div>
 
+<script type="text/javascript">
+    try {
+        const btnDelete = document.querySelectorAll('#deleteFormAdmin');
+        btnDelete.forEach((button, index) => {
+            button.addEventListener('submit', function (e) {
+                var form = this;
+                e.preventDefault(); // <--- prevent form from submitting
+                swal({
+                    title: "Are you sure?",
+                    text: "You will not be able to recover this admin!",
+                    icon: "warning",
+                    buttons: [
+                        'No, cancel it!',
+                        'Yes, I am sure!'
+                    ],
+                    dangerMode: true,
+                }).then(function (isConfirm) {
+                    if (isConfirm) {
+                        swal({
+                            title: 'Success!',
+                            text: 'Admin are successfully deleted!',
+                            icon: 'success'
+                        }).then(function () {
+                            form.submit();
+                        });
+                    } else {
+                        swal("Cancelled", "Admin is safe :)", "error");
+                    }
+                })
+            });
+        });
+    } catch (error) {
+        
+    }
+    
+    try {
+        const btnDelete = document.querySelectorAll('#deleteFormUser');
+        btnDelete.forEach((button, index) => {
+            button.addEventListener('submit', function (e) {
+                var form = this;
+                e.preventDefault(); // <--- prevent form from submitting
+                swal({
+                    title: "Are you sure?",
+                    text: "You will not be able to recover this user!",
+                    icon: "warning",
+                    buttons: [
+                        'No, cancel it!',
+                        'Yes, I am sure!'
+                    ],
+                    dangerMode: true,
+                }).then(function (isConfirm) {
+                    if (isConfirm) {
+                        swal({
+                            title: 'Success!',
+                            text: 'User are successfully deleted!',
+                            icon: 'success'
+                        }).then(function () {
+                            form.submit();
+                        });
+                    } else {
+                        swal("Cancelled", "User is safe :)", "error");
+                    }
+                })
+            });
+        });
+    } catch (error) {
+        
+    }
+</script>
 @endsection
