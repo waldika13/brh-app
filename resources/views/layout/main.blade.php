@@ -14,6 +14,7 @@
     <title>BRH | {{ $title }}</title>
   </head>
   <body>
+    @include('sweetalert::alert')
 
     @include('partials.navbar')
     

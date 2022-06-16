@@ -6,6 +6,7 @@ use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use \App\Models\User;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AdminRegisterController extends Controller
 {
@@ -35,7 +36,8 @@ class AdminRegisterController extends Controller
 
         User::create($validatedData);
 
-        return redirect('/dashboard/adminRegister')->with('success', 'Registration Successfull!');
+        Alert::success('Congrats', 'Registration Successfull!');
+        return redirect('/dashboard/adminRegister');
     }
 
     public function destroy(User $user, Review $review)
@@ -45,12 +47,16 @@ class AdminRegisterController extends Controller
             $review = Review::where('user_id', '=', $userId);
             $review->delete();
             User::destroy($user->id);
-            return redirect('/dashboard/adminRegister')->with('success', 'Admin has been deleted!');
+
+            Alert::success('Congrats', 'Admin has been deleted!');
+            return redirect('/dashboard/adminRegister');
         } else {
             $review = Review::where('user_id', '=', $userId);
             $review->delete();
             User::destroy($user->id);
-            return redirect('/dashboard/adminRegister')->with('success', 'User has been deleted!');
+
+            Alert::success('Congrats', 'User has been deleted!');
+            return redirect('/dashboard/adminRegister');
         }
     }
 
@@ -85,6 +91,7 @@ class AdminRegisterController extends Controller
 
         User::where('id', $user->id)->update($validateData);
 
-        return redirect('/dashboard/adminRegister')->with('success', 'Admin has been updated!');
+        Alert::success('Congrats', 'Admin has been deleted!');
+        return redirect('/dashboard/adminRegister');
     }
 }

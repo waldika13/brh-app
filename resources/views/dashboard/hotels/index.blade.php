@@ -21,12 +21,6 @@
     </div>
 </div>
 
-@if(session()->has('success'))
-    <div class="alert alert-success col-md-6 text-center" role="alert">
-        <i class="bi bi-check-square"></i> {{ session('success') }}
-    </div>
-@endif
-
 @if($hotels->count())
 <div class="container-fluid content pb-5" id="content">
     @foreach ($hotels as $hotel)

@@ -2,18 +2,11 @@
 
 @section('container')
 <link href="{{ asset('css/dashboard/list-item.css') }}" rel="stylesheet">
-
 <div class="header">
     <div>
         <h2>Reviews</h2>
     </div>
 </div>
-
-@if(session()->has('success'))
-<div class="alert alert-success col-md-6" role="alert">
-    <i class="bi bi-check-square"></i> {{ session('success') }}
-</div>
-@endif
 
 @if($reviews->count())
 <div class="container-fluid content pb-5" id="content">
@@ -32,10 +25,10 @@
             <button class="btn btn-warning btn-dropdown">⋮</button>
         </div>
         <div class="list-dropdown">
-            <form action="/dashboard/reviews/{{ $review->id }}" method="POST">
-                @method('delete')
-                <button class="btn" onclick="return confirm('Are you sure?')"><i class="bi bi-dash-circle"></i> Delete</button>
+            <form action="/dashboard/reviews/{{ $review->id }}" method="POST" id="deleteForm">
                 @csrf
+                @method('delete')
+                    <button class="btn" type="submit"><i class="bi bi-dash-circle"></i> Delete</button>
             </form>
         </div>
     </div>
@@ -45,4 +38,35 @@
     <p class="text-center fs-4 mt-5">Review Not Found</p>
 @endif
 
+<script type="text/javascript">
+
+  document.querySelector('#deleteForm').addEventListener('submit', function(e) {
+  var form = this;
+
+  e.preventDefault(); // <--- prevent form from submitting
+
+  swal({
+      title: "Are you sure?",
+      text: "You will not be able to recover this review!",
+      icon: "warning",
+      buttons: [
+        'No, cancel it!',
+        'Yes, I am sure!'
+      ],
+      dangerMode: true,
+    }).then(function(isConfirm) {
+      if (isConfirm) {
+        swal({
+          title: 'Success!',
+          text: 'Review are successfully deleted!',
+          icon: 'success'
+        }).then(function() {
+          form.submit();
+        });
+      } else {
+        swal("Cancelled", "Review is safe :)", "error");
+      }
+    })
+});
+</script>
 @endsection

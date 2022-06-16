@@ -7,6 +7,7 @@ use App\Models\Hotel;
 use App\Models\Review;
 use App\Models\User;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ReviewController extends Controller
 {
@@ -56,7 +57,9 @@ class ReviewController extends Controller
 
         Review::create($validateData);
 
-        return redirect()->back()->with('success', 'New Review has been added!');
+        Alert::success('Congrats', 'New Review has been added!');
+
+        return redirect()->back();
     }
 
     /**
@@ -101,8 +104,8 @@ class ReviewController extends Controller
      */
     public function destroy(Review $review)
     {
-        Review::destroy($review->id);
+        // Review::destroy($review->id);
 
-        return redirect('/dashboard/reviews')->with('success', 'Review has been deleted!');
+        // return redirect('/dashboard/reviews');
     }
 }

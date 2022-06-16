@@ -13,19 +13,19 @@
 </div>
 <div class="container-fluid content pb-5 mb-3" id="content">
     <form action="/dashboard/articles/{{ $article->slug }}" method="POST" enctype="multipart/form-data">
-        @method('put')
+        @method('PUT')
         @csrf
         <div class="mb-4">
             <div>
                 <label for="Judul">Article Title</label>
-                <input type="text" placeholder="Judul" id="Judul" name="title" value="{{ $article->title}}">
+                <input type="text" placeholder="Judul" id="title" name="title" value="{{ $article->title}}">
                 @error('title')
                 <p class="text-danger mt-1">{{ $message }}</p>
                 @enderror
             </div>
             <div>
                 <label for="slug">Slug</label>
-                <input type="text" id="slug" name="slug" value="{{ $article->slug}}">
+                <input type="text" id="slug" name="slug" value="{{ old('slug', $article->slug) }}">
                 @error('slug')
                 <p class="text-danger mt-1">{{ $message }}</p>
                 @enderror
@@ -69,8 +69,6 @@
     } catch (error) {
         
     }
-    
-
 
     const title = document.querySelector('#title');
     const slug = document.querySelector('#slug');
