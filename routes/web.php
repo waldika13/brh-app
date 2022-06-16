@@ -55,14 +55,14 @@ Route::get('/dashboard', function(){
 
     return view('dashboard.index', [
         'title' => 'Dashboard',
-        'hotels' => Hotel::where('user_id', auth()->user()->id)->get(),
+        'hotels' => Hotel::get(),
         'articles' => $articles
     ]);
 })->middleware('auth');
 
 Route::get('/dashboard/hotels/checkSlug', [AdminHotelController::class, 'checkSlug'])->middleware('auth');
 
-Route::resource('/dashboard/hotels', AdminHotelController::class)->middleware('auth');
+Route::resource('/dashboard/hotels', AdminHotelController::class)->middleware('admin');
 
 Route::get('/dashboard/categories/checkSlug', [AdminCategoryController::class, 'checkSlug'])->middleware('auth');
 

@@ -22,14 +22,14 @@
                         <label for="title">Article Title</label>
                         <input type="text" class="input-type form-control @error('title') is-invalid @enderror" id="title" name="title" value="{{ old('title') }}" required autofocus>
                         @error('title')
-                            <p class="text-danger">{{ $message }}</p>
+                        <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label for="slug">Slug</label>
                         <input type="text" class="input-type form-control @error('slug') is-invalid @enderror" id="slug" name="slug" value="{{ old('slug') }}" required>
                         @error('slug')
-                            <p class="text-danger">{{ $message }}</p>
+                        <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="mb-3">
@@ -48,30 +48,32 @@
                         <input id="body" type="hidden" name="body" value="{{ old('body') }}" class="input-type">
                         <trix-editor input="body"></trix-editor>
                         @error('body')
-                            <p class="text-danger mt-1">{{ $message }}</p>
+                        <p class="text-danger mt-1">{{ $message }}</p>
                         @enderror
                     </div>
                 </div>
+                <div>
+                    <button class="btn btn-success rounded-5 float-end py-3 px-5" type="submit">
+                        Create New Article
+                    </button>
+                </div>
             </div>
-            <button class="btn btn-success rounded-5 float-end py-3 px-5" type="submit">
-                Create New Article
-            </button>
         </form>
     </div>
 </div>
 
-<script>    
+<script>
     const title = document.querySelector('#title');
     const slug = document.querySelector('#slug');
 
-    title.addEventListener('change', function(){
+    title.addEventListener('change', function() {
         fetch('/dashboard/articles/checkSlug?title=' + title.value)
-        .then(response => response.json())
-        .then(data => slug.value = data.slug)
+            .then(response => response.json())
+            .then(data => slug.value = data.slug)
     });
 
 
-    function previewImage(){
+    function previewImage() {
         const image = document.querySelector('#image');
         const imgPreview = document.querySelector('.img-preview')
 
@@ -80,7 +82,7 @@
         const oFReader = new FileReader();
         oFReader.readAsDataURL(image.files[0]);
 
-        oFReader.onload = function(oFREvent){
+        oFReader.onload = function(oFREvent) {
             imgPreview.src = oFREvent.target.result;
         }
     }

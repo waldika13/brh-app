@@ -46,11 +46,13 @@
                         <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
+                    <div>
+                        <button class="btn btn-success rounded-5 float-end py-3 px-5 my-2" type="submit">
+                            Update Admin
+                        </button>
+                    </div>
                 </div>
             </div>
-            <button class="btn btn-success rounded-5 float-end py-3 px-5" type="submit">
-                Update Admin
-            </button>
         </form>
     </div>
 </div>

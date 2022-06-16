@@ -54,7 +54,7 @@
             <b>Category</b>
             <a href="/?category={{ $hotel->category->slug }}" class="text-decoration-none text-dark">
                 <div class="category mt-3">
-                    <p class="text-center mt-3">
+                    <p class="text-center m-3">
                         {{ $hotel->category->name }}
                     </p>
                 </div>
