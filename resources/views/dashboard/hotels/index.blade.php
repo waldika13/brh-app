@@ -21,12 +21,6 @@
     </div>
 </div>
 
-@if(session()->has('success'))
-    <div class="alert alert-success col-md-6 text-center" role="alert">
-        <i class="bi bi-check-square"></i> {{ session('success') }}
-    </div>
-@endif
-
 @if($hotels->count())
 <div class="container-fluid content pb-5" id="content">
     @foreach ($hotels as $hotel)
@@ -72,12 +66,12 @@
         <div class="list-dropdown">
             <a href="/dashboard/hotels/{{ $hotel->slug }}"><button class="btn"><i class="bi bi-eye"></i> Show</button></a>
             <a href="/dashboard/hotels/{{ $hotel->slug }}/edit"><button class="btn"><i class="bi bi-pencil-square"></i> Edit</button></a>
-            <form action="/dashboard/hotels/{{ $hotel->slug }}" method="POST">
-                @method('delete')
-                    <button class="btn" onclick="return confirm('Are you sure?')"><i class="bi bi-dash-circle"></i> Delete</button>
+
+            <form action="/dashboard/hotels/{{ $hotel->slug }}" method="POST" id="deleteForm">
                 @csrf
-            </form>
-            
+                @method('delete')
+                    <button class="btn" type="submit"><i class="bi bi-dash-circle"></i> Delete</button>
+            </form>        
         </div>
     </div>
     @endforeach
@@ -86,4 +80,39 @@
     <p class="text-center fs-4 mt-5">Hotel Not Found</p>
 @endif
 
+<script type="text/javascript">
+    try {
+        const btnDelete = document.querySelectorAll('#deleteForm');
+        btnDelete.forEach((button, index) => {
+            button.addEventListener('submit', function (e) {
+                var form = this;
+                e.preventDefault(); // <--- prevent form from submitting
+                swal({
+                    title: "Are you sure?",
+                    text: "You will not be able to recover this hotel!",
+                    icon: "warning",
+                    buttons: [
+                        'No, cancel it!',
+                        'Yes, I am sure!'
+                    ],
+                    dangerMode: true,
+                }).then(function (isConfirm) {
+                    if (isConfirm) {
+                        swal({
+                            title: 'Success!',
+                            text: 'Hotel are successfully deleted!',
+                            icon: 'success'
+                        }).then(function () {
+                            form.submit();
+                        });
+                    } else {
+                        swal("Cancelled", "Hotel is safe :)", "error");
+                    }
+                })
+            });
+        });
+    } catch (error) {
+        
+    }
+</script>
 @endsection

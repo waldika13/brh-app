@@ -26,6 +26,7 @@
 </head>
 
 <body class="container-fluid bg-light">
+    @include('sweetalert::alert')
     <div class="row">
         <!-- Left -->
         <div class="col-lg-3 px-4 col-left">
@@ -73,6 +74,7 @@
     </div>
     <script src="{{ asset('js/dashboard/main.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </body>
 
 </html>

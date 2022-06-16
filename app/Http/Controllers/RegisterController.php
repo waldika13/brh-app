@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use \App\Models\User;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class RegisterController extends Controller
 {
@@ -27,6 +28,8 @@ class RegisterController extends Controller
 
         User::create($validatedData);
 
-        return redirect('/signin')->with('success', 'Registration Successfull! Please Login');
+        Alert::success('Congrats', 'You have Successfully Registered');
+
+        return redirect('/signin');
     }
 }

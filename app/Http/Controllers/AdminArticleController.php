@@ -8,6 +8,7 @@ use GuzzleHttp\Middleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AdminArticleController extends Controller
 {
@@ -64,7 +65,8 @@ class AdminArticleController extends Controller
 
         Article::create($validateData);
 
-        return redirect('/dashboard/articles')->with('success', 'New Article has been added!');
+        Alert::success('Congrats', 'New Article has been added!');
+        return redirect('/dashboard/articles');
     }
 
     /**
@@ -130,7 +132,8 @@ class AdminArticleController extends Controller
 
         Article::where('id', $article->id)->update($validateData);
 
-        return redirect('/dashboard/articles')->with('success', 'Article has been updated!');
+        Alert::success('Congrats', 'Article has been uptaded!');
+        return redirect('/dashboard/articles');
     }
 
     /**
@@ -147,7 +150,7 @@ class AdminArticleController extends Controller
 
         Article::destroy($article->id);
 
-        return redirect('/dashboard/articles')->with('success', 'Article has been deleted!');
+        return redirect('/dashboard/articles');
     }
 
     public function checkSlug(Request $request){

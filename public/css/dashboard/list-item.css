@@ -50,7 +50,7 @@
 
 .card-list .list-dropdown {
     position: absolute;
-    bottom: -40px;
+    bottom: 20px;
     right: 70px;
     width: 100px;
     padding: 0;

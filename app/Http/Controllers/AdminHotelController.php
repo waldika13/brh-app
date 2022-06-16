@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AdminHotelController extends Controller
 {
@@ -66,7 +67,8 @@ class AdminHotelController extends Controller
 
         Hotel::create($validateData);
 
-        return redirect('/dashboard/hotels')->with('success', 'New Hotel has been added!');
+        Alert::success('Congrats', 'New Hotel has been added!');
+        return redirect('/dashboard/hotels');
     }
 
     /**
@@ -137,7 +139,8 @@ class AdminHotelController extends Controller
 
         Hotel::where('id', $hotel->id)->update($validateData);
 
-        return redirect('/dashboard/hotels')->with('success', 'Hotel has been updated!');
+        Alert::success('Congrats', 'Hotel has been updated!');
+        return redirect('/dashboard/hotels');
     }
 
     /**
@@ -155,7 +158,7 @@ class AdminHotelController extends Controller
         
         Hotel::destroy($hotel->id);
 
-        return redirect('/dashboard/hotels')->with('success', 'Hotel has been deleted!');
+        return redirect('/dashboard/hotels');
     }
 
     public function checkSlug(Request $request){
