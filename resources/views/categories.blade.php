@@ -11,9 +11,9 @@
                 <a href="/?category={{ $category->slug }}">
                     <div class="card bg-dark text-white">
                         @if($category->image)
-                            <img src="{{ asset('storage/' . $category->image) }}" style="max-height: 350px">
+                            <img src="{{ asset('storage/' . $category->image) }}" style="max-height: 350px" alt="Photo Of {{ $category->name }}">
                         @else
-                            <img src="https://picsum.photos/500/500?blur=2" class="card-img" alt="">
+                            <img src="https://picsum.photos/500/500?blur=2" class="card-img" alt="Random Picsum Images">
                         @endif
                     
                         <div class="card-img-overlay d-flex align-items-center p-0">

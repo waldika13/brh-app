@@ -14,10 +14,10 @@ class AdminCategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         return view('dashboard.categories.index', [
-            'categories' => Category::all()
+            'categories' => Category::where('name', 'LIKE', '%'.$request->search.'%')->get()
         ]);
     }
 
@@ -44,7 +44,7 @@ class AdminCategoryController extends Controller
         $validateData = $request->validate([
             'name' => 'required|max:255|unique:categories',
             'slug' => 'required|unique:categories',
-            'image' => 'image|file|max:1024'
+            'image' => 'image|file|max:1024|dimensions:width=500,height=500'
         ]);
 
         if($request->file('image')){
@@ -92,7 +92,7 @@ class AdminCategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $rules = [
-            'image' => 'image|file|max:1024'
+            'image' => 'image|file|max:1024|dimensions:width=500,height=500'
         ];
         
         if($request->name != $category->name){

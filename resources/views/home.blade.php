@@ -7,7 +7,7 @@
 <div class="container-bg col-xxl-8 px-4">
     <div class="row hero-tagline flex-lg-row-reverse align-items-center g-5 py-5">
         <div class="col-10 col-sm-8 col-lg-6">
-            <img src="images/home/image-hero.png" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes"
+            <img src="images/home/image-hero.png" class="d-block mx-lg-auto img-fluid" alt="Images Hero Home"
                 width="621" height="565" loading="lazy">
         </div>
         <div class="col-lg-6">
@@ -27,8 +27,6 @@
 </div>
 
 <main id="main_content">
-
-<!--Populer Hotel-->
 
 <div class="populer py-5 bg-light">
     <div class="container">
@@ -92,7 +90,6 @@
 </div>
 
 <!--List Hotel-->
-
 <div class="album py-5 bg-light">
     <div class="container">
         <div class="row">
@@ -120,26 +117,24 @@
 
             @if($hotels[0]->image)
                 <div style="max-height: 400px; overflow:hidden;">
-                    <img src="{{ asset('storage/' . $hotels[0]->image) }}" class="card-img-top">
+                    <img src="{{ asset('storage/' . $hotels[0]->image) }}" class="card-img-top" alt="Photo of {{ $hotels[0]->title }}">
                 </div>
             @else
-                <img class="card-img-top" src="https://picsum.photos/1200/400" alt="Card image cap">
+                <img class="card-img-top" src="https://picsum.photos/1200/400" alt="Random Picsum Images">
             @endif
 
             <div class="card-body text-center">
               <a href="/detail_page/{{ $hotels[0]->slug }}" class="text-decoration-none text-dark"><h3 class="card-title">{{ $hotels[0]->title }}</h3></a>
               <p class="card-text">{{ $hotels[0]->excerpt }}</p>
               <div class="my-3">
-                <p>Mulai dari <span class="price-hotel">Rp. {{ $hotels[0]->price }}</span></p>
+                <p>Starting from <span class="price-hotel">Rp. {{ $hotels[0]->price }}</span></p>
               </div>
                 <p>
-                    {{-- By: <a href="/?authors={{ $hotels[0]->author->username }}" class="text-decoration-none">{{ $hotels[0]->author->name }}</a> --}}
                     in <a href="/?category={{ $hotels[0]->category->slug }}" class="text-decoration-none">{{ $hotels[0]->category->name }}</a>
                 </p>
                 <div class="btn-group">
                     <a class="btn btn-sm btn-outline-secondary" href="/detail_page/{{ $hotels[0]->slug }}" class="text-decoration-none"
-                        role="button">Selengkapnya</a>
-                    <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
+                        role="button">View More</a>
                   </div>
             </div>
           </div>
@@ -154,10 +149,10 @@
 
                         @if($hotel->image)
                         <div style="max-height: 300px; overflow:hidden;">
-                            <img src="{{ asset('storage/' . $hotel->image) }}" class="card-img-top">
+                            <img src="{{ asset('storage/' . $hotel->image) }}" class="card-img-top" alt="Photo Of {{ $hotel->title }}">
                         </div>
                         @else
-                            <img class="card-img-top" src="https://picsum.photos/300/200" alt="Card image cap">
+                            <img class="card-img-top" src="https://picsum.photos/300/200" alt="Random Picsum Images">
                         @endif
 
                         <div class="card-body">
@@ -166,18 +161,16 @@
                             <p class="post-item__description card-text text-justify">{{ $hotel->excerpt }}</p>
 
                             <div class="post-item__price">
-                                <p>Mulai dari <span class="price-hotel">Rp. {{ $hotel->price }}</span></p>
+                                <p>Starting from <span class="price-hotel">Rp. {{ $hotel->price }}</span></p>
                             </div>
                             <div class="d-flex justify-content-between align-items-center">
                                 <p>
-                                    {{-- By: <a href="#" class="text-decoration-none">{{ $hotel->author->name }}</a> --}} 
                                     in <a href="/?category={{ $hotel->category->slug }}" class="text-decoration-none">{{ $hotel->category->name }}</a>
                                 </p>
                             </div>
                             <div class="btn-group">
                                 <a class="btn btn-sm btn-outline-secondary" href="/detail_page/{{ $hotel->slug }}" class="text-decoration-none"
-                                    role="button">Selengkapnya</a>
-                                <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
+                                    role="button">View More</a>
                             </div>
                             
                         </div>

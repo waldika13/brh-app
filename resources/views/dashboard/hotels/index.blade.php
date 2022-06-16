@@ -6,33 +6,36 @@
 
 <div class="header">
     <div>
-        <h2>List Hotel</h2>
+        <h2>Hotel List</h2>
     </div>
     <div class="d-flex">
-        <a href="/dashboard/hotels/create" class="me-4"><button class="btn btn-success rounded-5">
-                + Tambah Hotel
+        <a href="/dashboard/hotels/create" class="me-4"><button class="btn btn-success rounded-5"><i class="bi bi-plus-circle"></i>
+             Create Hotel
             </button></a>
-        <div class="search-input">
-            <input type="text" placeholder="Cari Hotel" class="w-100" />
-            <button title="Cari"></button>
-        </div>
+            <form action="/dashboard/hotels">
+                <div class="search-input">
+                    <input type="text" placeholder="Search Hotel.." name="search" class="w-100" value="{{ request('search') }}">
+                    <button title="Cari" type="submit" ></button>
+                </div>
+            </form>
     </div>
 </div>
 
 @if(session()->has('success'))
-    <div class="alert alert-success" role="alert">
-        {{ session('success') }}
+    <div class="alert alert-success col-md-6 text-center" role="alert">
+        <i class="bi bi-check-square"></i> {{ session('success') }}
     </div>
 @endif
 
+@if($hotels->count())
 <div class="container-fluid content pb-5" id="content">
     @foreach ($hotels as $hotel)
     <div class="card-list row justify-content-between mx-0">
         <div class="col-md-2">
             @if($hotel->image)
-                <img src="{{ asset('storage/' . $hotel->image) }}" style="min-height: 95px;">
+                <img src="{{ asset('storage/' . $hotel->image) }}" style="min-height: 95px;" alt="Photo Of {{ $hotel->title }}">
             @else
-                <img src="https://picsum.photos/300/245" alt="Card image cap" style="min-height: 95px;">
+                <img src="https://picsum.photos/300/245" alt="Random Picsum Images" style="min-height: 95px;">
             @endif
     
             <div class="rating">★ {{ $hotel->rating }}</div>
@@ -67,11 +70,11 @@
             <button class="btn btn-warning btn-dropdown">⋮</button>
         </div>
         <div class="list-dropdown">
-            <a href="/dashboard/hotels/{{ $hotel->slug }}"><button class="btn">Show</button></a>
-            <a href="/dashboard/hotels/{{ $hotel->slug }}/edit"><button class="btn">Edit</button></a>
+            <a href="/dashboard/hotels/{{ $hotel->slug }}"><button class="btn"><i class="bi bi-eye"></i> Show</button></a>
+            <a href="/dashboard/hotels/{{ $hotel->slug }}/edit"><button class="btn"><i class="bi bi-pencil-square"></i> Edit</button></a>
             <form action="/dashboard/hotels/{{ $hotel->slug }}" method="POST">
                 @method('delete')
-                    <button class="btn" onclick="return confirm('Are you sure?')">Delete</button>
+                    <button class="btn" onclick="return confirm('Are you sure?')"><i class="bi bi-dash-circle"></i> Delete</button>
                 @csrf
             </form>
             
@@ -79,5 +82,8 @@
     </div>
     @endforeach
 </div>
+@else
+    <p class="text-center fs-4 mt-5">Hotel Not Found</p>
+@endif
 
 @endsection

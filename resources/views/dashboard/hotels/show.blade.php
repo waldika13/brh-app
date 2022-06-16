@@ -14,13 +14,14 @@
     
     @if($hotel->image)
         <div style="max-height: 350px; overflow:hidden;">
-            <img src="{{ asset('storage/' . $hotel->image) }}" class="img-fluid my-3">
+            <img src="{{ asset('storage/' . $hotel->image) }}" class="img-fluid my-3" alt="Photo Of {{ $hotel->title }}">
         </div>
     @else
-        <img src="https://picsum.photos/1200/400" class="img-fluid my-3">
+        <img src="https://picsum.photos/1200/400" class="img-fluid my-3" alt="Random Picsum Images">
     @endif
     
-    <h1 class="mt-4 d-inline-block">{{ $hotel->title }}</h1>
+    <h1 class="mt-4 d-inline">{{ $hotel->title }}</h1>
+    <p>By: {{ $hotel->author->name }}</p>
     <p><i class="bi bi-geo-alt"></i> {{ $hotel->location }}</p>
     <div class="container">
         {!! $hotel->body !!}
@@ -35,11 +36,6 @@
     </div>
     <div class="d-inline-block pe-5 pb-4">
         <p class="fw-bold border-bottom border-dark">Room Facility</p>
-        {{-- <div class="d-inline-block">
-            <div class="d-inline-block border border-waring bg-warning p-2 mb-2 rounded-pill"><i class="fa-solid fa-bed ps-1 pe-1"></i>Bed</div>
-            <div class="d-inline-block border border-waring bg-warning p-2 mb-2 rounded-pill"><i class="fa-solid fa-mug-saucer ps-1 pe-1"></i>Coffe</div>
-            <div class="d-inline-block border border-waring bg-warning p-2 mb-2 rounded-pill"><i class="fa-solid fa-wifi ps-1 pe-1"></i>WiFi</div>
-        </div> --}}
         <p>{{ $hotel->facility }}</p>
     </div>
     <div class="d-inline-block pe-5 pb-4">

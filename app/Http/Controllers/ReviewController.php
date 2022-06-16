@@ -48,7 +48,7 @@ class ReviewController extends Controller
     public function store(Request $request, Hotel $hotel)
     {
         $validateData = $request->validate([
-            'body' => 'required|max:60'
+            'body' => 'required|max:30'
         ]);
 
         $validateData['user_id'] = auth()->user()->id;

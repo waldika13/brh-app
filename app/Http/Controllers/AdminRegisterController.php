@@ -42,7 +42,6 @@ class AdminRegisterController extends Controller
     {   
         $userId = $user->id;
         if($user->is_admin){
-            // Review::destroy($review->user_id);
             $review = Review::where('user_id', '=', $userId);
             $review->delete();
             User::destroy($user->id);

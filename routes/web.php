@@ -27,7 +27,6 @@ use App\Http\Controllers\AdminRegisterController;
 
 Route::get('/', [HotelController::class, 'index']);
 
-// Halaman Single Hotel
 Route::get('detail_page/{hotel:slug}', [HotelController::class, 'show']);
 
 Route::get('/article', [ArticleController::class, 'index']);
@@ -74,56 +73,13 @@ Route::get('/dashboard/articles/checkSlug', [AdminArticleController::class, 'che
 
 Route::resource('/dashboard/articles', AdminArticleController::class)->middleware('auth');
 
-Route::resource('/dashboard/adminRegister', AdminRegisterController::class)->except('edit', 'update', 'destroy')->middleware('auth');
+Route::resource('/dashboard/adminRegister', AdminRegisterController::class)->except('edit', 'update', 'destroy')->middleware('admin');
 
-Route::get('/dashboard/adminRegister/{user:name}/edit', [AdminRegisterController::class, 'edit'])->middleware('auth');
-Route::put('/dashboard/adminRegister/{user:name}', [AdminRegisterController::class, 'update'])->middleware('auth');
-Route::delete('/dashboard/adminRegister/{user:id}', [AdminRegisterController::class, 'destroy'])->middleware('auth');
+Route::get('/dashboard/adminRegister/{user:name}/edit', [AdminRegisterController::class, 'edit'])->middleware('admin');
+Route::put('/dashboard/adminRegister/{user:name}', [AdminRegisterController::class, 'update'])->middleware('admin');
+Route::delete('/dashboard/adminRegister/{user:id}', [AdminRegisterController::class, 'destroy'])->middleware('admin');
 
 Route::get('/dashboard/reviews', [ReviewController::class, 'index'])->middleware('auth');
 
 Route::post('/detail_page/{hotel:slug}/review', [ReviewController::class, 'store'])->middleware('auth');
 Route::delete('/dashboard/reviews/{review:id}', [ReviewController::class, 'destroy'])->middleware('auth');
-
-
-// Route::get('/admin/profile', function () {
-//     return view('admin.profile', [
-//         "title" => "Admin - Profile",
-//     ]);
-// });
-
-// Route::get('/admin/hotel', function () {
-//     return view('admin.hotel', [
-//         "title" => "Admin - Hotel",
-//     ]);
-// });
-
-// Route::get('/admin/artikel', function () {
-//     return view('admin.artikel', [
-//         "title" => "Admin - Artikel",
-//     ]);
-// });
-
-// Route::get('/admin/artikel/add', function () {
-//     return view('admin.add-artikel', [
-//         "title" => "Admin - Add Artikel",
-//     ]);
-// });
-
-// Route::get('/admin/artikel/edit', function () {
-//     return view('admin.edit-artikel', [
-//         "title" => "Admin - Edit Artikel",
-//     ]);
-// });
-
-// Route::get('/admin/hotel/add', function () {
-//     return view('admin.add-hotel', [
-//         "title" => "Admin - Add Hotel",
-//     ]);
-// });
-
-// Route::get('/admin/hotel/edit', function () {
-//     return view('admin.edit-hotel', [
-//         "title" => "Admin - Edit Hotel",
-//     ]);
-// });

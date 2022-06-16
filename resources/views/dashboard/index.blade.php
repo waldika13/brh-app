@@ -25,7 +25,7 @@
             @can('admin')
             <div class="box-card d-flex">
                 <div class="d-flex overflow-hidden">
-                    <img src="{{ asset('img/icons/icons8-hotel-64.png')}}" alt="" />
+                    <img src="{{ asset('images/icons/icons8-hotel-64.png')}}" alt="Hotel Icons" />
                     <div>
                         <h4>Hotel</h4>
                         <h1 class=" fw-semibold">{{ $hotels->count() }}</h1>
@@ -38,14 +38,14 @@
             @endcan
             <div class="box-card d-flex">
                 <div class="d-flex overflow-hidden">
-                    <img src="{{ asset('img/icons/icons8-article-64.png')}}" alt="" />
+                    <img src="{{ asset('images/icons/icons8-article-64.png')}}" alt="Article Icons" />
                     <div>
-                        <h4>Artikel</h4>
+                        <h4>Article</h4>
                         <h1 class="fs-1 fw-semibold">{{ $articles->count() }}</h1>
                     </div>
                 </div>
                 <div>
-                    <a href="/dashboard/artikel/add"><button class="btn btn-warning">+</button></a>
+                    <a href="/dashboard/articles/create"><button class="btn btn-warning">+</button></a>
                 </div>
             </div>
         </div>

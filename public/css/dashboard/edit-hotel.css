@@ -1,60 +1,43 @@
-.list-review {
-    width: 90%;
-    margin-top: 10px;
-    max-height: 50vh;
-    overflow-y: auto;
-}
-
-.card-review {
-    background-color: #f8f9fa;
-    padding: 15px;
-    border-radius: 10px;
-    width: 95%;
-    overflow: auto;
-    margin-bottom: 10px;
-    position: relative;
-}
-
-.card-review p {
-    margin: 0;
-}
-
-.btn-delete {
-    border-radius: 30px !important;
-    width: 40px;
-    height: 40px;
-}
-
-.card-review .btn-delete {
-    position: absolute;
-    top: 0;
-    right: 0;
-}
-
-.review-name {
-    font-size: 14px;
-    color: #c4c4c4;
-}
-
-.list-wisata {
-    display: flex;
-    margin-bottom: 20px;
-    overflow: auto;
-    padding: 0px 10px;
-}
-
-.item-wisata {
-    background-color: #FED261;
-    padding: 0px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.section-add-hotel {
+    padding: 5vh 7vw;
     border-radius: 30px;
-    margin-right: 10px;
-    margin-bottom: 10px;
-    width: auto !important;
 }
 
-.item-wisata span {
-    margin: 0px 10px;
+.section-add-hotel input {
+    width: 100%;
+}
+
+.input-type{
+    height: 50px;
+    border-radius: 10px;
+    border: 1px solid #C4C4C4;
+    outline-color: #C4C4C4;
+    width: 90%;
+    margin-top: 5px;
+}
+
+.input-group{
+    width: 100%;
+}
+
+.input-group-text{
+    margin-top: 5px;
+    height: 50px;
+}
+
+.section-add-hotel select{
+    height: 60px;
+    border-radius: 10px;
+    border: 1px solid #C4C4C4;
+    outline-color: #C4C4C4;
+    padding: 20px 15px;
+    width: 100%;
+    margin-bottom: 20px;
+    margin-top: 5px;
+}
+
+trix-editor {
+    height: 350px !important;
+    max-height: 350px !important;
+      overflow-y: auto !important;
 }

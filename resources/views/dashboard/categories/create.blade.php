@@ -2,17 +2,18 @@
 
 @section('container')
 
-<link href="{{ asset('css/dashboard/add-hotel.css') }}" rel="stylesheet">
+<link href="{{ asset('css/dashboard/add-category.css') }}" rel="stylesheet">
 
 <div class="header">
     <div>
         <h2>Add New Category</h2>
     </div>
-    
-    <a href="/dashboard/hotels" class="btn btn-danger rounded-5">Batal</a>
+    <div class="d-flex">
+        <button class="btn btn-danger rounded-5 btn-batal">Cancel</button>
+    </div>
 </div>
 <div class="container-fluid content pb-5" id="content">
-    <div class="bg-white section-add-hotel">
+    <div class="bg-white section-add-category">
         <form action="/dashboard/categories" method="POST" enctype="multipart/form-data">
         @csrf
             <div class="row">
@@ -44,10 +45,13 @@
                                 {{ $message }}
                             </div>
                         @enderror
+                        <div class="mt-1">
+                            <small class="text-muted">Minimum dimensions is 500x500 & Max 1 Mb</small>
+                        </div> 
                     </div>
             
-                    <button class="btn btn-success rounded-5 py-2 px-3 w-40 mt-3" type="submit">
-                        Add New Category
+                    <button class="btn btn-success rounded-5 float-end py-3 px-5 mb-5" type="submit">
+                        Create New Category
                     </button>
                 </div>
             </div>
