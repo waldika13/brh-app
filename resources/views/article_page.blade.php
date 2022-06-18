@@ -26,15 +26,17 @@
         @if($articles->count())
         @foreach($articles as $article)
         <div class="col-md-6 px-4">
-            <a class="row p-2 border rounded-3 overflow-hidden mb-4 shadow-sm h-md-250 position-relative text-decoration-none text-black" href="/article/{{ $article->slug }}" style="">
-                <div class="col-lg-4 overflow-hidden d-flex align-items-center justify-content-center">
+            <a class="row border border-3 rounded-3 overflow-hidden mb-4 shadow-sm h-md-250 position-relative text-decoration-none text-black" href="/article/{{ $article->slug }}" style="">
+                <div class="col-lg-4 p-0 overflow-hidden d-flex align-items-center justify-content-center">
+                    <div style="max-height: 220px; overflow: hidden;">
                     @if($article->image)
-                        <div style="max-height: 300px; overflow:hidden;">
+                        
                             <img src="{{ asset('storage/' . $article->image) }}" class="card-img-top" alt="Photo of {{ $article->title }}">
-                        </div>
+                       
                     @else
                             <img class="card-img-top" src="https://picsum.photos/400/400" alt="Random Picsum Image">
                     @endif
+                    </div>
                 </div>
                 <div class="col-lg-8 p-4 d-flex flex-column position-static">
                     <h3 class="mb-2">{{ $article->title }}</h3>

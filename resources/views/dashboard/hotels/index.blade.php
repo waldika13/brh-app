@@ -10,14 +10,14 @@
     </div>
     <div class="d-flex">
         <a href="/dashboard/hotels/create" class="me-4"><button class="btn btn-success rounded-5"><i class="bi bi-plus-circle"></i>
-             Create Hotel
+                Create Hotel
             </button></a>
-            <form action="/dashboard/hotels">
-                <div class="search-input">
-                    <input type="text" placeholder="Search Hotel.." name="search" class="w-100" value="{{ request('search') }}">
-                    <button title="Cari" type="submit" ></button>
-                </div>
-            </form>
+        <form action="/dashboard/hotels">
+            <div class="search-input">
+                <input type="text" placeholder="Search Hotel.." name="search" class="w-100" value="{{ request('search') }}">
+                <button title="Cari" type="submit"></button>
+            </div>
+        </form>
     </div>
 </div>
 
@@ -27,11 +27,11 @@
     <div class="card-list row justify-content-between mx-0">
         <div class="col-md-2">
             @if($hotel->image)
-                <img src="{{ asset('storage/' . $hotel->image) }}" style="min-height: 95px;" alt="Photo Of {{ $hotel->title }}">
+            <img src="{{ asset('storage/' . $hotel->image) }}" alt="Photo Of {{ $hotel->title }}">
             @else
-                <img src="https://picsum.photos/300/245" alt="Random Picsum Images" style="min-height: 95px;">
+            <img src="https://picsum.photos/300/245" alt="Random Picsum Images">
             @endif
-    
+
             <div class="rating">★ {{ $hotel->rating }}</div>
         </div>
         <div class="col-md-6">
@@ -45,20 +45,23 @@
                     <p>{{ $hotel->contact }}</p>
                 </div>
                 <div class="col-6">
-                    <b><i class="bi bi-cash-coin"></i> Harga</b>
+                    <b><i class="bi bi-cash-coin"></i> Price</b>
                     <p>Rp. {{ $hotel->price }} / Hari</p>
                 </div>
             </div>
         </div>
         <div class="col-md-3">
             <b>Category</b>
-            <a href="/?category={{ $hotel->category->slug }}" class="text-decoration-none text-dark">
-                <div class="category mt-3">
-                    <p class="text-center m-3">
-                        {{ $hotel->category->name }}
-                    </p>
-                </div>
-            </a>
+            <div class="d-flex">
+                <a href="/?category={{ $hotel->category->slug }}" class="text-decoration-none text-dark">
+                    <div class="category mt-3 ">
+                        <p class="text-center m-2">
+                            {{ $hotel->category->name }}
+                        </p>
+                    </div>
+                </a>
+            </div>
+
         </div>
         <div class="col-md-1">
             <button class="btn btn-warning btn-dropdown">⋮</button>
@@ -70,8 +73,8 @@
             <form action="/dashboard/hotels/{{ $hotel->slug }}" method="POST" id="deleteForm">
                 @csrf
                 @method('delete')
-                    <button class="btn" type="submit"><i class="bi bi-dash-circle"></i> Delete</button>
-            </form>        
+                <button class="btn" type="submit"><i class="bi bi-dash-circle"></i> Delete</button>
+            </form>
         </div>
     </div>
     @endforeach
@@ -81,14 +84,14 @@
 </div>
 
 @else
-    <p class="text-center fs-4 mt-5">Hotel Not Found</p>
+<p class="text-center fs-4 mt-5">Hotel Not Found</p>
 @endif
 
 <script type="text/javascript">
     try {
         const btnDelete = document.querySelectorAll('#deleteForm');
         btnDelete.forEach((button, index) => {
-            button.addEventListener('submit', function (e) {
+            button.addEventListener('submit', function(e) {
                 var form = this;
                 e.preventDefault(); // <--- prevent form from submitting
                 swal({
@@ -100,13 +103,13 @@
                         'Yes, I am sure!'
                     ],
                     dangerMode: true,
-                }).then(function (isConfirm) {
+                }).then(function(isConfirm) {
                     if (isConfirm) {
                         swal({
                             title: 'Success!',
                             text: 'Hotel are successfully deleted!',
                             icon: 'success'
-                        }).then(function () {
+                        }).then(function() {
                             form.submit();
                         });
                     } else {
@@ -116,7 +119,7 @@
             });
         });
     } catch (error) {
-        
+
     }
 </script>
 @endsection
