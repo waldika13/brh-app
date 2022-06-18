@@ -28,6 +28,13 @@
     @foreach($articles as $article)
     <div class="card-list row justify-content-between mx-0 p-3">
         <div class="col-sm-11">
+            <div class="col-sm-3">
+                @if($article->image)
+                    <img src="{{ asset('storage/' . $article->image) }}" style="min-height: 95px;" alt="Photo Of {{ $article->title }}">
+                @else
+                    <img src="https://picsum.photos/300/245" alt="Random Picsum Images" style="min-height: 95px;">
+                @endif
+            </div>
             <a href="/article/{{ $article->slug }}" class="text-black text-decoration-none"><h4>{{ $article->title }}</h4></a>
             <p>
                 {{ $article ->excerpt }}

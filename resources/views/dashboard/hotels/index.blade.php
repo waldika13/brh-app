@@ -75,7 +75,11 @@
         </div>
     </div>
     @endforeach
+    <div class="d-flex justify-content-center mt-4">
+        {{ $hotels->links() }}
+    </div>
 </div>
+
 @else
     <p class="text-center fs-4 mt-5">Hotel Not Found</p>
 @endif

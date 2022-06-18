@@ -7,6 +7,7 @@ use App\Models\Hotel;
 use App\Models\Review;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ReviewController extends Controller
@@ -20,12 +21,12 @@ class ReviewController extends Controller
     {
         if (auth()->user()->is_admin) {
             return view('dashboard.reviews.index', [
-                'reviews' => Review::all(),
+                'reviews' => Review::paginate(5),
             ]);
         }
 
         return view('dashboard.reviews.index', [
-            'reviews' => Review::where('user_id', auth()->user()->id)->get(),
+            'reviews' => Review::where('user_id', Auth::id())->paginate(5),
         ]);
 
     }
