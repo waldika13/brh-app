@@ -26,17 +26,17 @@
         @if($articles->count())
         @foreach($articles as $article)
         <div class="col-md-6 px-4">
-            <a class="row border border-3 rounded-3 overflow-hidden mb-4 shadow-sm h-md-250 position-relative text-decoration-none text-black" href="/article/{{ $article->slug }}" style="">
-                <div class="col-lg-4 p-0 overflow-hidden d-flex align-items-center justify-content-center">
-                    <div style="max-height: 220px; overflow: hidden;">
-                    @if($article->image)
-                        
-                            <img src="{{ asset('storage/' . $article->image) }}" class="card-img-top" alt="Photo of {{ $article->title }}">
-                       
-                    @else
-                            <img class="card-img-top" src="https://picsum.photos/400/400" alt="Random Picsum Image">
-                    @endif
+            <a class="row p-0 border border-2 rounded-3 overflow-hidden mb-4 shadow-sm text-decoration-none text-black" href="/article/{{ $article->slug }}">
+                <div class="col-lg-4 p-0 overflow-hidden d-flex align-items-center">
+                    <div style="max-height: 220px; overflow:hidden;">
+
+                        @if($article->image)
+                        <img src="{{ asset('storage/' . $article->image) }}" class="card-img-top" alt="Photo of {{ $article->title }}">
+                        @else
+                        <img class="card-img-top" src="https://picsum.photos/400/400" alt="Random Picsum Image">
+                        @endif
                     </div>
+
                 </div>
                 <div class="col-lg-8 p-4 d-flex flex-column position-static">
                     <h3 class="mb-2">{{ $article->title }}</h3>
@@ -45,7 +45,7 @@
                     </p>
                     <div class="mt-2 text-muted text-right font-italic">
                         <span class="me-3">By: {{ $article->user->name }}</span>
-                        <span class="d-inline-block mb-2 text-primary">{{ substr($article->created_at,0,10) }}</span>
+                        <span class="d-inline-block mb-2">{{ date_format(date_create(substr($article->created_at,0,10)),"F d,Y"); }}</span>
                     </div>
                 </div>
             </a>
