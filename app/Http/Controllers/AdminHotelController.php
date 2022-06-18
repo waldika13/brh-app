@@ -20,7 +20,7 @@ class AdminHotelController extends Controller
     public function index(Request $request)
     {
         return view('dashboard.hotels.index', [
-            'hotels' => Hotel::where('title', 'LIKE', '%'.$request->search.'%')->get()
+            'hotels' => Hotel::where('title', 'LIKE', '%'.$request->search.'%')->paginate(5)
         ]);
     }
 
@@ -50,7 +50,7 @@ class AdminHotelController extends Controller
             'slug' => 'required|unique:hotels',
             'category_id' => 'required',
             'image' => 'image|file|max:1024|dimensions:min_width=1200,min_height=400',
-            'body' => 'required',
+            'body' => 'required|min:100',
             'price' => 'required|numeric',
             'location' => 'required|max:255',
             'facility' => 'required',
@@ -112,7 +112,7 @@ class AdminHotelController extends Controller
             'title' => 'required|max:255',
             'category_id' => 'required',
             'image' => 'image|file|max:1024|dimensions:min_width=1200,min_height=400',
-            'body' => 'required',
+            'body' => 'required|min:100',
             'price' => 'required|numeric',
             'location' => 'required|max:255',
             'facility' => 'required',

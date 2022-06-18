@@ -52,9 +52,9 @@
                     <div class="mb-3">
                         <label for="image">Hotel Picture</label>
                         @if($hotel->image)
-                        <img src="{{ asset('storage/' . $hotel->image) }}" class="img-preview img-fluid my-3 col-sm-5 d-block" alt="Photo of {{ $hotel->title }}">
+                            <img src="{{ asset('storage/' . $hotel->image) }}" class="img-preview img-fluid my-3 col-sm-5 d-block" alt="Photo of {{ $hotel->title }}">
                         @else
-                        <img class="img-preview img-fluid my-3 col-sm-5">
+                            <img class="img-preview img-fluid my-3 col-sm-5">
                         @endif
 
                         <input type="file" id="image" name="image" class="form-control @error('image') is-invalid @enderror" onchange="previewImage()" />
@@ -71,6 +71,7 @@
                         <label for="body" class="mb-3">Hotel Body</label><br />
                         <input id="body" type="hidden" name="body" value="{{ old('body', $hotel->body) }}" class="input-type">
                         <trix-editor input="body"></trix-editor>
+                        <small class="text-muted mt-2">Body must be at least 100 characters</small>
                         @error('body')
                         <p class="text-danger mt-1">{{ $message }}</p>
                         @enderror

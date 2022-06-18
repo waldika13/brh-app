@@ -53,7 +53,7 @@ class AdminArticleController extends Controller
             'slug' => 'required|unique:articles',
             'image' => 'image|file|max:1024|dimensions:min_width=1200,min_height=400',
             'excerpt' => '',
-            'body' => 'required'
+            'body' => 'required|min:100'
         ]);
 
         if ($request->file('image')) {
@@ -110,7 +110,7 @@ class AdminArticleController extends Controller
             'title' => 'required|max:255',
             'image' => 'image|file|max:1024|dimensions:min_width=1200,min_height=400',
             'excerpt' => '',
-            'body' => 'required'
+            'body' => 'required|min:100'
         ];
 
         if ($request->slug != $article->slug) {

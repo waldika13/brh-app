@@ -33,6 +33,9 @@
         </div>
     </div>
     @endforeach
+    <div class="d-flex justify-content-center mt-4">
+        {{ $reviews->links() }}
+    </div>
 </div>
 @else
     <p class="text-center fs-4 mt-5">Review Not Found</p>

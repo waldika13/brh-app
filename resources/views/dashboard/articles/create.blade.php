@@ -47,6 +47,7 @@
                         <label for="body" class="mb-3">Body</label><br />
                         <input id="body" type="hidden" name="body" value="{{ old('body') }}" class="input-type">
                         <trix-editor input="body"></trix-editor>
+                        <small class="text-muted mt-2">Body must be at least 100 characters</small>
                         @error('body')
                         <p class="text-danger mt-1">{{ $message }}</p>
                         @enderror
