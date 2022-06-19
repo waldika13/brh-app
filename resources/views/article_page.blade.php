@@ -27,9 +27,8 @@
         @foreach($articles as $article)
         <div class="col-md-6 px-4">
             <a class="row p-0 border border-2 rounded-3 overflow-hidden mb-4 shadow-sm text-decoration-none text-black" href="/article/{{ $article->slug }}">
-                <div class="col-lg-4 p-0 overflow-hidden d-flex align-items-center">
-                    <div style="max-height: 220px; overflow:hidden;">
-
+                <div class="col-lg-4 overflow-hidden d-flex align-items-center">
+                    <div class="rounded" style="max-height: 220px; overflow:hidden;">
                         @if($article->image)
                         <img src="{{ asset('storage/' . $article->image) }}" class="card-img-top" alt="Photo of {{ $article->title }}">
                         @else
@@ -57,7 +56,7 @@
         </div>
 
         @else
-        <p class="text-center fs-4 mt-5">No Articles Found</p>
+        <p class="text-center fs-4 mt-5">Articles Not Found</p>
         @endif
     </div>
 

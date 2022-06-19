@@ -38,6 +38,7 @@ class LoginController extends Controller
 
         request()->session()->regenerateToken();
 
+        Alert::success('Congrats', 'You have been Logout');
         return redirect('/');
     }
 }

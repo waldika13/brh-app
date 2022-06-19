@@ -35,31 +35,31 @@
         <div role="tabpanel" class="tab-pane active" id="admin">
             <div class="card-body bg-light">
                 <div class="container-fluid content pb-2" id="content">
-                    @foreach($users as $user)
-                        @if($user->is_admin == 1)
-                            <div class="card-list row justify-content-between mx-0 p-3">
-                                <div class="col-sm-11">
-                                    <p>
-                                        {{ $user ->name }}
-                                    </p>
-                                    <span class="pe-3">{{ $user->email }}</span>
-                                    <span class="pe-3">{{ substr($user->created_at,0,10) }}</span>
-                                </div>
-                                <div class="col-sm-1">
-                                    <button class="btn btn-warning btn-dropdown">⋮</button>
-                                </div>
-                                <div class="list-dropdown">
-                                    @if(auth()->user()->name == $user->name)
-                                        <a href="/dashboard/adminRegister/{{ $user->name }}/edit"><button class="btn"><i class="bi bi-pencil-square"></i> Edit</button></a>
-                                    @endif
-                                    <form action="/dashboard/adminRegister/{{ $user->id }}" method="POST" id="deleteFormAdmin">
+                    @foreach($admins as $admin)
+                        <div class="card-list row justify-content-between mx-0 p-3">
+                            <div class="col-sm-11">
+                                <p>
+                                    {{ $admin->name }}
+                                </p>
+                                <span class="pe-3">{{ $admin->email }}</span>
+                                <span class="pe-3">{{ substr($admin->created_at,0,10) }}</span>
+                            </div>
+                            <div class="col-sm-1">
+                                <button class="btn btn-warning btn-dropdown">⋮</button>
+                            </div>
+                            <div class="list-dropdown">
+                                @if(auth()->user()->username == $admin->username)
+                                    <a href="/dashboard/adminRegister/{{ $admin->name }}/edit"><button class="btn"><i class="bi bi-pencil-square"></i> Edit</button></a>
+                                @endif
+                                @if($admin->id != 1)
+                                    <form action="/dashboard/adminRegister/{{ $admin->id }}" method="POST" id="deleteFormAdmin">
                                         @csrf
                                         @method('delete')
                                             <button class="btn" type="submit"><i class="bi bi-dash-circle"></i> Delete</button>
-                                    </form>  
-                                </div>
+                                    </form> 
+                                @endif
                             </div>
-                        @endif
+                        </div>
                     @endforeach
                 </div>
             </div>
@@ -68,30 +68,28 @@
             <div class="card-body bg-light">
                 <div class="container-fluid content pb-2" id="content">
                     @foreach($users as $user)
-                        @if($user->is_admin == 0)
-                            <div class="card-list row justify-content-between mx-0 p-3">
-                                <div class="col-sm-11">
-                                    <p>
-                                        {{ $user ->name }}
-                                    </p>
-                                    <span class="pe-3">{{ $user->email }}</span>
-                                    <span class="pe-3">{{ substr($user->created_at,0,10) }}</span>
-                                </div>
-                                <div class="col-sm-1">
-                                    <button class="btn btn-warning btn-dropdown">⋮</button>
-                                </div>
-                                <div class="list-dropdown">
-                                    @if(auth()->user()->name == $user->name)
-                                        <a href="/dashboard/adminRegister/{{ $user->name }}/edit"><button class="btn">Edit</button></a>
-                                    @endif
-                                    <form action="/dashboard/adminRegister/{{ $user->id }}" method="POST" id="deleteFormUser">
-                                        @csrf
-                                        @method('delete')
-                                            <button class="btn" type="submit"><i class="bi bi-dash-circle"></i> Delete</button>
-                                    </form>  
-                                </div>
+                        <div class="card-list row justify-content-between mx-0 p-3">
+                            <div class="col-sm-11">
+                                <p>
+                                    {{ $user ->name }}
+                                </p>
+                                <span class="pe-3">{{ $user->email }}</span>
+                                <span class="pe-3">{{ substr($user->created_at,0,10) }}</span>
                             </div>
-                        @endif
+                            <div class="col-sm-1">
+                                <button class="btn btn-warning btn-dropdown">⋮</button>
+                            </div>
+                            <div class="list-dropdown">
+                                @if(auth()->user()->username == $user->username)
+                                    <a href="/dashboard/adminRegister/{{ $user->name }}/edit"><button class="btn"><i class="bi bi-pencil-square"></i> Edit</button></a>
+                                @endif
+                                <form action="/dashboard/adminRegister/{{ $user->id }}" method="POST" id="deleteFormUser">
+                                    @csrf
+                                    @method('delete')
+                                        <button class="btn" type="submit"><i class="bi bi-dash-circle"></i> Delete</button>
+                                </form>  
+                            </div>
+                        </div>
                     @endforeach
                 </div>
             </div>

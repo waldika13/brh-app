@@ -12,7 +12,8 @@ class AdminRegisterController extends Controller
 {
     public function index(){
         return view('dashboard.adminRegister.index', [
-            'users' => User::all(),
+            'admins' => User::where('is_admin', true)->get(),
+            'users' => User::where('is_admin', false)->get(),
         ]);
     }
 
@@ -48,7 +49,6 @@ class AdminRegisterController extends Controller
             $review->delete();
             User::destroy($user->id);
 
-            Alert::success('Congrats', 'Admin has been deleted!');
             return redirect('/dashboard/adminRegister');
         } else {
             $review = Review::where('user_id', '=', $userId);

@@ -3,13 +3,15 @@
 @section('container')
     
     <div class="mt-5 mb-2">
-        <a href="/dashboard/hotels" class="btn btn-primary">Back to list</a>
-        <a href="/dashboard/hotels/{{ $hotel->slug }}/edit" class="btn btn-warning">Edit</a>
-        <form action="/dashboard/hotels/{{ $hotel->slug }}" method="POST" class="d-inline">
-            @method('delete')
-                <button class="btn btn-danger" onclick="return confirm('Are you sure?')"><a>Delete</a></button>
-            @csrf
-        </form>
+        <div class="d-flex">
+            <a href="/dashboard/hotels" class="btn btn-primary">Back to list</a>
+            <a href="/dashboard/hotels/{{ $hotel->slug }}/edit" class="btn btn-warning mx-1">Edit</a>
+            <form action="/dashboard/hotels/{{ $hotel->slug }}" method="POST" id="deleteForm">
+                @csrf
+                @method('delete')
+                <button class="btn btn-danger" type="submit"><i class="bi bi-dash-circle"></i> Delete</button>
+            </form>
+        </div>
     </div>
     
     @if($hotel->image)
@@ -78,4 +80,39 @@
     @endif
     
 </div>
+<script type="text/javascript">
+    try {
+        const btnDelete = document.querySelectorAll('#deleteForm');
+        btnDelete.forEach((button, index) => {
+            button.addEventListener('submit', function(e) {
+                var form = this;
+                e.preventDefault(); // <--- prevent form from submitting
+                swal({
+                    title: "Are you sure?",
+                    text: "You will not be able to recover this hotel!",
+                    icon: "warning",
+                    buttons: [
+                        'No, cancel it!',
+                        'Yes, I am sure!'
+                    ],
+                    dangerMode: true,
+                }).then(function(isConfirm) {
+                    if (isConfirm) {
+                        swal({
+                            title: 'Success!',
+                            text: 'Hotel are successfully deleted!',
+                            icon: 'success'
+                        }).then(function() {
+                            form.submit();
+                        });
+                    } else {
+                        swal("Cancelled", "Hotel is safe :)", "error");
+                    }
+                })
+            });
+        });
+    } catch (error) {
+
+    }
+</script>
 @endsection
