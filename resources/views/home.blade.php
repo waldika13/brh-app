@@ -6,7 +6,7 @@
 
 <div class="container min-vh-100">
 
-<div class="container-bg col-xxl-8 px-4">
+<div class="container-bg px-4">
     <div class="row hero-tagline flex-lg-row-reverse align-items-center g-5 py-5">
         <div class="col-10 col-sm-8 col-lg-6">
             <img src="images/home/image-hero.png" class="d-block mx-lg-auto img-fluid" alt="Images Hero Home"
@@ -37,47 +37,51 @@
                 <h2 class="text-decoration-none mb-4">⭐ Top Rated</h2>
             </div>
         </div>
-        <div class="row">
-            @foreach($populers as $populer)
-            <div class="col-md-4 col-sm-6">
-                <div class="card mt-3 mb-4">
-                    <div class="position-absolute px-2 py-2 mt-3 text-white rounded-right-2" style="background-color: rgba(0,0,0, 0.7)">
-                        ⭐ {{ $populer->rating }}
-                    </div>
-
-                    @if($populer->image)
-                    <div style="max-height: 300px; overflow:hidden;">
-                        <img src="{{ asset('storage/' . $populer->image) }}" class="card-img-top" alt="Photo Of {{ $populer->title }}">
-                    </div>
-                    @else
-                        <img class="card-img-top" src="https://picsum.photos/300/200" alt="Random Picsum Images">
-                    @endif
-
-                    <div class="card-body">
-                        <h3 class="post-item__title"><a href="/detail_page/{{ $populer->slug }}" class="text-decoration-none">{{ $populer->title }}</a>
-                        </h3>
-                        <p class="post-item__description card-text text-justify">{{ $populer->excerpt }}</p>
-
-                        <div class="post-item__price">
-                            <p>Starting from <span class="price-hotel">Rp. {{ $populer->price }}</span></p>
+        @if($populers->count())
+            <div class="row">
+                @foreach($populers as $populer)
+                <div class="col-md-4 col-sm-6">
+                    <div class="card mt-3 mb-4">
+                        <div class="position-absolute px-2 py-2 mt-3 text-white rounded-right-2" style="background-color: rgba(0,0,0, 0.7)">
+                            ⭐ {{ $populer->rating }}
                         </div>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <p>
-                                in <a href="/?category={{ $populer->category->slug }}" class="text-decoration-none">{{ $populer->category->name }}</a>
-                            </p>
+
+                        @if($populer->image)
+                        <div style="max-height: 300px; overflow:hidden;">
+                            <img src="{{ asset('storage/' . $populer->image) }}" class="card-img-top" alt="Photo Of {{ $populer->title }}">
                         </div>
-                        <div class="btn-group">
-                            <a class="btn btn-sm btn-outline-secondary" href="/detail_page/{{ $populer->slug }}" class="text-decoration-none"
-                                role="button">View More</a>
+                        @else
+                            <img class="card-img-top" src="https://picsum.photos/300/200" alt="Random Picsum Images">
+                        @endif
+
+                        <div class="card-body">
+                            <h3 class="post-item__title"><a href="/detail_page/{{ $populer->slug }}" class="text-decoration-none">{{ $populer->title }}</a>
+                            </h3>
+                            <p class="post-item__description card-text text-justify">{{ $populer->excerpt }}</p>
+
+                            <div class="post-item__price">
+                                <p>Starting from <span class="price-hotel">Rp. {{ $populer->price }}</span></p>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <p>
+                                    in <a href="/?category={{ $populer->category->slug }}" class="text-decoration-none">{{ $populer->category->name }}</a>
+                                </p>
+                            </div>
+                            <div class="btn-group">
+                                <a class="btn btn-sm btn-outline-secondary" href="/detail_page/{{ $populer->slug }}" class="text-decoration-none"
+                                    role="button">View More</a>
+                            </div>
+                            
                         </div>
-                        
                     </div>
                 </div>
+                @endforeach
+                
+                
             </div>
-            @endforeach
-            
-            
-        </div>
+        @else
+            <p class="text-center fs-4 mt-5">Hotel Not Found</p>
+        @endif
     </div>
 </div>
 </div>

@@ -56,7 +56,7 @@
         </div>
 
         @else
-        <p class="text-center fs-4 mt-5">No Articles Found</p>
+        <p class="text-center fs-4 mt-5">Articles Not Found</p>
         @endif
     </div>
 
