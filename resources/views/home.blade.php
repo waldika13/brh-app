@@ -36,54 +36,26 @@
             </div>
         </div>
         <div class="row">
+            @foreach($populer as $p)
             <div class="col-md-4 col-sm-6">
                 <a href="/detail_page" class="mb-4 text-white">
                     <div class="card mt-3 mb-4 border-0">
-                        <img class="card-img-populer" src="/images/home/image 12.png" alt="Card image cap">
-                        <h5 class="price-populer position-absolute start-0 mt-3 ms-3"><span
-                                class="label-populer"   >Rp.</span> 1.000.000
+                        <img class="card-img-populer" src="{{ asset('storage/' . $p->image) }}" alt="Card image cap">
+                        <h5 class="price-populer position-absolute start-0 mt-3 ms-3 "><span
+                                class="label-populer"   >Rp.</span> {{ $p->price }}
                         </h5>
-                        <h5 class="rating-populer position-absolute end-0 mt-3 me-3"><i class="fa-solid fa-star me-2"></i>4.4
+                        <h5 class="rating-populer position-absolute end-0 mt-3 me-3"><i class="fa-solid fa-star me-2"></i>{{ $p->rating }}
                         </h5>
                         <div class="populer-body position-absolute start-0 bottom-0 ms-3 mb-4">
-                            <h3 class="name-populer">Bali Breezz Hotel</h3>
-                            <p class="address-populer text-light">☗ Jimbaran, Bali Selatan</p>
+                            <h3 class="name-populer">{{ $p->name }}</h3>
+                            <p class="address-populer text-light">☗ {{ $p->address }}</p>
                         </div>
                     </div>
                 </a>
             </div>
-            <div class="col-md-4 col-sm-6 position-relative">
-                <a href="/detail_page" class="mb-4 text-white">
-                    <div class="card mt-3 mb-4 border-0">
-                        <img class="card-img-populer" src="/images/home/image 12.png" alt="Card image cap">
-                        <h5 class="price-populer position-absolute start-0 mt-3 ms-3"><span
-                                class="label-populer">Rp.</span> 1.000.000
-                        </h5>
-                        <h5 class="rating-populer position-absolute end-0 mt-3 me-3"><i class="fa-solid fa-star me-2"></i>4.4
-                        </h5>
-                        <div class="populer-body position-absolute start-0 bottom-0 ms-3 mb-4">
-                            <h3 class="name-populer">Bali Breezz Hotel</h3>
-                            <p class="address-populer text-light">☗ Jimbaran, Bali Selatan</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-4 col-sm-6 position-relative">
-                <a href="/detail_page" class="mb-4 text-white">
-                    <div class="card mt-3 mb-4 border-0">
-                        <img class="card-img-populer" src="/images/home/image 12.png" alt="Card image cap">
-                        <h5 class="price-populer position-absolute start-0 mt-3 ms-3"><span
-                                class="label-populer">Rp.</span> 1.000.000
-                        </h5>
-                        <h5 class="rating-populer position-absolute end-0 mt-3 me-3"><i class="fa-solid fa-star me-2"></i>4.4
-                        </h5>
-                        <div class="populer-body position-absolute start-0 bottom-0 ms-3 mb-4">
-                            <h3 class="name-populer">Bali Breezz Hotel</h3>
-                            <p class="address-populer text-light">☗ Jimbaran, Bali Selatan</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
+            @endforeach
+            
+            
         </div>
     </div>
 </div>
