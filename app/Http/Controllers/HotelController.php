@@ -27,6 +27,7 @@ class HotelController extends Controller
             "title" => "Hotel" . $title,
             "active" => "hotel",
             "hotels" => Hotel::latest()->filter(request(['search', 'category', 'author']))->paginate(7)->withQueryString(),
+            "populer" => Hotel::orderByDesc('rating')->limit(3)->get(),
         ]);
     }
 

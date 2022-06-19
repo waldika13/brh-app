@@ -11,8 +11,7 @@
 }
 
 .category{
-    position: absolute;
-    padding: 0px 25px;
+    padding: 5px 25px;
     background-color: #FED261;
     border-radius: 10px;
 }
@@ -36,6 +35,8 @@
     object-fit: cover;
     object-position: center;
     border-radius: 10px;
+    min-height: 95px; 
+    max-height: 150px;
 }
 
 .card-list .btn-dropdown {
@@ -81,4 +82,20 @@
 .nav-tabs .nav-link {
     color: black;
     border: 0;
+}
+
+
+@media only screen and (max-width: 990px) {
+    .card-list>div{
+        margin-bottom: 20px;
+    }
+    .content .rating{
+        position: absolute;
+        width: 80px;
+        text-align: center;
+        bottom: 30px;
+    }
+    .card-list img {
+        max-height: 250px;
+    }
 }
