@@ -24,10 +24,10 @@ class HotelController extends Controller
         }
 
         return view('home', [
-            "title" => "Hotel" . $title,
+            "title" => "All Hotel" . $title,
             "active" => "hotel",
             "hotels" => Hotel::latest()->filter(request(['search', 'category', 'author']))->paginate(7)->withQueryString(),
-            "populer" => Hotel::orderByDesc('rating')->limit(3)->get(),
+            "populers" => Hotel::orderByDesc('rating')->limit(3)->get(),
         ]);
     }
 
