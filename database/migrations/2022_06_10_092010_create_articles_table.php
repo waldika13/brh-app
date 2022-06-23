@@ -23,16 +23,6 @@ class CreateArticlesTable extends Migration
             $table->text('body');
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
-
-            // -user_id
-            // -title
-            // -slug
-            // -image
-            // -excerpt
-            // -body
-            // -published_at
-            // -created_at
-            // -updated_at
         });
     }
 

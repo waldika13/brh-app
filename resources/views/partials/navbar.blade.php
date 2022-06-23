@@ -34,7 +34,7 @@
               </form>
               @endauth
             </ul>
-            <form action="/" class="form-inline my-2 my-lg-0" id="formSearch">
+            <form action="/hotels/" class="form-inline my-2 my-lg-0" id="formSearch">
               @if (request('category'))
                   <input type="hidden" name="category" value="{{ request('category') }}">
               @endif
