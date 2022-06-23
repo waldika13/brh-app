@@ -15,11 +15,7 @@
         <div class="col-lg-6">
             <h1 class="display-5  fw-bold lh-1 mb-3">Find the best
                 hotel for you</h1>
-            <p class="lead text-justify">Lorem ipsum dolor sit amet, consectetur
-                adipiscing elit. Etiam laoreet libero non
-                tortor gravida, non volutpat leo iaculis.
-                Duis porta luctus imperdiet. Donec lacinia,
-                massa eget feugiat malesuada,</p>
+            <p class="lead text-justify">Searching for hotels is made easier by looking at the hotels available on our website. You can also comment if you have visited the hotel. Make everything more meaningful by using BRH App!</p>
             <div class="d-grid gap-2 d-md-flex justify-content-md-start">
                 <a class="btn btn-warning btn-lg px-4 me-md-2 text-decoration-none" href="#main_content">See More <i class="bi bi-arrow-right"></i></a>
             </div>
@@ -94,18 +90,7 @@
                 <h2 class="text-decoration-none">{{ $title }}</h2>
             </div>
             <div class="col-md-6">
-                <form action="/">
-                    @if (request('category'))
-                        <input type="hidden" name="category" value="{{ request('category') }}">
-                    @endif
-                    @if (request('author'))
-                        <input type="hidden" name="author" value="{{ request('author') }}">
-                    @endif
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search Hotel.." name="search" value="{{ request('search') }}">
-                        <button class="btn btn-warning" type="submit" ><i class="bi bi-search"></i> Search</button>
-                      </div>
-                </form>
+                
             </div>
         </div>
 

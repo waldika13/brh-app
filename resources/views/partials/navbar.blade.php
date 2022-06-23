@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg sticky-sm-top bg-light ">
+<nav class="navbar navbar-expand-lg sticky-sm-top bg-light">
     <div class="container">
         <a class="navbar-brand fw-bold fs-2" href="/">BRH</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,7 +25,6 @@
                     @csrf
                     <button type="submit" class="dropdown-item"><i class="bi bi-box-arrow-right"></i> Log Out</button>
                   </form>
-                  
                 </div>
               </li>
             @else
@@ -33,9 +32,21 @@
               <form class="form-inline my-2 my-lg-0" action="/signup">
                 <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Sign Up</button>
               </form>
-            @endauth
+              @endauth
+            </ul>
+            <form action="/" class="form-inline my-2 my-lg-0" id="formSearch">
+              @if (request('category'))
+                  <input type="hidden" name="category" value="{{ request('category') }}">
+              @endif
+              @if (request('author'))
+                  <input type="hidden" name="author" value="{{ request('author') }}">
+              @endif
+              <div class="input-group mx-2">
+                  <input type="text" class="form-control" placeholder="Search Hotel.." name="search" value="{{ request('search') }}">
+                  <button class="btn btn-warning" type="submit"><i class="bi bi-search"></i> Search</button>
+              </div>
+            </form>
           </ul>
-          </div>
         </div>
       </div>
     </nav>

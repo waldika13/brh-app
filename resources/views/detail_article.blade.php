@@ -29,5 +29,7 @@
         </div>
     </div>
 </div>
-
+<script>
+    const formSearch = document.getElementById("formSearch").style.display = "none";
+</script>
 @endsection

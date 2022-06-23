@@ -94,14 +94,16 @@
             </div>
         </div>
     @else
-        <div class="mb-5">
-            <p class="fs-4">Any Reviews? Please login first.</p>
-            <a href="/signin" class="btn btn-warning"><i class="bi bi-box-arrow-in-right"></i> Login</a>
-        </div>
+    <div class="mb-5">
+        <p class="fs-4">Any Reviews? Please login first.</p>
+        <a href="/signin" class="btn btn-warning"><i class="bi bi-box-arrow-in-right"></i> Login</a>
+    </div>
     @endauth
 </div>
 
 <script>
+    const formSearch = document.getElementById("formSearch").style.display = "none";
+
     var body = document.getElementById("body");
     var result = document.getElementById("result");
     var limit = 30;
@@ -121,4 +123,5 @@
         }
     })
 </script>
+
 @endsection
