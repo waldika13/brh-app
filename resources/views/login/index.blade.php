@@ -47,4 +47,7 @@
             </div>
         </div>
     </section>
+    <script>
+        const formSearch = document.getElementById("formSearch").style.display = "none";
+    </script>
 @endsection
