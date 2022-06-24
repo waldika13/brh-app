@@ -18,7 +18,7 @@
 
     @include('partials.navbar')
     
-    <div class="container mt-3">
+    <div class="container mt-3" style="min-height: 84.8vh;">
         @yield('container')
     </div>
 

@@ -39,7 +39,7 @@
                 </div>
                 <div class="col-lg-8 p-4 d-flex flex-column position-static">
                     <h3 class="mb-2">{{ $article->title }}</h3>
-                    <p class="card-text mb-auto text-justify">
+                    <p class="card-text mb-auto text-justify body-word">
                         {{ $article->excerpt }}
                     </p>
                     <div class="mt-2 text-muted text-right font-italic">

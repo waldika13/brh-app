@@ -26,6 +26,8 @@ use App\Http\Controllers\AdminRegisterController;
 */
 
 Route::get('/', [HotelController::class, 'index']);
+Route::get('/hotels', [HotelController::class, 'hotels']);
+Route::get('/hotels/top', [HotelController::class, 'tophotel']);
 
 Route::get('detail_page/{hotel:slug}', [HotelController::class, 'show']);
 

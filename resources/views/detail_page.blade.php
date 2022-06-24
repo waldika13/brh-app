@@ -18,7 +18,7 @@
     </div>
     <h1 class="mt-4 d-inline-block">{{ $hotel->title }}</h1>
     <p><i class="bi bi-geo-alt"></i> {{ $hotel->location }}</p>
-    <div class="container">
+    <div class="container body-word">
         {!! $hotel->body !!}
     </div>
     <div class="d-inline-block pe-5 pb-4">

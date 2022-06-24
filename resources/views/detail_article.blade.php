@@ -21,7 +21,7 @@
                     
                 </div>
                 
-                <div class="mb-3 px-3">
+                <div class="body-word mb-3 px-3">
                     {!! $article->body !!}
                 </div>
 

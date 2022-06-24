@@ -39,4 +39,32 @@ class HotelController extends Controller
             "reviews" => $hotel->review
         ]);
     }
+
+    public function hotels(){
+        $title = 'All Hotels';
+
+        if(request('category')){
+            $category = Category::firstWhere('slug', request('category'));
+            $title .= ' in ' . $category->name;
+        }
+
+        if(request(('search'))){
+            $title = 'Search result for '. request('search');
+        }
+
+        return view('hotels', [
+            "title" =>  $title,
+            "active" => "",
+            "hotels" => Hotel::latest()->filter(request(['search', 'category', 'author']))->paginate(6)->withQueryString(),
+            "populers" => Hotel::orderByDesc('rating')->limit(3)->get(),
+        ]);
+    }
+
+    public function tophotel(){
+        return view('hotels', [
+            "title" =>  'Top Hotel',
+            "active" => "",
+            "hotels" => Hotel::orderByDesc('rating')->limit(9)->get(),
+        ]);
+    }
 }
