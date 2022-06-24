@@ -32,8 +32,8 @@
                     <h2 class="text-decoration-none mb-4">⭐ Top Rated</h2>
                 </div>
                 <div class="col-6 text-end">
-                    <div class="btn-group ">
-                        <a class="btn btn-sm btn-outline-secondary" href="/hotels/top" class="text-decoration-none" role="button">See More</a>
+                    <div class="">
+                        <a class="btn btn-md btn-warning" href="/hotels/top" class="text-decoration-none" role="button">More Top Hotel <i class="bi bi-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
