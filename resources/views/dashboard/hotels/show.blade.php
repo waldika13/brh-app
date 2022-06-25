@@ -25,7 +25,7 @@
     <h1 class="mt-4 d-inline">{{ $hotel->title }}</h1>
     <p>By: {{ $hotel->author->name }}</p>
     <p><i class="bi bi-geo-alt"></i> {{ $hotel->location }}</p>
-    <div class="container">
+    <div class="container" style="word-wrap:break-word;">
         {!! $hotel->body !!}
     </div>
     <div class="d-inline-block pe-5 pb-4">

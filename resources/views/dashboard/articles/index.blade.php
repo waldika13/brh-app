@@ -43,7 +43,7 @@
             <a href="/article/{{ $article->slug }}" class="text-black text-decoration-none">
                 <h4>{{ $article->title }}</h4>
             </a>
-            <p>
+            <p class="body-word">
                 {{ $article ->excerpt }}
             </p>
             <span class="pe-3">Author: {{ $article->user->name }}</span>

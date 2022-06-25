@@ -11,7 +11,7 @@
             <div class="row">
                 @foreach ($categories as $category)
                     <div class="col-md-4 mb-3">
-                        <a href="/?category={{ $category->slug }}">
+                        <a href="/hotels/?category={{ $category->slug }}">
                             <div class="card bg-dark text-white">
                                 @if($category->image)
                                     <img src="{{ asset('storage/' . $category->image) }}" style="max-height: 350px" alt="Photo Of {{ $category->name }}">
