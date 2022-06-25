@@ -8,6 +8,10 @@
         <h2>Article List</h2>
     </div>
     <div class="d-flex">
+        <a href="/article" class="me-4"><button class="btn btn-outline-warning rounded-5"  style="color: black">
+            <i class="bi bi-arrow-left-square"></i>
+            Back to Article
+        </button></a>
         <a href="/dashboard/articles/create" class="me-4"><button class="btn btn-success rounded-5">
                 <i class="bi bi-journal-plus"></i>
                 Create New Article

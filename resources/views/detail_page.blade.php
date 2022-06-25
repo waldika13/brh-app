@@ -3,9 +3,10 @@
 @section('container')
     <a href="/" class="btn btn-primary mb-3"><i class="bi bi-arrow-left-square"></i> Back to home</a>
     <div class="container">
+        <h1 class="mt-4 d-inline-block">{{ $hotel->title }}</h1>
         <div class="card text-white rounded-5 border-5">
             @if($hotel->image)
-                <div style="max-height: 700px; overflow:hidden;">
+                <div style="max-height: 500px; overflow:hidden;">
                     <img src="{{ asset('storage/' . $hotel->image) }}" class="card-img-top rounded-4" alt="Photo of {{ $hotel->title }}">
                 </div>
             @else
@@ -16,7 +17,7 @@
             </div>
         </div>
     </div>
-    <h1 class="mt-4 d-inline-block">{{ $hotel->title }}</h1>
+   
     <p><i class="bi bi-geo-alt"></i> {{ $hotel->location }}</p>
     <div class="container body-word">
         {!! $hotel->body !!}
