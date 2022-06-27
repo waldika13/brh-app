@@ -65,15 +65,17 @@ Route::get('/dashboard', function(){
 Route::get('/dashboard/hotels/checkSlug', [AdminHotelController::class, 'checkSlug'])->middleware('auth');
 
 Route::resource('/dashboard/hotels', AdminHotelController::class)->middleware('admin');
+Route::delete('/dashboard/hotels/deleteImages/{hotel:slug}', [AdminHotelController::class, 'deleteImage'])->middleware('admin');
 
 Route::get('/dashboard/categories/checkSlug', [AdminCategoryController::class, 'checkSlug'])->middleware('auth');
 
 Route::resource('/dashboard/categories', AdminCategoryController::class)->except('show')->middleware('admin');
-
+Route::delete('/dashboard/categories/deleteImages/{category:slug}', [AdminCategoryController::class, 'deleteImage'])->middleware('admin');
 
 Route::get('/dashboard/articles/checkSlug', [AdminArticleController::class, 'checkSlug'])->middleware('auth');
 
 Route::resource('/dashboard/articles', AdminArticleController::class)->middleware('auth');
+Route::delete('/dashboard/articles/deleteImages/{article:slug}', [AdminArticleController::class, 'deleteImage'])->middleware('auth');
 
 Route::resource('/dashboard/adminRegister', AdminRegisterController::class)->except('edit', 'update', 'destroy')->middleware('admin');
 

@@ -157,4 +157,18 @@ class AdminArticleController extends Controller
         $slug = SlugService::createSlug(Article::class, 'slug', $request->title);
         return response()->json(['slug' => $slug]);
     }
+
+    public function deleteImage(Article $article){
+        if ($article->image) {
+            Storage::delete($article->image);
+        }
+        
+        $validateData = [
+            'image' => '',
+        ];
+        Article::where('id', $article->id)->update($validateData);
+
+        Alert::success('Congrats', 'Article Picture has been deleted');
+        return redirect()->back();
+    }
 }

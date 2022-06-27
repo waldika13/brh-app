@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Hotel;
 use App\Models\Category;
+use App\Models\Review;
 use Illuminate\Http\Request;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Support\Str;
@@ -20,7 +21,7 @@ class AdminHotelController extends Controller
     public function index(Request $request)
     {
         return view('dashboard.hotels.index', [
-            'hotels' => Hotel::where('title', 'LIKE', '%'.$request->search.'%')->paginate(5)
+            'hotels' => Hotel::orderbyDesc('updated_at')->where('title', 'LIKE', '%'.$request->search.'%')->paginate(5)
         ]);
     }
 
@@ -126,11 +127,6 @@ class AdminHotelController extends Controller
 
         $validateData = $request->validate($rules);
         
-        if($hotel->image){
-            $picture = $hotel->image;
-            $picture = "";
-        }
-        
         if($request->file('image')){
             if ( $hotel->image ) {
                 Storage::delete($hotel->image);
@@ -154,8 +150,11 @@ class AdminHotelController extends Controller
      * @param  \App\Models\Hotel  $hotel
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Hotel $hotel)
+    public function destroy(Hotel $hotel, Review $review)
     {
+        $hotelId = $hotel->id;
+        $reviewId = Review::where('hotel_id', '=', $hotelId);
+        $reviewId->delete();
 
         if ( $hotel->image ) {
             Storage::delete($hotel->image);
@@ -169,5 +168,20 @@ class AdminHotelController extends Controller
     public function checkSlug(Request $request){
         $slug = SlugService::createSlug(Hotel::class, 'slug', $request->title);
         return response()->json(['slug' => $slug]);
+    }
+
+    public function deleteImage(Hotel $hotel){
+        if ( $hotel->image ) {
+            Storage::delete($hotel->image);
+        }
+        
+        $validateData = [
+            'image' => '',
+        ];
+
+        Hotel::where('id', $hotel->id)->update($validateData);
+
+        Alert::success('Congrats', 'Hotel Picture has been deleted');
+        return redirect()->back();
     }
 }

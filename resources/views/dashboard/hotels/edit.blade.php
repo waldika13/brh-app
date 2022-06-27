@@ -14,13 +14,22 @@
 </div>
 <div class="container-fluid content pb-5" id="content">
     <div class="bg-white section-add">
+        <div class="mb-2">
+            <form action="/dashboard/hotels/deleteImages/{{ $hotel->slug }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('delete')
+                @if($hotel->image)
+                    <button class="btn btn-danger" type="submit"><i class="bi bi-dash-circle"></i> Delete Hotel Picture</button>
+                @endif
+            </form>
+        </div>
         <form action="/dashboard/hotels/{{ $hotel->slug }}" method="POST" enctype="multipart/form-data">
             @method('PUT')
             @csrf
             <div class="row">
                 <div class="col-md-12">
                     <div class="mb-3">
-                        <label for="title">Hotel Name</label><br />
+                        <label for="title">Hotel Name<span class="text-danger">*</span></label><br />
                         <input type="text" class="input-type form-control @error('title') is-invalid @enderror " id="title" name="title" value="{{ old('title', $hotel->title) }}" required autofocus />
                         @error('title')
                         <div class="invalid-feedback">
@@ -29,7 +38,7 @@
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="slug">Slug</label><br />
+                        <label for="slug">Slug<span class="text-danger">*</span></label><br />
                         <input type="text" class="input-type form-control @error('slug') is-invalid @enderror" id="slug" name="slug" value="{{ old('slug', $hotel->slug) }}" required />
                         @error('slug')
                         <div class="invalid-feedback">
@@ -38,7 +47,7 @@
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="category"> Category</label><br />
+                        <label for="category"> Category<span class="text-danger">*</span></label><br />
                         <select class="form-select" name="category_id">
                             @foreach($categories as $category)
                             @if(old('category_id', $hotel->category_id) == $category->id)
@@ -50,11 +59,11 @@
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label for="image">Hotel Picture</label>
+                        <label for="image" class="d-block">Hotel Image</label>
                         @if($hotel->image)
-                            <img src="{{ asset('storage/' . $hotel->image) }}" class="img-preview img-fluid my-3 col-sm-5 d-block" alt="Photo of {{ $hotel->title }}">
+                            <img src="{{ asset('storage/' . $hotel->image) }}" class="img-preview img-fluid my-3 col-sm-5" alt="Photo of {{ $hotel->title }}">
                         @else
-                            <img class="img-preview img-fluid my-3 col-sm-5">
+                            <img class="img-preview img-fluid mb-3 col-sm-5">
                         @endif
 
                         <input type="file" id="image" name="image" class="form-control @error('image') is-invalid @enderror" onchange="previewImage()" />
@@ -68,7 +77,7 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="body" class="mb-3">Hotel Body</label><br />
+                        <label for="body" class="mb-3">Hotel Body<span class="text-danger">*</span></label><br />
                         <input id="body" type="hidden" name="body" value="{{ old('body', $hotel->body) }}" class="input-type">
                         <trix-editor input="body"></trix-editor>
                         <small class="text-muted mt-2">Body must be at least 100 characters</small>
@@ -76,7 +85,7 @@
                         <p class="text-danger mt-1">{{ $message }}</p>
                         @enderror
                     </div>
-                    <label for="price">Price</label><br />
+                    <label for="price">Price<span class="text-danger">*</span></label><br />
                     <div class="input-group mb-3">
                         <span class="input-group-text">Rp.</span>
                         <input type="text" class="input-type form-control @error('price') is-invalid @enderror" name="price" id="price" value="{{ old('price', $hotel->price) }}" required>
@@ -87,7 +96,7 @@
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="location">Location</label><br />
+                        <label for="location">Location<span class="text-danger">*</span></label><br />
                         <input type="text" class="input-type form-control @error('location') is-invalid @enderror" id="location" name="location" value="{{ old('location', $hotel->location) }}" required />
                         @error('location')
                         <div class="invalid-feedback">
@@ -96,7 +105,7 @@
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="facility">Facility</label><br />
+                        <label for="facility">Facility<span class="text-danger">*</span></label><br />
                         <input type="text" class="input-type form-control @error('facility') is-invalid @enderror" id="facility" name="facility" value="{{ old('facility', $hotel->facility) }}" required />
                         @error('facility')
                         <div class="invalid-feedback">
@@ -105,7 +114,7 @@
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="rating">Rating</label><br />
+                        <label for="rating">Rating<span class="text-danger">*</span></label><br />
                         <input type="text" id="rating" class="input-type form-control @error('rating') is-invalid @enderror" name="rating" value="{{ old('rating', $hotel->rating) }}" required />
                         @error('rating')
                         <div class="invalid-feedback">
@@ -114,7 +123,7 @@
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="contact">Contact</label><br />
+                        <label for="contact">Contact<span class="text-danger">*</span></label><br />
                         <input type="text" class="input-type form-control @error('contact') is-invalid @enderror" id="contact" name="contact" value="{{ old('contact', $hotel->contact) }}" required />
                         @error('contact')
                         <div class="invalid-feedback">

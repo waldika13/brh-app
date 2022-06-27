@@ -19,7 +19,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="mb-3">
-                        <label for="name">Category Name</label><br />
+                        <label for="name">Category Name<span class="text-danger">*</span></label><br />
                         <input type="text" class="input-type form-control @error('name') is-invalid @enderror " id="name" name="name" value="{{ old('name') }}" required autofocus/>
                         @error('name')
                             <div class="invalid-feedback">
@@ -28,7 +28,7 @@
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="slug">Slug</label><br />
+                        <label for="slug">Slug<span class="text-danger">*</span></label><br />
                         <input type="text" class="input-type form-control @error('slug') is-invalid @enderror" id="slug" name="slug" value="{{ old('slug') }}" required/>
                         @error('slug')
                             <div class="invalid-feedback">

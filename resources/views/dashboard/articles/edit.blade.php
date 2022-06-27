@@ -13,6 +13,15 @@
 </div>
 <div class="container-fluid content pb-5 mb-3" id="content">
     <div class="bg-white section-add">
+        <div class="mb-2">
+            <form action="/dashboard/articles/deleteImages/{{ $article->slug }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('delete')
+                @if($article->image)
+                    <button class="btn btn-danger" type="submit"><i class="bi bi-dash-circle"></i> Delete Article Image</button>
+                @endif
+            </form>
+        </div>
         <form action="/dashboard/articles/{{ $article->slug }}" method="POST" enctype="multipart/form-data">
             @method('PUT')
             @csrf
@@ -20,14 +29,14 @@
                 <div class="col-md-12">
                     <div class="mb-3">
                         <div class="mb-3">
-                            <label for="title">Article Title</label>
+                            <label for="title">Article Title<span class="text-danger">*</span></label>
                             <input type="text" class="input-type form-control @error('title') is-invalid @enderror " id="title" name="title" value="{{ $article->title}}" required autofocus>
                             @error('title')
                             <p class="text-danger mt-1">{{ $message }}</p>
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="slug">Slug</label>
+                            <label for="slug">Slug<span class="text-danger">*</span></label>
                             <input type="text" class="input-type form-control @error('slug') is-invalid @enderror" id="slug" name="slug" value="{{ old('slug', $article->slug) }}" required>
                             @error('slug')
                             <p class="text-danger mt-1">{{ $message }}</p>
@@ -52,7 +61,7 @@
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label for="body" class="mb-3">Hotel Body</label><br />
+                            <label for="body" class="mb-3">Article Body<span class="text-danger">*</span></label><br />
                             <input id="body" type="hidden" name="body" value="{{ old('body', $article->body) }}" class="input-type">
                             <trix-editor input="body"></trix-editor>
                             <small class="text-muted mt-2">Body must be at least 100 characters</small>
