@@ -89,7 +89,20 @@ cp .env.example .env
 ```shell
 php artisan key:generate
 ```
-7. Run Laravel project
+7. Change Database to ('brh_hotel') and Filesystem_Driver to ('public') in .env
+```Example
+DB_DATABASE=brh_hotel
+FILESYSTEM_DRIVER=public
+
+8. Generate Public Disk
+``` shell
+php artisan storage:link
+
+9. You can import the database on localhost, but without the images. If you want an image, you have to edit it and it has been provided in a folder called BahanBRH.
+
+10. Start apache & mysql in xampp if you using windows, and lammp if you using linux.
+
+11. Run Laravel project
 ```shell
 php artisan serve
 ```
