@@ -126,6 +126,11 @@ class AdminHotelController extends Controller
 
         $validateData = $request->validate($rules);
         
+        if($hotel->image){
+            $picture = $hotel->image;
+            $picture = "";
+        }
+        
         if($request->file('image')){
             if ( $hotel->image ) {
                 Storage::delete($hotel->image);
