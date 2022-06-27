@@ -93,11 +93,11 @@ php artisan key:generate
 ```Example
 DB_DATABASE=brh_hotel
 FILESYSTEM_DRIVER=public
-
+```
 8. Generate Public Disk
 ``` shell
 php artisan storage:link
-
+```
 9. You can import the database on localhost, but without the images. If you want an image, you have to edit it and it has been provided in a folder called BahanBRH.
 
 10. Start apache & mysql in xampp if you using windows, and lammp if you using linux.
