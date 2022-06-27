@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Hotel;
 use Illuminate\Http\Request;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Support\Facades\Storage;
@@ -128,8 +129,13 @@ class AdminCategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy(Category $category, Hotel $hotel)
     {
+
+        $categoryId = $category->id;
+        $hotel = Hotel::where('category_id', '=', $categoryId);
+        $hotel->delete();
+
         if($category->image){
             Storage::delete($category->image);
         }
@@ -142,5 +148,19 @@ class AdminCategoryController extends Controller
     public function checkSlug(Request $request){
         $slug = SlugService::createSlug(Category::class, 'slug', $request->name);
         return response()->json(['slug' => $slug]);
+    }
+
+    public function deleteImage(Category $category){
+        if($category->image){
+            Storage::delete($category->image);
+        }
+
+        $validateData = [
+            'image' => '',
+        ];
+        Category::where('id', $category->id)->update($validateData);
+
+        Alert::success('Congrats', 'Category Picture has been deleted');
+        return redirect()->back();
     }
 }

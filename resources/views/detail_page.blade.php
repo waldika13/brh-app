@@ -18,7 +18,7 @@
         </div>
     </div>
    
-    <p><i class="bi bi-geo-alt"></i> {{ $hotel->location }}</p>
+    <p class="mt-2 mx-2"><i class="bi bi-geo-alt"></i> {{ $hotel->location }}</p>
     <div class="container body-word">
         {!! $hotel->body !!}
     </div>

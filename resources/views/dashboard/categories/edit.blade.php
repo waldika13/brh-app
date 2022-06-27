@@ -14,6 +14,15 @@
 </div>
 <div class="container-fluid content pb-5" id="content">
     <div class="bg-white section-add">
+        <div class="mb-2">
+            <form action="/dashboard/categories/deleteImages/{{ $category->slug }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('delete')
+                @if($category->image)
+                    <button class="btn btn-danger" type="submit"><i class="bi bi-dash-circle"></i> Delete Category Image</button>
+                @endif
+            </form>
+        </div>
         <form action="/dashboard/categories/{{ $category->slug }}" method="POST" enctype="multipart/form-data">
         @method('PUT')
         @csrf
@@ -38,7 +47,7 @@
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="image">Category Picture</label>
+                        <label for="image">Category Image</label>
                         @if($category->image)
                             <img src="{{ asset('storage/' . $category->image) }}" class="img-preview img-fluid my-3 col-sm-5 d-block" alt="Photo of {{ $category->name }}">            
                         @endif

@@ -4,8 +4,8 @@
     
     <div class="mt-5 mb-2">
         <div class="d-flex">
-            <a href="/dashboard/hotels" class="btn btn-primary">Back to list</a>
-            <a href="/dashboard/hotels/{{ $hotel->slug }}/edit" class="btn btn-warning mx-1">Edit</a>
+            <a href="/dashboard/hotels" class="btn btn-primary"><i class="bi bi-arrow-bar-left"></i> Back to list</a>
+            <a href="/dashboard/hotels/{{ $hotel->slug }}/edit" class="btn btn-warning mx-1"><i class="bi bi-pencil-square"></i> Edit</a>
             <form action="/dashboard/hotels/{{ $hotel->slug }}" method="POST" id="deleteForm">
                 @csrf
                 @method('delete')
@@ -23,7 +23,11 @@
     @endif
     
     <h1 class="mt-4 d-inline">{{ $hotel->title }}</h1>
-    <p>By: {{ $hotel->author->name }}</p>
+    @if($hotel->author != null)
+        <p>By: {{ $hotel->author->name }}</p>
+    @else
+        <p>By: User Telah Terhapus</p>
+    @endif
     <p><i class="bi bi-geo-alt"></i> {{ $hotel->location }}</p>
     <div class="container" style="word-wrap:break-word;">
         {!! $hotel->body !!}

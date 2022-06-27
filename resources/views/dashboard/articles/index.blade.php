@@ -4,22 +4,35 @@
 <link href="{{ asset('css/dashboard/list-item.css') }}" rel="stylesheet">
 
 <div class="header">
-    <div class="d-flex">
-        <a href="/article" class="me-4"><button class="btn btn-warning rounded-5"  style="color: black">
-            Back to Article
-        </button></a>
-        <a href="/dashboard/articles/create" class="me-4"><button class="btn btn-success rounded-5">
-                Create New Article
+    @if(auth()->user()->is_admin)
+        <div class="d-flex">
+            <a href="/article" class="me-4"><button class="btn btn-warning rounded-5"  style="color: black">
+                Back to Article
             </button></a>
-        @if(auth()->user()->is_admin)
-        <form action="/dashboard/articles">
-            <div class="search-input">
-                <input type="text" placeholder="Search Article.." name="search" class="w-100" value="{{ request('search') }}">
-                <button title="Cari" type="submit"></button>
-            </div>
-        </form>
-        @endif
-    </div>
+            <a href="/dashboard/articles/create" class="me-4"><button class="btn btn-success rounded-5">
+                    Create New Article
+                </button></a>
+    @else
+            <h2>Article List</h2>
+            <div class="d-flex">
+            <a href="/article" class="me-4"><button class="btn btn-warning rounded-5"  style="color: black">
+                <i class="bi bi-arrow-left-square"></i>
+                Back to Article
+            </button></a>
+            <a href="/dashboard/articles/create" class="me-4"><button class="btn btn-success rounded-5">
+                    <i class="bi bi-journal-plus"></i>
+                    Create New Article
+                </button></a>
+    @endif
+            @if(auth()->user()->is_admin)
+            <form action="/dashboard/articles">
+                <div class="search-input">
+                    <input type="text" placeholder="Search Article.." name="search" class="w-100" value="{{ request('search') }}">
+                    <button title="Cari" type="submit"></button>
+                </div>
+            </form>
+            @endif
+        </div>
 </div>
 
 @if($articles->count())

@@ -62,7 +62,7 @@
                 e.preventDefault(); // <--- prevent form from submitting
                 swal({
                     title: "Are you sure?",
-                    text: "You will not be able to recover this category!",
+                    text: "Deleting a category is the same as deleting all hotels in it!",
                     icon: "warning",
                     buttons: [
                         'No, cancel it!',
